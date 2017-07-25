@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TitleBar">
+        <attr name="showLeftLayout" format="boolean"/>
+        <attr name="showTitle" format="boolean"/>
+        <attr name="showRightLayout" format="boolean"/>
+        <attr name="showLeftImg" format="boolean"/>
+        <attr name="showLeftText" format="boolean"/>
+        <attr name="showRightImg" format="boolean"/>
+        <attr name="showRightText" format="boolean"/>
+        <attr name="leftImg" format="reference"/>
+        <attr name="leftText" format="string|reference"/>
+        <attr name="titleText" format="string|reference"/>
+        <attr name="rightImg" format="reference"/>
+        <attr name="rightText" format="reference"/>
+        <attr name="textSizeTitle" format="dimension|reference"/>
+        <attr name="textSizeTwoSize" format="dimension|reference"/>
+        <attr name="textColorAll" format="color|reference"/>
+    </declare-styleable>
+</resources>

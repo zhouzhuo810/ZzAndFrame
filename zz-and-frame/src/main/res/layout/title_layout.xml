@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/ll_back"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingLeft="30px"
+        android:paddingRight="30px"
+        >
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="60px"
+            android:layout_height="60px"
+            android:visibility="gone"
+            />
+        <TextView
+            android:id="@+id/tv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40px"
+            android:text="返回"
+            android:textColor="#fff"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="50px"
+        android:layout_centerInParent="true"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="标题"
+        android:textColor="#fff"
+        />
+
+    <LinearLayout
+        android:id="@+id/ll_right"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingLeft="30px"
+        android:paddingRight="30px"
+        android:layout_height="110px">
+        <ImageView
+            android:id="@+id/iv_right"
+            android:layout_width="60px"
+            android:layout_height="60px"
+            android:visibility="gone"
+            />
+        <TextView
+            android:id="@+id/tv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40px"
+            android:textColor="#fff"/>
+    </LinearLayout>
+
+</RelativeLayout>
