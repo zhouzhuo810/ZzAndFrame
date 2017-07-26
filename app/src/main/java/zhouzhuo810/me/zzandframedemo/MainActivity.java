@@ -1,25 +1,31 @@
 package zhouzhuo810.me.zzandframedemo;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import zhouzhuo810.me.zzandframe.common.utils.NoticeUtils;
 import zhouzhuo810.me.zzandframe.common.utils.ToastUtils;
 import zhouzhuo810.me.zzandframe.ui.act.BaseActivity;
 import zhouzhuo810.me.zzandframe.ui.widget.TitleBar;
 
 public class MainActivity extends BaseActivity {
 
-    private SwipeRefreshLayout refresh;
-    private ListView lv;
     private TitleBar titleBar;
+    private LinearLayout activityMain;
+    private Button btnLv;
+    private Button btnRv;
+    private Button btnNotice;
+    private Button btnToast;
 
     @Override
     public int getLayoutId() {
@@ -34,8 +40,10 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initView() {
         titleBar = (TitleBar) findViewById(R.id.title_bar);
-        refresh = (SwipeRefreshLayout) findViewById(R.id.refresh);
-        lv = (ListView) findViewById(R.id.lv);
+        btnLv = (Button) findViewById(R.id.btn_lv);
+        btnRv = (Button) findViewById(R.id.btn_rv);
+        btnNotice = (Button) findViewById(R.id.btn_notice);
+        btnToast = (Button) findViewById(R.id.btn_toast);
     }
 
     @Override
@@ -45,12 +53,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initEvent() {
-        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getData();
-            }
-        });
 
         titleBar.setOnTitleClickListener(new TitleBar.OnTitleClick() {
             @Override
@@ -61,45 +63,34 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onTitleClick(TextView tvTitle) {
                 ToastUtils.showShortToast(MyApplication.getINSTANCE(), tvTitle.getText().toString().trim());
+                NoticeUtils.hideNormalNotice(MyApplication.getINSTANCE());
             }
 
             @Override
             public void onRightClick(ImageView ivRight, TextView tvRight) {
                 ToastUtils.showShortToast(MyApplication.getINSTANCE(), tvRight.getText().toString().trim());
+                showNormalNotice(tvRight.getText().toString());
+            }
+        });
+
+        btnLv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, LvActivity.class);
+                startActWithIntent(intent);
             }
         });
     }
 
-
-    /**
-     * 模拟网络请求
-     */
-    private void getData() {
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                //模拟网络请求
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                //在UI线程中更新UI
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        stopRefresh(refresh);
-                    }
-                });
-            }
-        }.start();
+    private void showNormalNotice(String s) {
+        NoticeUtils.showNormalNotice(MyApplication.getINSTANCE(), s,
+                s, true, false, R.mipmap.ic_launcher, true, true, MainActivity.class);
     }
+
 
     @Override
     public void resume() {
-        startRefresh(refresh);
-        getData();
+
     }
 
     @Override

@@ -63,6 +63,9 @@ public class TitleBar extends RelativeLayout {
     }
 
     private void init(Context context, AttributeSet attrs) {
+        if (isInEditMode()) {
+            return;
+        }
         View root = LayoutInflater.from(context).inflate(R.layout.title_layout, null);
         ivLeft = (ImageView) root.findViewById(R.id.iv_back);
         tvLeft = (TextView) root.findViewById(R.id.tv_back);
@@ -135,20 +138,21 @@ public class TitleBar extends RelativeLayout {
     }
 
     private void initEvent() {
-        llLeft.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (titleClick != null) {
-                    titleClick.onLeftClick(ivLeft, tvLeft);
-                }
-            }
-        });
 
         tvTitle.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (titleClick != null) {
                     titleClick.onTitleClick(tvTitle);
+                }
+            }
+        });
+
+        llLeft.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (titleClick != null) {
+                    titleClick.onLeftClick(ivLeft, tvLeft);
                 }
             }
         });

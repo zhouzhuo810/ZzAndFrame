@@ -31,6 +31,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:layout_marginLeft="200px"
+        android:layout_marginRight="200px"
         android:textSize="50px"
         android:layout_centerInParent="true"
         android:maxLines="1"

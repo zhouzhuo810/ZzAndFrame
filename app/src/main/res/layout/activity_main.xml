@@ -16,25 +16,54 @@
         zz:textColorAll="#fff"
         zz:textSizeTitle="50px"
         zz:leftText="返回"
-        zz:titleText="主页"
+        zz:titleText="小周工具集合"
         zz:rightText="更多"
         zz:showRightText="true"
         zz:showRightLayout="true"
         android:layout_height="120px"
-        >
+        />
 
-    </zhouzhuo810.me.zzandframe.ui.widget.TitleBar>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/refresh"
+    <Button
+        android:id="@+id/btn_lv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:textSize="40px"
+        android:textColor="#fff"
+        android:text="下拉刷新和上拉加载(ListView)"/>
 
-        <ListView
-            android:id="@+id/lv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <Button
+        android:id="@+id/btn_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:textSize="40px"
+        android:textColor="#fff"
+        android:text="下拉刷新和上拉加载(RecyclerView)"/>
 
-        </ListView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <Button
+        android:id="@+id/btn_notice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:textSize="40px"
+        android:textColor="#fff"
+        android:text="通知消息"/>
+
+    <Button
+        android:id="@+id/btn_toast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:textSize="40px"
+        android:textColor="#fff"
+        android:text="吐司工具"/>
+
+
 </LinearLayout>
