@@ -7,9 +7,8 @@ import zhouzhuo810.me.zzandframe.ui.act.BaseActivity;
 
 /**
  * IBaseFragment
- * Created by admin on 2017/7/25.
+ * Created by zhouzhuo810 on 2017/7/25.
  */
-
 public interface IBaseFragment {
 
     int getLayoutId();

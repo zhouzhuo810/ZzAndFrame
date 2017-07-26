@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 /**
  * IBaseActivity
- * Created by admin on 2017/7/25.
+ * Created by zhouzhuo810 on 2017/7/25.
  */
 public interface IBaseActivity {
 

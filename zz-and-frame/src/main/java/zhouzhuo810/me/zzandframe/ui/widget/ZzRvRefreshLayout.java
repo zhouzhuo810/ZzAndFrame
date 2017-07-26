@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 /**
  * Refresh For RecyclerView (support LoadMore).
- * Created by admin on 2017/7/25.
+ * Created by zhouzhuo810 on 2017/7/25.
  */
 public class ZzRvRefreshLayout extends SwipeRefreshLayout{
 

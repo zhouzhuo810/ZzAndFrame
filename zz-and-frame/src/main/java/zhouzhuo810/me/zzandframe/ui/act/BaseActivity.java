@@ -5,12 +5,16 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.EditText;
 
 import com.zhy.autolayout.AutoLayoutActivity;
 
 /**
  * BaseActivity
- * Created by admin on 2017/7/25.
+ * Created by zhouzhuo810 on 2017/7/25.
  */
 public abstract class BaseActivity extends AutoLayoutActivity implements IBaseActivity{
 
@@ -107,6 +111,34 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
     public void startActWithIntentForResult(Intent intent, int requestCode) {
         startActivityForResult(intent, requestCode);
         overridePendingTransition(inAnimation(), outAnimation());
+    }
+
+    @Override
+    public void setEditListener(final EditText et, final View ivClear) {
+        ivClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                et.setText("");
+            }
+        });
+        et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (editable.length() == 0) {
+                    ivClear.setVisibility(View.GONE);
+                } else {
+                    ivClear.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
     @Override

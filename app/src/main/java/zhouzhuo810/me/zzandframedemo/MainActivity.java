@@ -11,12 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import zhouzhuo810.me.zzandframe.common.utils.ToastUtils;
 import zhouzhuo810.me.zzandframe.ui.act.BaseActivity;
 import zhouzhuo810.me.zzandframe.ui.widget.TitleBar;
 
 public class MainActivity extends BaseActivity {
 
-    private LinearLayout activityMain;
     private SwipeRefreshLayout refresh;
     private ListView lv;
     private TitleBar titleBar;
@@ -34,7 +34,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initView() {
         titleBar = (TitleBar) findViewById(R.id.title_bar);
-        activityMain = (LinearLayout) findViewById(R.id.activity_main);
         refresh = (SwipeRefreshLayout) findViewById(R.id.refresh);
         lv = (ListView) findViewById(R.id.lv);
     }
@@ -61,12 +60,12 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onTitleClick(TextView tvTitle) {
-
+                ToastUtils.showShortToast(MyApplication.getINSTANCE(), tvTitle.getText().toString().trim());
             }
 
             @Override
             public void onRightClick(ImageView ivRight, TextView tvRight) {
-
+                ToastUtils.showShortToast(MyApplication.getINSTANCE(), tvRight.getText().toString().trim());
             }
         });
     }
@@ -120,11 +119,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void restoreState(@Nullable Bundle savedInstanceState) {
-
-    }
-
-    @Override
-    public void setEditListener(EditText et, View ivClear) {
 
     }
 }

@@ -12,9 +12,9 @@
         <attr name="leftText" format="string|reference"/>
         <attr name="titleText" format="string|reference"/>
         <attr name="rightImg" format="reference"/>
-        <attr name="rightText" format="reference"/>
+        <attr name="rightText" format="string|reference"/>
         <attr name="textSizeTitle" format="dimension|reference"/>
-        <attr name="textSizeTwoSize" format="dimension|reference"/>
+        <attr name="textSizeTwoSide" format="dimension|reference"/>
         <attr name="textColorAll" format="color|reference"/>
     </declare-styleable>
 </resources>

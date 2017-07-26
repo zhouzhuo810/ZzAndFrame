@@ -11,7 +11,7 @@ import zhouzhuo810.me.zzandframe.ui.act.BaseActivity;
 
 /**
  * BaseFragment
- * Created by admin on 2017/7/25.
+ * Created by zhouzhuo810 on 2017/7/25.
  */
 public abstract class BaseFragment extends Fragment implements IBaseFragment{
 
