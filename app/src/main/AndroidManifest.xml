@@ -23,6 +23,8 @@
         </activity>
 
         <activity android:name=".LvActivity"/>
+        <activity android:name=".MarkActivity"/>
+        <activity android:name=".TabBarActivity"/>
     </application>
 
 </manifest>

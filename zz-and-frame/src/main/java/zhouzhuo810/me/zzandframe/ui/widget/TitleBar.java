@@ -108,13 +108,12 @@ public class TitleBar extends RelativeLayout {
             }
             /*textSize*/
             int textSizeTitle = t.getDimensionPixelSize(R.styleable.TitleBar_textSizeTitle, 50);
+            textSizeTitle = AutoUtils.getPercentWidthSize(textSizeTitle);
             int textSizeTwoSide = t.getDimensionPixelSize(R.styleable.TitleBar_textSizeTwoSide, 40);
+            textSizeTwoSide = AutoUtils.getPercentWidthSize(textSizeTwoSide);
             tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeTitle);
             tvLeft.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeTwoSide);
             tvRight.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeTwoSide);
-            AutoUtils.autoTextSize(tvTitle);
-            AutoUtils.autoTextSize(tvLeft);
-            AutoUtils.autoTextSize(tvRight);
             /*textColor*/
             int color = t.getColor(R.styleable.TitleBar_textColorAll, Color.WHITE);
             tvTitle.setTextColor(color);

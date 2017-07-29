@@ -15,7 +15,6 @@
             android:id="@+id/iv_back"
             android:layout_width="60px"
             android:layout_height="60px"
-            android:visibility="gone"
             />
         <TextView
             android:id="@+id/tv_back"
@@ -54,7 +53,6 @@
             android:id="@+id/iv_right"
             android:layout_width="60px"
             android:layout_height="60px"
-            android:visibility="gone"
             />
         <TextView
             android:id="@+id/tv_right"

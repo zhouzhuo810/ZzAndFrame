@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zz="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <zhouzhuo810.me.zzandframe.ui.widget.TitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:background="@color/colorPrimary"
+        zz:leftText="返回"
+        zz:showRightLayout="false"
+        zz:textColorAll="#fff"
+        zz:textSizeTitle="50px"
+        zz:textSizeTwoSide="40px"
+        zz:titleText="小周工具集合" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_oval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="圆形"/>
+        <Button
+            android:id="@+id/btn_rect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="方形"/>
+        <Button
+            android:id="@+id/btn_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="圆点"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_dec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="减一"/>
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="加一"/>
+    </LinearLayout>
+
+
+    <zhouzhuo810.me.zzandframe.ui.widget.MarkView
+        android:id="@+id/mark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        zz:mv_bgColor="#f00"
+        zz:mv_bgShape="oval"
+        zz:mv_markNumber="29"
+        zz:mv_maxMarkNumber="30"
+        zz:mv_textColor="#fff"
+        zz:mv_textSize="40px" />
+
+    <zhouzhuo810.me.zzandframe.ui.widget.MarkView
+        android:id="@+id/mark1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30px"
+        zz:mv_bgColor="#f00"
+        zz:mv_bgShape="oval"
+        zz:mv_maxMarkNumber="99"
+        zz:mv_markNumber="98"
+        zz:mv_textColor="#fff"
+        zz:mv_textSize="40px" />
+
+</LinearLayout>

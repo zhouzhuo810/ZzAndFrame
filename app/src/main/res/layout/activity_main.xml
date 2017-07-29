@@ -11,17 +11,16 @@
     <zhouzhuo810.me.zzandframe.ui.widget.TitleBar
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
+        android:layout_height="120px"
         android:background="@color/colorPrimary"
-        zz:textSizeTwoSide="40px"
+        zz:leftText="返回"
+        zz:rightText="更多"
+        zz:showRightLayout="true"
+        zz:showRightText="true"
         zz:textColorAll="#fff"
         zz:textSizeTitle="50px"
-        zz:leftText="返回"
-        zz:titleText="小周工具集合"
-        zz:rightText="更多"
-        zz:showRightText="true"
-        zz:showRightLayout="true"
-        android:layout_height="120px"
-        />
+        zz:textSizeTwoSide="40px"
+        zz:titleText="小周工具集合" />
 
 
     <Button
@@ -30,9 +29,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40px"
         android:layout_marginRight="40px"
-        android:textSize="40px"
+        android:text="下拉刷新和上拉加载(ListView)"
         android:textColor="#fff"
-        android:text="下拉刷新和上拉加载(ListView)"/>
+        android:textSize="40px" />
 
     <Button
         android:id="@+id/btn_rv"
@@ -40,10 +39,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40px"
         android:layout_marginRight="40px"
-        android:textSize="40px"
+        android:text="下拉刷新和上拉加载(RecyclerView)"
         android:textColor="#fff"
-        android:text="下拉刷新和上拉加载(RecyclerView)"/>
-
+        android:textSize="40px" />
 
     <Button
         android:id="@+id/btn_notice"
@@ -51,9 +49,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40px"
         android:layout_marginRight="40px"
-        android:textSize="40px"
+        android:text="通知消息"
         android:textColor="#fff"
-        android:text="通知消息"/>
+        android:textSize="40px" />
 
     <Button
         android:id="@+id/btn_toast"
@@ -61,9 +59,26 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40px"
         android:layout_marginRight="40px"
-        android:textSize="40px"
+        android:text="吐司工具"
         android:textColor="#fff"
-        android:text="吐司工具"/>
-
+        android:textSize="40px" />
+    <Button
+        android:id="@+id/btn_mark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:text="角标工具"
+        android:textColor="#fff"
+        android:textSize="40px" />
+    <Button
+        android:id="@+id/btn_tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:text="TAB工具"
+        android:textColor="#fff"
+        android:textSize="40px" />
 
 </LinearLayout>

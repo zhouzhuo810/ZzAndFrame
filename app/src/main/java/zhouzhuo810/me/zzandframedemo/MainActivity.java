@@ -1,16 +1,12 @@
 package zhouzhuo810.me.zzandframedemo;
 
 import android.content.Intent;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import zhouzhuo810.me.zzandframe.common.utils.NoticeUtils;
@@ -26,6 +22,8 @@ public class MainActivity extends BaseActivity {
     private Button btnRv;
     private Button btnNotice;
     private Button btnToast;
+    private Button btnMark;
+    private Button btnTabBar;
 
     @Override
     public int getLayoutId() {
@@ -44,6 +42,8 @@ public class MainActivity extends BaseActivity {
         btnRv = (Button) findViewById(R.id.btn_rv);
         btnNotice = (Button) findViewById(R.id.btn_notice);
         btnToast = (Button) findViewById(R.id.btn_toast);
+        btnMark = (Button) findViewById(R.id.btn_mark);
+        btnTabBar = (Button) findViewById(R.id.btn_tab_bar);
     }
 
     @Override
@@ -77,6 +77,22 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, LvActivity.class);
+                startActWithIntent(intent);
+            }
+        });
+
+        btnMark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MarkActivity.class);
+                startActWithIntent(intent);
+            }
+        });
+
+        btnTabBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, TabBarActivity.class);
                 startActWithIntent(intent);
             }
         });
