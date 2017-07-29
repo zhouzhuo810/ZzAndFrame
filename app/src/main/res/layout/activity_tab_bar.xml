@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zz="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:zz="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <zhouzhuo810.me.zzandframe.ui.widget.TitleBar
@@ -18,24 +18,25 @@
         zz:titleText="小周工具集合" />
 
     <TextView
+        android:id="@+id/tv_name"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:textSize="40px"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/colorPrimary"
+        android:textSize="40px" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="#ddd"/>
+        android:background="#ddd" />
+
     <zhouzhuo810.me.zzandframe.ui.widget.TabBar
         android:id="@+id/tab_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         zz:tb_tabCount="FOUR"
-        zz:tb_tabNames="@array/tabNames"
-        >
+        zz:tb_tabNames="@array/tabNames">
 
     </zhouzhuo810.me.zzandframe.ui.widget.TabBar>
 </LinearLayout>

@@ -40,6 +40,9 @@ public class TabBar extends LinearLayout {
 
     private int tabCount = 5;
 
+    private int[] pressIcons;
+    private int[] normalIcons;
+
     public enum TabCount {
         ONE,
         TWO,
@@ -48,7 +51,7 @@ public class TabBar extends LinearLayout {
         FIVE
     }
 
-    interface OnTabBarClick {
+    public interface OnTabBarClick {
         void onTabClick(ImageView iv, TextView tv, int position, boolean changed);
     }
 
@@ -183,6 +186,66 @@ public class TabBar extends LinearLayout {
         }
     }
 
+    public TabBar setPressIconRes(int... icons) {
+        this.pressIcons = icons;
+        return this;
+    }
+
+    public TabBar setNormalIconRes(int... icons) {
+        this.normalIcons = icons;
+        return this;
+    }
+
+    public void update() {
+        if (pressIcons != null && pressIcons.length > 0) {
+            for (int i = 0; i < pressIcons.length; i++) {
+                if (position == i) {
+                    switch (i) {
+                        case 0:
+                            iv0.setImageResource(pressIcons[0]);
+                            break;
+                        case 1:
+                            iv1.setImageResource(pressIcons[1]);
+                            break;
+                        case 2:
+                            iv2.setImageResource(pressIcons[2]);
+                            break;
+                        case 3:
+                            iv3.setImageResource(pressIcons[3]);
+                            break;
+                        case 4:
+                            iv4.setImageResource(pressIcons[4]);
+                            break;
+                    }
+                    break;
+                }
+            }
+        }
+        if (normalIcons != null && normalIcons.length > 0) {
+            for (int i = 0; i < normalIcons.length; i++) {
+                if (position != i) {
+                    switch (i) {
+                        case 0:
+                            iv0.setImageResource(normalIcons[0]);
+                            break;
+                        case 1:
+                            iv1.setImageResource(normalIcons[1]);
+                            break;
+                        case 2:
+                            iv2.setImageResource(normalIcons[2]);
+                            break;
+                        case 3:
+                            iv3.setImageResource(normalIcons[3]);
+                            break;
+                        case 4:
+                            iv4.setImageResource(normalIcons[4]);
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
     private void setVisible(View view, boolean visible) {
         if (view != null) {
             view.setVisibility(visible ? VISIBLE : GONE);
@@ -197,6 +260,7 @@ public class TabBar extends LinearLayout {
                     onTabBarClick.onTabClick(iv0, tv0, 0, position != 0);
                 }
                 position = 0;
+                update();
             }
         });
         ll1.setOnClickListener(new OnClickListener() {
@@ -206,6 +270,7 @@ public class TabBar extends LinearLayout {
                     onTabBarClick.onTabClick(iv1, tv1, 1, position != 1);
                 }
                 position = 1;
+                update();
             }
         });
         ll2.setOnClickListener(new OnClickListener() {
@@ -215,6 +280,7 @@ public class TabBar extends LinearLayout {
                     onTabBarClick.onTabClick(iv2, tv2, 2, position != 2);
                 }
                 position = 2;
+                update();
             }
         });
         ll3.setOnClickListener(new OnClickListener() {
@@ -224,6 +290,7 @@ public class TabBar extends LinearLayout {
                     onTabBarClick.onTabClick(iv3, tv3, 3, position != 3);
                 }
                 position = 3;
+                update();
             }
         });
         ll4.setOnClickListener(new OnClickListener() {
@@ -233,6 +300,7 @@ public class TabBar extends LinearLayout {
                     onTabBarClick.onTabClick(iv4, tv4, 4, position != 4);
                 }
                 position = 4;
+                update();
             }
         });
     }

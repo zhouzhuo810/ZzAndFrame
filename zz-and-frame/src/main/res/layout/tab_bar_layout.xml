@@ -14,14 +14,17 @@
         android:orientation="vertical">
         <ImageView
             android:id="@+id/iv0"
-            android:layout_width="60px"
-            android:layout_height="60px"
-            android:layout_margin="20px"
+            android:layout_width="70px"
+            android:layout_height="70px"
+            android:scaleType="fitXY"
+            android:layout_marginTop="10px"
             />
         <TextView
             android:id="@+id/tv0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10px"
+            android:layout_marginBottom="10px"
             android:textSize="40px"
             android:text="Tab0"
             android:textColor="#000"/>
@@ -37,14 +40,17 @@
         android:orientation="vertical">
         <ImageView
             android:id="@+id/iv1"
-            android:layout_width="60px"
-            android:layout_height="60px"
-            android:layout_margin="20px"
+            android:layout_width="70px"
+            android:layout_height="70px"
+            android:scaleType="fitXY"
+            android:layout_marginTop="10px"
             />
         <TextView
             android:id="@+id/tv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10px"
+            android:layout_marginBottom="10px"
             android:textSize="40px"
             android:text="Tab1"
             android:textColor="#000"/>
@@ -60,14 +66,17 @@
         android:orientation="vertical">
         <ImageView
             android:id="@+id/iv2"
-            android:layout_width="60px"
-            android:layout_height="60px"
-            android:layout_margin="20px"
+            android:layout_width="70px"
+            android:layout_height="70px"
+            android:scaleType="fitXY"
+            android:layout_marginTop="10px"
             />
         <TextView
             android:id="@+id/tv2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10px"
+            android:layout_marginBottom="10px"
             android:textSize="40px"
             android:text="Tab2"
             android:textColor="#000"/>
@@ -83,14 +92,17 @@
         android:orientation="vertical">
         <ImageView
             android:id="@+id/iv3"
-            android:layout_width="60px"
-            android:layout_height="60px"
-            android:layout_margin="20px"
+            android:layout_width="70px"
+            android:layout_height="70px"
+            android:scaleType="fitXY"
+            android:layout_marginTop="10px"
             />
         <TextView
             android:id="@+id/tv3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10px"
+            android:layout_marginBottom="10px"
             android:textSize="40px"
             android:text="Tab3"
             android:textColor="#000"/>
@@ -106,14 +118,17 @@
         android:orientation="vertical">
         <ImageView
             android:id="@+id/iv4"
-            android:layout_width="60px"
-            android:layout_height="60px"
-            android:layout_margin="20px"
+            android:layout_width="70px"
+            android:layout_height="70px"
+            android:scaleType="fitXY"
+            android:layout_marginTop="10px"
             />
         <TextView
             android:id="@+id/tv4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10px"
+            android:layout_marginBottom="10px"
             android:textSize="40px"
             android:text="Tab4"
             android:textColor="#000"/>
