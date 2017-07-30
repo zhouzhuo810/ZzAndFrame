@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -122,6 +123,8 @@ public class TabBar extends LinearLayout {
     private void initAttrs(Context context, AttributeSet attrs) {
         if (attrs != null) {
             TypedArray t = context.obtainStyledAttributes(attrs, R.styleable.TabBar);
+            int imageSize = t.getDimensionPixelSize(R.styleable.TabBar_tb_imageSize, 60);
+            setImageSize(imageSize);
             textSize = t.getDimensionPixelSize(R.styleable.TabBar_tb_textSize, 40);
             int markPointSize = t.getDimensionPixelSize(R.styleable.TabBar_tb_markPointSize, 24);
             setMarkPointSize(markPointSize);
@@ -220,6 +223,21 @@ public class TabBar extends LinearLayout {
         tv2.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
         tv3.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
         tv4.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+    }
+
+    public TabBar setImageSize(int imageSize) {
+        int size = AutoUtils.getPercentWidthSize(imageSize);
+        iv0.getLayoutParams().width = size;
+        iv0.getLayoutParams().height = size;
+        iv1.getLayoutParams().width = size;
+        iv1.getLayoutParams().height = size;
+        iv2.getLayoutParams().width = size;
+        iv2.getLayoutParams().height = size;
+        iv3.getLayoutParams().width = size;
+        iv3.getLayoutParams().height = size;
+        iv4.getLayoutParams().width = size;
+        iv4.getLayoutParams().height = size;
+        return this;
     }
 
     public TabBar setMarkPointSize(int pointSizePx) {

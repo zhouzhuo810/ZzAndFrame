@@ -61,13 +61,13 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onTitleClick(TextView tvTitle) {
-                ToastUtils.showShortToast(MyApplication.getINSTANCE(), tvTitle.getText().toString().trim());
-                NoticeUtils.hideNormalNotice(MyApplication.getINSTANCE());
+                ToastUtils.showShortToast(tvTitle.getText().toString().trim());
+                NoticeUtils.hideNormalNotice(MyApplication.getBaseInstance());
             }
 
             @Override
             public void onRightClick(ImageView ivRight, TextView tvRight) {
-                ToastUtils.showShortToast(MyApplication.getINSTANCE(), tvRight.getText().toString().trim());
+                ToastUtils.showShortToast(tvRight.getText().toString().trim());
                 showNormalNotice(tvRight.getText().toString());
             }
         });
@@ -98,14 +98,13 @@ public class MainActivity extends BaseActivity {
     }
 
     private void showNormalNotice(String s) {
-        NoticeUtils.showNormalNotice(MyApplication.getINSTANCE(), s,
+        NoticeUtils.showNormalNotice(MyApplication.getBaseInstance(), s,
                 s, true, false, R.mipmap.ic_launcher, true, true, MainActivity.class);
     }
 
 
     @Override
     public void resume() {
-
     }
 
     @Override

@@ -179,7 +179,6 @@ public class MarkView extends View {
         rectF.bottom = getHeight();
         int width = getWidth();
         int height = getHeight();
-        Log.e("XXX", "shape="+bgShape+", width="+width+", height="+height);
         switch (bgShape) {
             case 0:
                 //oval
