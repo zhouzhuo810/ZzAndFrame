@@ -20,7 +20,7 @@ import zhouzhuo810.me.zzandframe.R;
  */
 public class MarkView extends View {
 
-    public enum BgShape {
+    public enum MarkShape {
         OVAL,
         RECT,
         POINT
@@ -32,11 +32,11 @@ public class MarkView extends View {
 
     private Paint textPaint;
     private Paint bgPaint;
-    private int textSize = 30;
+    private int textSize = 34;
     private int textColor = 0xffffffff;
     private int bgColor = 0xffff0000;
     private int bgShape = 0;
-    private int pointSize = 10;
+    private int pointSize = 24;
 
     public MarkView(Context context) {
         super(context);
@@ -148,11 +148,11 @@ public class MarkView extends View {
             TypedArray t = context.obtainStyledAttributes(attrs, R.styleable.MarkView);
             markNumber = t.getInteger(R.styleable.MarkView_mv_markNumber, 0);
             maxMarkNumber = t.getInteger(R.styleable.MarkView_mv_maxMarkNumber, 99);
-            textSize = t.getDimensionPixelSize(R.styleable.MarkView_mv_textSize, 30);
+            textSize = t.getDimensionPixelSize(R.styleable.MarkView_mv_textSize, 34);
             textColor = t.getColor(R.styleable.MarkView_mv_textColor, 0xffffffff);
             bgColor = t.getColor(R.styleable.MarkView_mv_bgColor, 0xffff0000);
             bgShape = t.getInt(R.styleable.MarkView_mv_bgShape, 0);
-            pointSize = t.getDimensionPixelSize(R.styleable.MarkView_mv_point_size, 20);
+            pointSize = t.getDimensionPixelSize(R.styleable.MarkView_mv_point_size, 24);
             t.recycle();
         }
         textSize = AutoUtils.getPercentWidthSize(textSize);
@@ -194,7 +194,7 @@ public class MarkView extends View {
 
     }
 
-    public MarkView setBgShape(BgShape bgShape) {
+    public MarkView setBgShape(MarkShape bgShape) {
         this.bgShape = bgShape.ordinal();
         return this;
     }
@@ -229,26 +229,31 @@ public class MarkView extends View {
 
     public MarkView setTextColor(int color) {
         this.textColor = color;
+        textPaint.setColor(textColor);
         return this;
     }
 
     public MarkView setTextSizeInPx(int pxSize) {
         this.textSize = AutoUtils.getPercentWidthSize(pxSize);
+        textPaint.setTextSize(textSize);
         return this;
     }
 
     public MarkView setBgColor(int color) {
         this.bgColor = color;
+        bgPaint.setColor(bgColor);
         return this;
     }
 
     public MarkView setTextColorRes(int colorRes) {
         this.textColor = getContext().getResources().getColor(colorRes);
+        textPaint.setColor(textColor);
         return this;
     }
 
     public MarkView setBgColorRes(int colorRes) {
         this.bgColor = getContext().getResources().getColor(colorRes);
+        bgPaint.setColor(bgColor);
         return this;
     }
 

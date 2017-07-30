@@ -92,24 +92,24 @@ public class MarkActivity extends BaseActivity {
         btnOval.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mark.setBgShape(MarkView.BgShape.OVAL).update();
-                mark1.setBgShape(MarkView.BgShape.OVAL).update();
+                mark.setBgShape(MarkView.MarkShape.OVAL).update();
+                mark1.setBgShape(MarkView.MarkShape.OVAL).update();
             }
         });
 
         btnRect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mark.setBgShape(MarkView.BgShape.RECT).update();
-                mark1.setBgShape(MarkView.BgShape.RECT).update();
+                mark.setBgShape(MarkView.MarkShape.RECT).update();
+                mark1.setBgShape(MarkView.MarkShape.RECT).update();
             }
         });
 
         btnPoint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mark.setBgShape(MarkView.BgShape.POINT).update();
-                mark1.setBgShape(MarkView.BgShape.POINT).update();
+                mark.setBgShape(MarkView.MarkShape.POINT).update();
+                mark1.setBgShape(MarkView.MarkShape.POINT).update();
             }
         });
 

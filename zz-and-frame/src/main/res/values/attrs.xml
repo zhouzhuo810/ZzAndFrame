@@ -42,5 +42,12 @@
             <enum name="FIVE" value="5" />
         </attr>
         <attr name="tb_tabNames" format="reference" />
+        <attr name="tb_textSize" format="dimension|reference" />
+        <attr name="tb_markTextSize" format="dimension|reference" />
+        <attr name="tb_markTextColor" format="color|reference" />
+        <attr name="tb_markBgColor" format="color|reference" />
+        <attr name="tb_textColorNormal" format="color|reference" />
+        <attr name="tb_textColorPress" format="color|reference" />
+
     </declare-styleable>
 </resources>

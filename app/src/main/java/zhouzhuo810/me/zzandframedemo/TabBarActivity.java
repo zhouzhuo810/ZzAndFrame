@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import zhouzhuo810.me.zzandframe.ui.act.BaseActivity;
+import zhouzhuo810.me.zzandframe.ui.widget.MarkView;
 import zhouzhuo810.me.zzandframe.ui.widget.TabBar;
 import zhouzhuo810.me.zzandframe.ui.widget.TitleBar;
 
@@ -53,6 +54,16 @@ public class TabBarActivity extends BaseActivity {
     public void initData() {
         tabBar.setNormalIconRes(normalIcons)
                 .setPressIconRes(pressIcons)
+                .showMarkViewAt(0)
+                .setMarkNumberAtPosition(0, 9)
+                .showMarkViewAt(1)
+                .setMarkShapeAtPosition(1, MarkView.MarkShape.POINT)
+                .showMarkViewAt(2)
+                .setMarkNumberAtPosition(2, 100)
+                .showMarkViewAt(3)
+                .setMarkShapeAtPosition(3, MarkView.MarkShape.RECT)
+                .setMaxMarkNumberAtPosition(3, 40)
+                .setMarkNumberAtPosition(3, 41)
                 .update();
     }
 

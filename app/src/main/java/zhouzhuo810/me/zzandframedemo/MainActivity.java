@@ -17,7 +17,6 @@ import zhouzhuo810.me.zzandframe.ui.widget.TitleBar;
 public class MainActivity extends BaseActivity {
 
     private TitleBar titleBar;
-    private LinearLayout activityMain;
     private Button btnLv;
     private Button btnRv;
     private Button btnNotice;
