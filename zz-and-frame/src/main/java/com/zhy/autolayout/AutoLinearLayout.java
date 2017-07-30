@@ -54,7 +54,7 @@ public class AutoLinearLayout extends LinearLayout
     @Override
     public LayoutParams generateLayoutParams(AttributeSet attrs)
     {
-        return new AutoLinearLayout.LayoutParams(getContext(), attrs);
+        return new LayoutParams(getContext(), attrs);
     }
 
 

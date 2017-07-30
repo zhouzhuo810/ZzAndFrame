@@ -3,10 +3,11 @@ package com.zhy.autolayout.utils;
 import android.view.View;
 
 import com.zhy.autolayout.AutoLayoutInfo;
-import com.zhy.autolayout.R;
 import com.zhy.autolayout.attr.Attrs;
 import com.zhy.autolayout.attr.AutoAttr;
 import com.zhy.autolayout.config.AutoLayoutConifg;
+
+import zhouzhuo810.me.zzandframe.R;
 
 /**
  * Created by zhy on 15/12/4.

@@ -23,7 +23,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zhy.autolayout.AutoLayoutInfo;
-import com.zhy.autolayout.R;
 import com.zhy.autolayout.attr.HeightAttr;
 import com.zhy.autolayout.attr.MarginAttr;
 import com.zhy.autolayout.attr.MarginBottomAttr;
@@ -42,6 +41,8 @@ import com.zhy.autolayout.attr.PaddingTopAttr;
 import com.zhy.autolayout.attr.TextSizeAttr;
 import com.zhy.autolayout.attr.WidthAttr;
 import com.zhy.autolayout.config.AutoLayoutConifg;
+
+import zhouzhuo810.me.zzandframe.R;
 
 public class AutoLayoutHelper
 {

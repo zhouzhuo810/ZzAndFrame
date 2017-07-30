@@ -1,1 +1,1 @@
-include ':app', ':zz-and-frame', ':autolayout'
+include ':app', ':zz-and-frame'

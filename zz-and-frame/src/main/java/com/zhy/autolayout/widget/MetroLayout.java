@@ -8,13 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zhy.autolayout.AutoLayoutInfo;
-import com.zhy.autolayout.R;
 import com.zhy.autolayout.utils.AutoLayoutHelper;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import zhouzhuo810.me.zzandframe.R;
 
 /**
  * Created by zhy on 15/12/10.
@@ -184,12 +185,12 @@ public class MetroLayout extends ViewGroup
 
 
     @Override
-    public MetroLayout.LayoutParams generateLayoutParams(AttributeSet attrs)
+    public LayoutParams generateLayoutParams(AttributeSet attrs)
     {
         return new LayoutParams(getContext(), attrs);
     }
 
-    public static class LayoutParams extends ViewGroup.MarginLayoutParams
+    public static class LayoutParams extends MarginLayoutParams
             implements AutoLayoutHelper.AutoLayoutParams
     {
         private AutoLayoutInfo mAutoLayoutInfo;

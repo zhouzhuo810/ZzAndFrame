@@ -26,6 +26,6 @@ dependencies {
     })
     testCompile 'junit:junit:4.12'
     compile project(':zz-and-frame')
-//    compile 'com.github.zhouzhuo810:ZzAndFrame:1.0.0'
+//    compile 'com.github.zhouzhuo810:ZzAndFrame:1.0.1'
 
 }
