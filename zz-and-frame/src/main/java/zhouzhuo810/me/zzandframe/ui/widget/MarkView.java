@@ -20,12 +20,16 @@ import zhouzhuo810.me.zzandframe.R;
  */
 public class MarkView extends View {
 
+    /**
+     * {@link #OVAL} 圆形
+     * {@link #RECT} 方形
+     * {@link #POINT} 圆点
+     */
     public enum MarkShape {
         OVAL,
         RECT,
         POINT
     }
-
 
     private int markNumber = 0;
     private int maxMarkNumber = 99;
@@ -220,6 +224,11 @@ public class MarkView extends View {
 
     public MarkView setMarkNumber(int markNumber) {
         this.markNumber = markNumber;
+        return this;
+    }
+
+    public MarkView setPointSize(int pointSize) {
+        this.pointSize = AutoUtils.getPercentWidthSize(pointSize);
         return this;
     }
 

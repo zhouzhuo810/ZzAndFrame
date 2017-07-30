@@ -44,6 +44,7 @@
         <attr name="tb_tabNames" format="reference" />
         <attr name="tb_textSize" format="dimension|reference" />
         <attr name="tb_markTextSize" format="dimension|reference" />
+        <attr name="tb_markPointSize" format="dimension|reference" />
         <attr name="tb_markTextColor" format="color|reference" />
         <attr name="tb_markBgColor" format="color|reference" />
         <attr name="tb_textColorNormal" format="color|reference" />

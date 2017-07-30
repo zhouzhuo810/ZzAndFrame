@@ -123,6 +123,8 @@ public class TabBar extends LinearLayout {
         if (attrs != null) {
             TypedArray t = context.obtainStyledAttributes(attrs, R.styleable.TabBar);
             textSize = t.getDimensionPixelSize(R.styleable.TabBar_tb_textSize, 40);
+            int markPointSize = t.getDimensionPixelSize(R.styleable.TabBar_tb_markPointSize, 24);
+            setMarkPointSize(markPointSize);
             int markTextSize = t.getDimensionPixelSize(R.styleable.TabBar_tb_markTextSize, 34);
             setMarkTextSize(markTextSize);
             int markTextColor = t.getColor(R.styleable.TabBar_tb_markTextColor, 0xffffffff);
@@ -218,6 +220,15 @@ public class TabBar extends LinearLayout {
         tv2.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
         tv3.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
         tv4.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+    }
+
+    public TabBar setMarkPointSize(int pointSizePx) {
+        mv0.setPointSize(pointSizePx);
+        mv1.setPointSize(pointSizePx);
+        mv2.setPointSize(pointSizePx);
+        mv3.setPointSize(pointSizePx);
+        mv4.setPointSize(pointSizePx);
+        return this;
     }
 
     public TabBar setMarkTextSize(int textSizePx) {
