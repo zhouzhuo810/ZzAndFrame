@@ -20,6 +20,18 @@ app/build.gradle添加
     compile 'com.github.zhouzhuo810:ZzAndFrame:1.0.3'
 ```
 
+## 说明
+
+- 所有控件或布局中均使用px作为单位，以UI设计图为准。
+- AndroidManifest.xml中需加入如下UI设计图的尺寸。
+```xml
+<meta-data android:name="design_width" android:value="768">
+</meta-data>
+<meta-data android:name="design_height" android:value="1280">
+</meta-data>
+```
+
+
 ## 控件简介
 
 ### MarkView
