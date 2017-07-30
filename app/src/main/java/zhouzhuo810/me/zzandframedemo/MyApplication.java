@@ -1,6 +1,6 @@
 package zhouzhuo810.me.zzandframedemo;
 
-import android.app.Application;
+import android.content.Context;
 
 import zhouzhuo810.me.zzandframe.ui.app.BaseApplication;
 
@@ -17,5 +17,9 @@ public class MyApplication extends BaseApplication {
         super.onCreate();
     }
 
-
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+//        MultiDex.install(this);
+    }
 }
