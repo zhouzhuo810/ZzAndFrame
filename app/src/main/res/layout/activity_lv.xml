@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:zz="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <zhouzhuo810.me.zzandframe.ui.widget.TitleBar
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
+        android:layout_height="120px"
         android:background="@color/colorPrimary"
-        zz:textSizeTwoSide="40px"
+        zz:leftText="返回"
+        zz:showRightLayout="false"
         zz:textColorAll="#fff"
         zz:textSizeTitle="50px"
-        zz:leftText="返回"
-        zz:titleText="下拉刷新上拉加载(ListView)"
-        zz:showRightLayout="false"
-        android:layout_height="120px"
-        />
+        zz:textSizeTwoSide="40px"
+        zz:titleText="下拉刷新上拉加载(ListView)" />
 
-    <android.support.v4.widget.SwipeRefreshLayout
+    <zhouzhuo810.me.zzandframe.ui.widget.ZzLvRefreshLayout
         android:id="@+id/refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -29,5 +28,5 @@
             android:layout_height="match_parent">
 
         </ListView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </zhouzhuo810.me.zzandframe.ui.widget.ZzLvRefreshLayout>
 </LinearLayout>

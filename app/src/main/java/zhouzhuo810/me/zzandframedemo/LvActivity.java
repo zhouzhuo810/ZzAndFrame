@@ -5,19 +5,29 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import zhouzhuo810.me.zzandframe.ui.act.BaseActivity;
+import zhouzhuo810.me.zzandframe.ui.widget.IFooterCreator;
 import zhouzhuo810.me.zzandframe.ui.widget.TitleBar;
+import zhouzhuo810.me.zzandframe.ui.widget.ZzLvRefreshLayout;
+import zhouzhuo810.me.zzandframedemo.adapter.LvAdapter;
+import zhouzhuo810.me.zzandframedemo.bean.LvBean;
 
 /**
  * Created by admin on 2017/7/26.
  */
 public class LvActivity extends BaseActivity {
 
-    private SwipeRefreshLayout refresh;
+    private ZzLvRefreshLayout refresh;
     private ListView lv;
     private TitleBar titleBar;
+    private LvAdapter adapter;
+    private List<LvBean> list;
 
     @Override
     public int getLayoutId() {
@@ -32,8 +42,42 @@ public class LvActivity extends BaseActivity {
     @Override
     public void initView() {
         titleBar = (TitleBar) findViewById(R.id.title_bar);
-        refresh = (SwipeRefreshLayout) findViewById(R.id.refresh);
+        refresh = (ZzLvRefreshLayout) findViewById(R.id.refresh);
         lv = (ListView) findViewById(R.id.lv);
+        refresh.setFooterCreator(new IFooterCreator() {
+            @Override
+            public int getFooterLayoutId() {
+                return R.layout.text_footer_layout;
+            }
+
+            @Override
+            public int getFooterTextViewId() {
+                return R.id.tv;
+            }
+
+            @Override
+            public int getProgressBarId() {
+                return R.id.pb;
+            }
+
+            @Override
+            public String getNormalText() {
+                return "上拉加载更多";
+            }
+
+            @Override
+            public String getLoadingText() {
+                return "拼命加载中";
+            }
+
+            @Override
+            public String getNoNeedLoadText() {
+                return "已经是全部数据了";
+            }
+        });
+        list = new ArrayList<>();
+        adapter = new LvAdapter(this, list);
+        lv.setAdapter(adapter);
     }
 
     @Override
@@ -55,11 +99,20 @@ public class LvActivity extends BaseActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
+                for (int i = 0; i < 10; i++) {
+                    LvBean bean = new LvBean();
+                    bean.setName("TEST"+i);
+                    bean.setPhone("1231452"+i);
+                    list.add(bean);
+                }
                 //在UI线程中更新UI
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        adapter.updateAll(list);
                         stopRefresh(refresh);
+                        refresh.showFooter();
                     }
                 });
             }
@@ -88,6 +141,13 @@ public class LvActivity extends BaseActivity {
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                getData();
+            }
+        });
+
+        refresh.setOnLoadListener(new ZzLvRefreshLayout.OnLoadListener() {
+            @Override
+            public void onLoad(ProgressBar pb, TextView tvFooter) {
                 getData();
             }
         });

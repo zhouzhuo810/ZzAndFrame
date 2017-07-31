@@ -11,25 +11,38 @@ import android.widget.TextView;
  * Refresh For RecyclerView (support LoadMore).
  * Created by zhouzhuo810 on 2017/7/25.
  */
-public class ZzRvRefreshLayout extends SwipeRefreshLayout{
+public class ZzRvRefreshLayout extends SwipeRefreshLayout implements IRefresh{
 
     private RecyclerView rv;
     private OnLoadListener onLoadListener;
 
-    public interface OnLoadListener{
-        void onLoad(ProgressBar pb, TextView tvFooter);
+    @Override
+    public void startLoad() {
+
     }
 
-    interface IRefresh {
-        void startLoad(); //文字变为拼命加载中
+    @Override
+    public void stopLoad() {
 
-        void stopLoad();  //文字变为上拉加载更多
+    }
 
-        void noNeedLoad(); //文字变为已经是全部数据了
+    @Override
+    public void noNeedLoad() {
 
-        void hideFooter(); //隐藏Footer
+    }
 
-        void showFooter(); //显示Footer
+    @Override
+    public void hideFooter() {
+
+    }
+
+    @Override
+    public void showFooter() {
+
+    }
+
+    public interface OnLoadListener{
+        void onLoad(ProgressBar pb, TextView tvFooter);
     }
 
     public void setOnLoadListener(OnLoadListener onLoadListener) {
