@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.zhy.autolayout.utils.AutoUtils;

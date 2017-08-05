@@ -3,12 +3,16 @@ package zhouzhuo810.me.zzandframedemo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.Date;
+
+import zhouzhuo810.me.zzandframe.common.utils.DateUtils;
 import zhouzhuo810.me.zzandframe.common.utils.NoticeUtils;
 import zhouzhuo810.me.zzandframe.common.utils.ToastUtils;
 import zhouzhuo810.me.zzandframe.ui.act.BaseActivity;
@@ -105,6 +109,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void resume() {
+        String time = DateUtils.handleTime("2017-08-05 12:40:00");
+        Log.e("XXX", time);
     }
 
     @Override
