@@ -8,8 +8,6 @@ import android.support.v4.content.FileProvider;
 
 import java.io.File;
 
-import zhouzhuo810.me.zzandframe.BuildConfig;
-
 /**
  * Created by zhouzhuo810 on 2017/7/25.
  */
@@ -17,15 +15,12 @@ public class ApkUtils {
 
     /**
      * 安装apk
-     * @param context
-     * @param filePath
-     * @param fileName
      */
-    public static void installApk(Context context, String filePath, String fileName) {
+    public static void installApk(Context context, String applicationId, String filePath, String fileName) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         if (Build.VERSION.SDK_INT > 23) {
             //FIX ME by ZZ : 7.0
-            Uri uri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID+".provider",
+            Uri uri = FileProvider.getUriForFile(context, applicationId+".provider",
                     new File(filePath + File.separator + fileName));
             //这flag很关键
             intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION|Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
