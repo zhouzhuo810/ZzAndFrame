@@ -14,6 +14,7 @@ import java.util.Date;
 
 import zhouzhuo810.me.zzandframe.common.utils.DateUtils;
 import zhouzhuo810.me.zzandframe.common.utils.NoticeUtils;
+import zhouzhuo810.me.zzandframe.common.utils.SharedUtils;
 import zhouzhuo810.me.zzandframe.common.utils.ToastUtils;
 import zhouzhuo810.me.zzandframe.ui.act.BaseActivity;
 import zhouzhuo810.me.zzandframe.ui.widget.TitleBar;
@@ -111,6 +112,7 @@ public class MainActivity extends BaseActivity {
     public void resume() {
         String time = DateUtils.handleTime("2017-08-05 12:40:00");
         Log.e("XXX", time);
+        SharedUtils.putString(this, "time", time);
     }
 
     @Override

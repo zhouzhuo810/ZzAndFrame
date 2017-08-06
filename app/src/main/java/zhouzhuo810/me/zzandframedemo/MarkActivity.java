@@ -12,9 +12,9 @@ import zhouzhuo810.me.zzandframe.ui.widget.MarkView;
 import zhouzhuo810.me.zzandframe.ui.widget.TitleBar;
 
 /**
+ *
  * Created by admin on 2017/7/29.
  */
-
 public class MarkActivity extends BaseActivity {
 
     private TitleBar titleBar;

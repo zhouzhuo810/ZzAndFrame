@@ -2,6 +2,7 @@ package zhouzhuo810.me.zzandframe.common.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 /**
  * SharedPreferences
@@ -11,7 +12,7 @@ public class SharedUtils {
 
     private static SharedPreferences getShared(Context context) {
         String packageName = context.getPackageName();
-        String projectName = packageName.substring(packageName.lastIndexOf("."), packageName.length());
+        String projectName = packageName.substring(packageName.lastIndexOf(".")+1, packageName.length());
         return context.getSharedPreferences(projectName, Context.MODE_PRIVATE);
     }
 
