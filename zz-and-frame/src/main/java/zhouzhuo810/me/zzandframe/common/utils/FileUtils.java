@@ -53,4 +53,21 @@ public class FileUtils {
         }
     }
 
+    /**
+     * 获取所有文件
+     * @param path 路径
+     * @return 所有文件
+     */
+    public File[] getAllFiles(String path) {
+        if (path == null) {
+            return null;
+        }
+        File file = new File(path);
+        if (!file.isDirectory()) {
+            return null;
+        } else {
+            return file.listFiles();
+        }
+    }
+
 }
