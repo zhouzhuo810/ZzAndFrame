@@ -17,7 +17,7 @@ project/build.gradle添加
 app/build.gradle添加
 
 ```
-    compile 'com.github.zhouzhuo810:ZzAndFrame:1.0.6'
+    compile 'com.github.zhouzhuo810:ZzAndFrame:1.0.7'
 ```
 
 ## 说明
@@ -83,3 +83,11 @@ app/build.gradle添加
 ### NoticeUtils
 
 - 通知工具类
+
+### CopyUtils
+
+- 复制粘贴工具
+
+### JSONTool
+
+- Json格式化工具
