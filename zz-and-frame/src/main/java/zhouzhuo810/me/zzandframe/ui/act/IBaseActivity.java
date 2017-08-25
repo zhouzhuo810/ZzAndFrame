@@ -6,12 +6,37 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 /**
  * IBaseActivity
  * Created by zhouzhuo810 on 2017/7/25.
  */
 public interface IBaseActivity {
+
+    public interface OnTwoBtnClick {
+        void onOk();
+
+        void onCancel();
+    }
+
+    public interface OnTwoBtnEditClick {
+        void onOk(String content);
+
+        void onCancel();
+    }
+
+    public interface OnItemClick {
+        void onItemClick(int position, String content);
+    }
+
+    public interface OnOneBtnClickListener {
+        void onProgress(TextView tvProgress, ProgressBar pb);
+
+        void onOK();
+    }
+
 
     /**
      * 获取布局id

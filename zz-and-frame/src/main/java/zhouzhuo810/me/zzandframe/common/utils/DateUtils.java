@@ -31,6 +31,29 @@ public class DateUtils {
         return sdf.format(date);
     }
 
+
+    public static String getAmPmTime() {
+        String timeStr = getHourMinute();
+        String hourStr = timeStr.split(":")[0];
+        String minuteStr = timeStr.split(":")[1];
+        int hourInt = Integer.parseInt(hourStr);
+        if (hourInt > 12) {
+            int realHout = hourInt - 12;
+            return realHout + ":" + minuteStr + " PM";
+        } else {
+            return hourStr + ":" + minuteStr + " AM";
+        }
+
+    }
+
+    public static String getHourMinuteSecond() {
+        return new SimpleDateFormat("HH:mm:ss", Locale.CHINA).format(new Date());
+    }
+
+    public static String getHourMinute() {
+        return new SimpleDateFormat("HH:mm", Locale.CHINA).format(new Date());
+    }
+
     public static String millToYMDHMS(long mills, String splitDate) {
         return formatDateToYMDHMS(new Date(mills), splitDate);
     }
@@ -115,6 +138,67 @@ public class DateUtils {
         return sb.toString();
     }
 
+
+    public static int calWeek(int y, int m, int d) {
+        int day = calPassDay(y, m, d);
+        int s = (y - 1) + (y - 1) / 4 - (y - 1) / 100 + (y - 1) / 400 + day;
+        return s % 7;
+    }
+
+    public static int calPassDay(int y, int m, int d) {
+        int passDay = 0;
+        for (int i = 0; i <= m - 1; i++) {
+            passDay += calDayOfMonth(y, i);
+        }
+        return passDay + d;
+    }
+
+    public static int calDayOfMonth(int y, int m) {
+        int day = 0;
+        switch (m) {
+            case 12:
+                day = 31;
+                break;
+            case 11:
+                day = 30;
+                break;
+            case 10:
+                day = 31;
+                break;
+            case 9:
+                day = 30;
+                break;
+            case 8:
+                day = 31;
+                break;
+            case 7:
+                day = 31;
+                break;
+            case 6:
+                day = 30;
+                break;
+            case 5:
+                day = 31;
+                break;
+            case 4:
+                day = 30;
+                break;
+            case 3:
+                day = 31;
+                break;
+            case 2:
+                day = isLeapYear(y) ? 29 : 28;
+                break;
+            case 1:
+                day = 31;
+                break;
+        }
+        return day;
+    }
+
+    public static boolean isLeapYear(int y) {
+        return y % 4 == 0 && y % 100 != 0 || y % 400 == 0;
+    }
 
 
 }

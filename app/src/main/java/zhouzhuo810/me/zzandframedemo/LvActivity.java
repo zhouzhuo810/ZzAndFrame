@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import zhouzhuo810.me.zzandframe.common.utils.ToastUtils;
 import zhouzhuo810.me.zzandframe.ui.act.BaseActivity;
 import zhouzhuo810.me.zzandframe.ui.widget.IFooterCreator;
 import zhouzhuo810.me.zzandframe.ui.widget.TitleBar;
@@ -74,6 +75,11 @@ public class LvActivity extends BaseActivity {
             public String getNoNeedLoadText() {
                 return "已经是全部数据了";
             }
+
+            @Override
+            public void onFooterClick(ProgressBar pb, TextView tv) {
+                ToastUtils.showLongToast("ok");
+            }
         });
         list = new ArrayList<>();
         adapter = new LvAdapter(this, list);
@@ -99,6 +105,42 @@ public class LvActivity extends BaseActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                List<LvBean> test= new ArrayList<LvBean>();
+                for (int i = 0; i < 10; i++) {
+                    LvBean bean = new LvBean();
+                    bean.setName("TEST"+i);
+                    bean.setPhone("1231452"+i);
+                    test.add(bean);
+                }
+                list = test;
+
+                //在UI线程中更新UI
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.updateAll(list);
+                        stopRefresh(refresh);
+                        refresh.showFooter();
+                    }
+                });
+            }
+        }.start();
+    }
+
+    /**
+     * 模拟网络请求
+     */
+    private void loadData() {
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                //模拟网络请求
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
                 for (int i = 0; i < 10; i++) {
                     LvBean bean = new LvBean();
@@ -111,8 +153,7 @@ public class LvActivity extends BaseActivity {
                     @Override
                     public void run() {
                         adapter.updateAll(list);
-                        stopRefresh(refresh);
-                        refresh.showFooter();
+                        refresh.stopLoad();
                     }
                 });
             }
@@ -148,7 +189,7 @@ public class LvActivity extends BaseActivity {
         refresh.setOnLoadListener(new ZzLvRefreshLayout.OnLoadListener() {
             @Override
             public void onLoad(ProgressBar pb, TextView tvFooter) {
-                getData();
+                loadData();
             }
         });
     }

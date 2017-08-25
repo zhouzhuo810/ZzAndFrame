@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="120px"
+    android:layout_height="100px"
     android:gravity="center"
     android:orientation="horizontal">
 
     <ProgressBar
         android:id="@+id/pb"
-        android:layout_width="100px"
-        android:layout_height="100px" />
+        android:visibility="gone"
+        android:layout_width="70px"
+        android:layout_height="70px" />
 
     <TextView
         android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40px"
-        android:text="上啦加载更多"
         android:textColor="#999"
         android:textSize="40px" />
 </LinearLayout>

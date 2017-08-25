@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="transparentWindow" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/dialog_custom_bg</item>
+    </style>
+
+</resources>

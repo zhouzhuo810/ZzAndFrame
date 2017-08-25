@@ -39,9 +39,9 @@
         zz:tb_textColorPress="@color/colorPrimary"
         zz:tb_markBgColor="@color/colorAccent"
         zz:tb_markTextColor="#fff"
-        zz:tb_markTextSize="38px"
-        zz:tb_imageSize="60px"
-        zz:tb_textSize="40px"
+        zz:tb_markTextSize="30px"
+        zz:tb_imageSize="50px"
+        zz:tb_textSize="36px"
         zz:tb_tabNames="@array/tabNames">
 
     </zhouzhuo810.me.zzandframe.ui.widget.TabBar>

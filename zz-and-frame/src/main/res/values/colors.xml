@@ -2,4 +2,18 @@
 <resources>
     <color name="colorTransparent">#00000000</color>
     <color name="colorHalfGray">#7fdddddd</color>
+    <color name="colorBaseMain">#438cff</color>
+    <color name="colorBaseMainPress">#195fce</color>
+
+
+    <color name="colorGrayBg">#eee</color>
+    <color name="colorWhite">#fff</color>
+    <color name="colorBlack">#000</color>
+    <color name="colorOrange">#ecab29</color>
+    <color name="colorRed">#f00</color>
+    <color name="colorBlue">#00f</color>
+    <color name="colorGreen">#0f0</color>
+
+    <color name="colorExit">#cf1212</color>
+    <color name="colorExitPress">#ce060a</color>
 </resources>

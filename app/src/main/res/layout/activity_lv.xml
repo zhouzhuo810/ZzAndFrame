@@ -25,7 +25,9 @@
         <ListView
             android:id="@+id/lv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:divider="@color/colorTransparent"
+            android:dividerHeight="0dp">
 
         </ListView>
     </zhouzhuo810.me.zzandframe.ui.widget.ZzLvRefreshLayout>

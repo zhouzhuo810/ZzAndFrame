@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="600px"
+        android:layout_height="350px"
+        android:background="@drawable/base_et_bg_selector"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20px"
+            android:gravity="center"
+            android:text="你好"
+            android:textColor="@color/colorBlack"
+            android:textSize="34px" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
+            android:layout_marginTop="10px"
+            android:background="@color/colorGrayBg" />
+
+        <EditText
+            android:id="@+id/tv_msg"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="left|top"
+            android:hint="请输入内容"
+            android:padding="20px"
+            android:background="@null"
+            android:textColor="@color/colorBlack"
+            android:textSize="34px" />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75px"
+            android:layout_marginBottom="20px"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="10px"
+                android:layout_weight="1"
+                android:background="@drawable/btn_save_selector"
+                android:text="@string/cancel_text"
+                android:textColor="@color/colorWhite"
+                android:textSize="30px" />
+
+            <Button
+                android:id="@+id/btn_ok"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10px"
+                android:layout_marginRight="20px"
+                android:layout_weight="1"
+                android:background="@drawable/btn_save_selector"
+                android:text="@string/ok_text"
+                android:textColor="@color/colorWhite"
+                android:textSize="30px" />
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>
