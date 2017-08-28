@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import zhouzhuo810.me.zzandframe.common.utils.ToastUtils;
 import zhouzhuo810.me.zzandframe.ui.act.BaseActivity;
 import zhouzhuo810.me.zzandframe.ui.widget.MarkView;
 import zhouzhuo810.me.zzandframe.ui.widget.TitleBar;
@@ -110,6 +111,7 @@ public class MarkActivity extends BaseActivity {
             public void onClick(View view) {
                 mark.setBgShape(MarkView.MarkShape.POINT).update();
                 mark1.setBgShape(MarkView.MarkShape.POINT).update();
+                ToastUtils.showCustomBgToast("heheheh");
             }
         });
 
