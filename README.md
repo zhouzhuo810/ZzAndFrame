@@ -17,7 +17,7 @@ project/build.gradle添加
 app/build.gradle添加
 
 ```
-    compile 'com.github.zhouzhuo810:ZzAndFrame:1.0.7'
+    compile 'com.github.zhouzhuo810:ZzAndFrame:1.0.8'
 ```
 
 ## 说明
