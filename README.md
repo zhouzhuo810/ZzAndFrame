@@ -17,7 +17,7 @@ project/build.gradle添加
 app/build.gradle添加
 
 ```
-    compile 'com.github.zhouzhuo810:ZzAndFrame:1.0.8'
+    compile 'com.github.zhouzhuo810:ZzAndFrame:1.0.9'
 ```
 
 ## 说明
@@ -46,6 +46,9 @@ app/build.gradle添加
 
 - 底部菜单导航控件
 
+### ZzPagerIndicator
+
+- ViewPager指示器
 
 ## Base类简介
 
