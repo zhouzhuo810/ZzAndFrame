@@ -311,10 +311,10 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                hideListDialog();
                 if (onItemClick != null) {
                     onItemClick.onItemClick(position, items.get(position));
                 }
-                hideListDialog();
             }
         });
         lvD = new Dialog(this, R.style.transparentWindow);

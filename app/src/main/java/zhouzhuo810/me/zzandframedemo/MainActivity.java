@@ -84,6 +84,13 @@ public class MainActivity extends BaseActivity {
                 startActWithIntent(intent);
             }
         });
+        btnRv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, RvActivity.class);
+                startActWithIntent(intent);
+            }
+        });
 
         btnMark.setOnClickListener(new View.OnClickListener() {
             @Override

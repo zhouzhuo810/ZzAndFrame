@@ -33,6 +33,8 @@ public abstract class RvAutoBaseAdapter<T> extends RecyclerView.Adapter<RvAutoBa
     protected Context context;
     protected List<T> data;
 
+
+
     public RvAutoBaseAdapter(Context context, List<T> data) {
         this.context = context;
         this.data = data;

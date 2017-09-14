@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:zz="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-    <android.support.v4.widget.SwipeRefreshLayout
+    <zhouzhuo810.me.zzandframe.ui.widget.TitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:background="@color/colorPrimary"
+        zz:leftText="返回"
+        zz:showRightLayout="false"
+        zz:textColorAll="#fff"
+        zz:textSizeTitle="50px"
+        zz:textSizeTwoSide="40px"
+        zz:titleText="下拉刷新上拉加载(RecyclerView)" />
+
+    <zhouzhuo810.me.zzandframe.ui.widget.ZzRvRefreshLayout
         android:id="@+id/refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ListView
-            android:id="@+id/lv"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </ListView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+        </android.support.v7.widget.RecyclerView>
+    </zhouzhuo810.me.zzandframe.ui.widget.ZzRvRefreshLayout>
 </LinearLayout>
