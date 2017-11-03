@@ -12,9 +12,15 @@
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="120px"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorBaseMain"
+        zz:leftImg="@drawable/iv_back"
         zz:leftText="返回"
+        zz:rightImg="@drawable/iv_back"
         zz:rightText="更多"
+        zz:showLeftImg="true"
+        zz:showLeftLayout="true"
+        zz:showLeftText="true"
+        zz:showRightImg="true"
         zz:showRightLayout="true"
         zz:showRightText="true"
         zz:textColorAll="#fff"
@@ -62,6 +68,7 @@
         android:text="吐司工具"
         android:textColor="#fff"
         android:textSize="40px" />
+
     <Button
         android:id="@+id/btn_mark"
         android:layout_width="match_parent"
@@ -71,6 +78,7 @@
         android:text="角标工具"
         android:textColor="#fff"
         android:textSize="40px" />
+
     <Button
         android:id="@+id/btn_tab_bar"
         android:layout_width="match_parent"

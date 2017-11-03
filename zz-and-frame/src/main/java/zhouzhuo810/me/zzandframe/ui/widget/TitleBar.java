@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.media.Image;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -35,12 +36,15 @@ public class TitleBar extends RelativeLayout {
 
     public interface OnTitleClick {
         void onLeftClick(ImageView ivLeft, TextView tvLeft);
+
         void onTitleClick(TextView tvTitle);
+
         void onRightClick(ImageView ivRight, TextView tvRight);
     }
 
     /**
      * 设置标题、左边、右边按钮点击事件
+     *
      * @param titleClick OnTitleClick
      */
     public void setOnTitleClickListener(OnTitleClick titleClick) {
@@ -63,9 +67,6 @@ public class TitleBar extends RelativeLayout {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        if (isInEditMode()) {
-            return;
-        }
         View root = LayoutInflater.from(context).inflate(R.layout.title_layout, null);
         ivLeft = (ImageView) root.findViewById(R.id.iv_back);
         tvLeft = (TextView) root.findViewById(R.id.tv_back);
@@ -77,6 +78,8 @@ public class TitleBar extends RelativeLayout {
         initAttrs(context, attrs);
         initEvent();
         addView(root);
+
+        setGravity(Gravity.CENTER_VERTICAL);
     }
 
     private void initAttrs(Context context, AttributeSet attrs) {
@@ -99,7 +102,7 @@ public class TitleBar extends RelativeLayout {
             setVisible(tvRight, showRightText);
             /*img*/
             int leftDrawableId = t.getResourceId(R.styleable.TitleBar_leftImg, -1);
-            int rightDrawableId = t.getResourceId(R.styleable.TitleBar_showRightImg, -1);
+            int rightDrawableId = t.getResourceId(R.styleable.TitleBar_rightImg, -1);
             if (leftDrawableId != -1) {
                 ivLeft.setImageResource(leftDrawableId);
             }
@@ -127,6 +130,27 @@ public class TitleBar extends RelativeLayout {
             tvRight.setText(rightText);
             tvTitle.setText(titleText);
             t.recycle();
+        } else {
+            setVisible(llLeft, true);
+            setVisible(llRight, false);
+            setVisible(ivLeft, false);
+            setVisible(tvLeft, true);
+            setVisible(tvTitle, true);
+            setVisible(ivRight, false);
+            setVisible(tvRight, false);
+            /*textSize*/
+            int textSizeTitle = AutoUtils.getPercentWidthSize(50);
+            int textSizeTwoSide = AutoUtils.getPercentWidthSize(40);
+            tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeTitle);
+            tvLeft.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeTwoSide);
+            tvRight.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeTwoSide);
+            /*textColor*/
+            tvTitle.setTextColor(Color.WHITE);
+            tvLeft.setTextColor(Color.WHITE);
+            tvRight.setTextColor(Color.WHITE);
+            /*text*/
+            tvLeft.setText("返回");
+            tvTitle.setText("标题");
         }
     }
 
