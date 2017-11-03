@@ -15,7 +15,7 @@
         android:background="@color/colorBaseMain"
         zz:leftImg="@drawable/iv_back"
         zz:leftText="返回"
-        zz:rightImg="@drawable/iv_back"
+        zz:rightImg="@drawable/ic_qrcode"
         zz:rightText="更多"
         zz:showLeftImg="true"
         zz:showLeftLayout="true"
