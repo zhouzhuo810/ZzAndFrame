@@ -36,7 +36,6 @@ public class RvActivity extends BaseActivity {
     private ZzRvRefreshLayout refresh;
     private RecyclerView rv;
 
-
     @Override
     public int getLayoutId() {
         return R.layout.activity_rv;
@@ -113,11 +112,11 @@ public class RvActivity extends BaseActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                List<RvBean> test= new ArrayList<RvBean>();
+                List<RvBean> test = new ArrayList<RvBean>();
                 for (int i = 0; i < 10; i++) {
                     RvBean bean = new RvBean();
-                    bean.setName("TEST"+i);
-                    bean.setPhone("1231452"+i);
+                    bean.setName("TEST" + i);
+                    bean.setPhone("1231452" + i);
                     test.add(bean);
                 }
                 list = test;
@@ -152,8 +151,8 @@ public class RvActivity extends BaseActivity {
 
                 for (int i = 0; i < 10; i++) {
                     RvBean bean = new RvBean();
-                    bean.setName("TEST"+i);
-                    bean.setPhone("1231452"+i);
+                    bean.setName("TEST" + i);
+                    bean.setPhone("1231452" + i);
                     list.add(bean);
                 }
                 //在UI线程中更新UI

@@ -44,11 +44,6 @@ public interface IBaseActivity {
      */
     int getLayoutId();
 
-    /**
-     * 默认返回
-     * @return 是否默认返回
-     */
-    boolean defaultBack();
 
     /**
      * 初始化视图
@@ -64,6 +59,12 @@ public interface IBaseActivity {
      * 初始化监听事件
      */
     void initEvent();
+
+    /**
+     * 默认返回
+     * @return 是否默认返回
+     */
+    boolean defaultBack();
 
     /**
      * onResume

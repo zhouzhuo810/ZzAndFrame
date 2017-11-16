@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zz="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <zhouzhuo810.me.zzandframe.ui.widget.TitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:background="@color/colorPrimary"
+        zz:leftText="返回"
+        zz:showRightLayout="false"
+        zz:textColorAll="#fff"
+        zz:textSizeTitle="50px"
+        zz:textSizeTwoSide="40px"
+        zz:titleText="图片预览" />
+
+    <Button
+        android:id="@+id/btn_single_pic"
+        android:layout_width="match_parent"
+        android:layout_height="90px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="50px"
+        android:background="@drawable/btn_main_selector"
+        android:text="单图预览"
+        android:textColor="@color/colorWhite"
+        android:textSize="40px" />
+
+
+    <Button
+        android:id="@+id/btn_multi_pic"
+        android:layout_width="match_parent"
+        android:layout_height="90px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="50px"
+        android:background="@drawable/btn_main_selector"
+        android:text="多图预览"
+        android:textColor="@color/colorWhite"
+        android:textSize="40px" />
+
+
+</LinearLayout>

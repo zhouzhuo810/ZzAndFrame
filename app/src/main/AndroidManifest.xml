@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="zhouzhuo810.me.zzandframedemo">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,6 +29,11 @@
         <activity android:name=".RvActivity"/>
         <activity android:name=".MarkActivity"/>
         <activity android:name=".TabBarActivity"/>
+        <activity android:name=".PreviewPicActivity"/>
+        <activity android:name="zhouzhuo810.me.zzandframe.ui.act.ImagePreviewActivity"/>
+        <activity android:name="zhouzhuo810.me.zzandframe.ui.act.MultiImagePreviewActivity"/>
+
+
     </application>
 
 </manifest>

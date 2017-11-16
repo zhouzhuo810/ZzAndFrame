@@ -28,6 +28,7 @@ public class MainActivity extends BaseActivity {
     private Button btnToast;
     private Button btnMark;
     private Button btnTabBar;
+    private Button btnPreview;
 
     @Override
     public int getLayoutId() {
@@ -48,6 +49,7 @@ public class MainActivity extends BaseActivity {
         btnToast = (Button) findViewById(R.id.btn_toast);
         btnMark = (Button) findViewById(R.id.btn_mark);
         btnTabBar = (Button) findViewById(R.id.btn_tab_bar);
+        btnPreview = (Button) findViewById(R.id.btn_preview);
     }
 
     @Override
@@ -104,6 +106,14 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, TabBarActivity.class);
+                startActWithIntent(intent);
+            }
+        });
+
+        btnPreview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PreviewPicActivity.class);
                 startActWithIntent(intent);
             }
         });
