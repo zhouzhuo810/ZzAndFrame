@@ -30,16 +30,31 @@ app/build.gradle添加
 <meta-data android:name="design_height" android:value="1280">
 </meta-data>
 ```
+常用尺寸
+```xml
+<meta-data android:name="design_width" android:value="1080">
+</meta-data>
+<meta-data android:name="design_height" android:value="1920">
+</meta-data>
+```
 
 
 - 使用图片预览功能时，需要Activity注册
-- 使用DisplayUtils#previewImage和#previewImages方法可以兼容转场动画
 
 ```xml
         <activity android:name="zhouzhuo810.me.zzandframe.ui.act.ImagePreviewActivity" />
         <activity android:name="zhouzhuo810.me.zzandframe.ui.act.MultiImagePreviewActivity" />
 ```
 
+- 使用DisplayUtils#previewImage和#previewImages方法可以兼容转场动画
+
+```java
+    DisplayUtils.previewImage((Activity) context, iv, url, -1, -1, true);
+```
+
+```java
+    DisplayUtils.previewImages((Activity) context, iv, urls, 0, -1, -1, true);
+```
 
 
 ## 控件简介
