@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import zhouzhuo810.me.zzandframe.common.cons.ZzConst;
+import zhouzhuo810.me.zzandframe.common.utils.DisplayUtils;
 import zhouzhuo810.me.zzandframe.ui.act.BaseActivity;
 import zhouzhuo810.me.zzandframe.ui.act.ImagePreviewActivity;
 import zhouzhuo810.me.zzandframe.ui.act.MultiImagePreviewActivity;

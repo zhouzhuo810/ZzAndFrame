@@ -17,7 +17,7 @@ project/build.gradle添加
 app/build.gradle添加
 
 ```
-    compile 'com.github.zhouzhuo810:ZzAndFrame:1.0.15'
+    compile 'com.github.zhouzhuo810:ZzAndFrame:1.0.16'
 ```
 
 ## 说明
@@ -30,6 +30,16 @@ app/build.gradle添加
 <meta-data android:name="design_height" android:value="1280">
 </meta-data>
 ```
+
+
+- 使用图片预览功能时，需要Activity注册
+- 使用DisplayUtils#previewImage和#previewImages方法可以兼容转场动画
+
+```xml
+        <activity android:name="zhouzhuo810.me.zzandframe.ui.act.ImagePreviewActivity" />
+        <activity android:name="zhouzhuo810.me.zzandframe.ui.act.MultiImagePreviewActivity" />
+```
+
 
 
 ## 控件简介
