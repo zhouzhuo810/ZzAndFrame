@@ -5,43 +5,45 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <zhouzhuo810.me.zzandframe.ui.widget.TitleBar
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="120px"
         android:background="@color/colorPrimary"
         zz:leftText="返回"
-        zz:leftImg="@drawable/iv_back"
         zz:showRightLayout="false"
         zz:textColorAll="#fff"
         zz:textSizeTitle="50px"
         zz:textSizeTwoSide="40px"
-        zz:titleText="图片预览" />
+        zz:titleText="选图和拍照" />
 
     <Button
-        android:id="@+id/btn_single_pic"
+        android:id="@+id/btn_album"
         android:layout_width="match_parent"
         android:layout_height="120px"
+        android:layout_marginBottom="40px"
         android:layout_marginLeft="30px"
         android:layout_marginRight="30px"
-        android:layout_marginTop="50px"
-        android:background="@drawable/btn_main_selector"
-        android:text="单图预览"
+        android:layout_marginTop="40px"
+        android:background="@drawable/btn_save_selector"
+        android:gravity="center"
+        android:text="@string/choose_photo_text"
         android:textColor="@color/colorWhite"
         android:textSize="40px" />
 
-
     <Button
-        android:id="@+id/btn_multi_pic"
+        android:id="@+id/btn_camera"
         android:layout_width="match_parent"
         android:layout_height="120px"
+        android:layout_marginBottom="40px"
         android:layout_marginLeft="30px"
         android:layout_marginRight="30px"
-        android:layout_marginTop="50px"
-        android:background="@drawable/btn_main_selector"
-        android:text="多图预览"
+        android:layout_marginTop="40px"
+        android:background="@drawable/btn_save_selector"
+        android:gravity="center"
+        android:text="@string/take_photo_text"
         android:textColor="@color/colorWhite"
         android:textSize="40px" />
-
 
 </LinearLayout>

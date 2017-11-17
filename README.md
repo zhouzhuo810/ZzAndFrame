@@ -17,7 +17,7 @@ project/build.gradle添加
 app/build.gradle添加
 
 ```
-    compile 'com.github.zhouzhuo810:ZzAndFrame:1.0.16'
+    compile 'com.github.zhouzhuo810:ZzAndFrame:1.0.17'
 ```
 
 ## 说明
@@ -55,6 +55,8 @@ app/build.gradle添加
 ```java
     DisplayUtils.previewImages((Activity) context, iv, urls, 0, -1, -1, true);
 ```
+- 新集成AndPermission功能；
+- 继承BaseActivity可以
 
 
 ## 控件简介

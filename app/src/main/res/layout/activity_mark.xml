@@ -11,6 +11,7 @@
         android:layout_height="120px"
         android:background="@color/colorPrimary"
         zz:leftText="返回"
+        zz:leftImg="@drawable/iv_back"
         zz:showRightLayout="false"
         zz:textColorAll="#fff"
         zz:textSizeTitle="50px"

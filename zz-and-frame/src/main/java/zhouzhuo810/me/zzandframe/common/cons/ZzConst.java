@@ -14,4 +14,5 @@ public class ZzConst {
     public static final String IMG_PRE_MULTI_PIC_URL = "zz_multi_pic_url";
     public static final String IMG_PRE_MULTI_PIC_POSITION = "zz_multi_postition";
 
+    public static final String SP_KEY_OF_CAMERA_PIC_PATH = "sp_key_of_camera_pic_path";
 }

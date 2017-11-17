@@ -9,37 +9,46 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.io.File;
+
 /**
  * IBaseActivity
  * Created by zhouzhuo810 on 2017/7/25.
  */
 public interface IBaseActivity {
 
-    public interface OnTwoBtnClick {
+    public static final int PERMISSION_CODE_STORAGE = 9001;
+    public static final int PERMISSION_CODE_CAMERA = 9002;
+
+    public static final int REQUEST_CODE_CHOOSE = 9003;
+    public static final int REQUEST_CODE_CAMERA = 9004;
+    public static final int REQUEST_CODE_CROP = 9005;
+
+    interface OnTwoBtnClick {
         void onOk();
 
         void onCancel();
     }
 
-    public interface OnTwoBtnEditClick {
+    interface OnTwoBtnEditClick {
         void onOk(String content);
 
         void onCancel();
     }
 
-    public interface OnItemClick {
+    interface OnItemClick {
         void onItemClick(int position, String content);
     }
 
-    public interface OnOneBtnClickListener {
+    interface OnOneBtnClickListener {
         void onProgress(TextView tvProgress, ProgressBar pb);
 
         void onOK();
     }
 
-
     /**
      * 获取布局id
+     *
      * @return id
      */
     int getLayoutId();
@@ -62,6 +71,7 @@ public interface IBaseActivity {
 
     /**
      * 默认返回
+     *
      * @return 是否默认返回
      */
     boolean defaultBack();
@@ -82,13 +92,32 @@ public interface IBaseActivity {
     void destroy();
 
     /**
+     * 选择照片
+     */
+    void choosePhoto(String dir, boolean crop);
+
+    /**
+     * 拍照
+     */
+    void takePhoto(String dir, boolean crop);
+
+
+    void onPhotoTaked(File file, String filePath);
+
+    void onPhotoChoosed(File file, String filePath);
+
+    void onPhotoCroped(File file, String filePath);
+
+    /**
      * 开始刷新
+     *
      * @param refresh SwipeRefreshLayout
      */
     void startRefresh(SwipeRefreshLayout refresh);
 
     /**
      * 停止刷新
+     *
      * @param refresh SwipeRefreshLayout
      */
     void stopRefresh(SwipeRefreshLayout refresh);
@@ -99,25 +128,29 @@ public interface IBaseActivity {
 
     /**
      * 打开Activity
+     *
      * @param intent intent
      */
     void startActWithIntent(Intent intent);
 
     /**
      * 打开Activity，带返回结果
-     * @param intent intent
+     *
+     * @param intent      intent
      * @param requestCode 请求码
      */
     void startActWithIntentForResult(Intent intent, int requestCode);
 
     /**
      * 进入动画
+     *
      * @return resId
      */
     int inAnimation();
 
     /**
      * 关闭动画
+     *
      * @return resId
      */
     int outAnimation();
@@ -134,8 +167,10 @@ public interface IBaseActivity {
 
     /**
      * 设置EditText和一键清空的View的对应关系
-     * @param et EditText
+     *
+     * @param et      EditText
      * @param ivClear View
      */
     void setEditListener(EditText et, View ivClear);
+
 }

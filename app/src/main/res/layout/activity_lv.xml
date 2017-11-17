@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="120px"
         android:background="@color/colorPrimary"
+        zz:leftImg="@drawable/iv_back"
         zz:leftText="返回"
         zz:showRightLayout="false"
         zz:textColorAll="#fff"

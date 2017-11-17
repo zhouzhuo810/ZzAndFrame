@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.Date;
 
 import zhouzhuo810.me.zzandframe.common.utils.DateUtils;
@@ -29,6 +30,8 @@ public class MainActivity extends BaseActivity {
     private Button btnMark;
     private Button btnTabBar;
     private Button btnPreview;
+    private Button btnPhoto;
+    private Button btnPager;
 
     @Override
     public int getLayoutId() {
@@ -50,6 +53,8 @@ public class MainActivity extends BaseActivity {
         btnMark = (Button) findViewById(R.id.btn_mark);
         btnTabBar = (Button) findViewById(R.id.btn_tab_bar);
         btnPreview = (Button) findViewById(R.id.btn_preview);
+        btnPhoto = (Button) findViewById(R.id.btn_photo);
+        btnPager = (Button) findViewById(R.id.btn_pager);
     }
 
     @Override
@@ -117,6 +122,24 @@ public class MainActivity extends BaseActivity {
                 startActWithIntent(intent);
             }
         });
+
+        btnPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PhotoActivity.class);
+                startActWithIntent(intent);
+            }
+        });
+
+        btnPager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PagerActivity.class);
+                startActWithIntent(intent);
+            }
+        });
+
+
     }
 
     private void showNormalNotice(String s) {

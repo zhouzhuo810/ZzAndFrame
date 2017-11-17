@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="120px"
         android:background="@color/colorPrimary"
+        zz:leftImg="@drawable/iv_back"
         zz:leftText="返回"
+        zz:showLeftImg="true"
         zz:showRightLayout="false"
         zz:textColorAll="#fff"
         zz:textSizeTitle="50px"
@@ -35,14 +37,14 @@
         android:id="@+id/tab_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        zz:tb_tabCount="FOUR"
-        zz:tb_textColorPress="@color/colorPrimary"
+        zz:tb_imageSize="50px"
         zz:tb_markBgColor="@color/colorAccent"
         zz:tb_markTextColor="#fff"
         zz:tb_markTextSize="30px"
-        zz:tb_imageSize="50px"
-        zz:tb_textSize="36px"
-        zz:tb_tabNames="@array/tabNames">
+        zz:tb_tabCount="FOUR"
+        zz:tb_tabNames="@array/tabNames"
+        zz:tb_textColorPress="@color/colorPrimary"
+        zz:tb_textSize="36px">
 
     </zhouzhuo810.me.zzandframe.ui.widget.TabBar>
 </LinearLayout>

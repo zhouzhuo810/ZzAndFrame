@@ -40,20 +40,20 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
     private Paint selectPaint;
     private Paint unSelectPaint;
     private Paint underlinePaint;
-    private int colorSelectPoint = 0xff00ff00;
-    private int colorUnSelectPoint = 0xffff00ff;
+    private int colorSelectPoint = 0xff438cff;
+    private int colorUnSelectPoint = 0xff000000;
     private int selectPointSize = 100;
     private int unSelectPointSize = 90;
     private int spacing = 8;
 
     private boolean showUnderline = true;
-    private int tabTextColorSelect = 0xffff00ff;
-    private int tabTextColorUnSelect = 0xff00ff00;
+    private int tabTextColorSelect = 0xff438cff;
+    private int tabTextColorUnSelect = 0xff000000;
     private int tabTextSizeUnSelect = 30;
     private int tabTextSizeSelect = 40;
     private int underlineHeight = 10;
     private int underlinePadding = 0;
-    private int underlineColor = 0xffe96d5b;
+    private int underlineColor = 0xff438cff;
 
     private int tabPadding = 24;
     private int zz_tab_icon_size = 80;
@@ -98,22 +98,22 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
 
             shouldExpand = a.getBoolean(R.styleable.ZzPagerIndicator_zz_should_tab_expand, false);
             int indicatorInt = a.getInt(R.styleable.ZzPagerIndicator_zz_indicator_type, 0);
-            colorSelectPoint = a.getColor(R.styleable.ZzPagerIndicator_zz_select_point_color, 0xff00ff00);
-            colorUnSelectPoint = a.getColor(R.styleable.ZzPagerIndicator_zz_unselect_point_color, 0xffff00ff);
+            colorSelectPoint = a.getColor(R.styleable.ZzPagerIndicator_zz_select_point_color, 0xff438cff);
+            colorUnSelectPoint = a.getColor(R.styleable.ZzPagerIndicator_zz_unselect_point_color, 0xff000000);
             selectPointSize = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_select_point_size, 100);
             unSelectPointSize = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_unselect_point_size, 90);
             spacing = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_point_spacing, 8);
 
-            tabTextColorSelect = a.getColor(R.styleable.ZzPagerIndicator_zz_select_tab_text_color, 0xffff00ff);
-            tabTextColorUnSelect = a.getColor(R.styleable.ZzPagerIndicator_zz_unselect_tab_text_color, 0xff00ff00);
+            tabTextColorSelect = a.getColor(R.styleable.ZzPagerIndicator_zz_select_tab_text_color, 0xff438cff);
+            tabTextColorUnSelect = a.getColor(R.styleable.ZzPagerIndicator_zz_unselect_tab_text_color, 0xff000000);
             tabTextSizeSelect = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_select_tab_text_size, 40);
-            tabTextSizeUnSelect = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_unselect_tab_text_size, 30);
+            tabTextSizeUnSelect = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_unselect_tab_text_size, 40);
             showUnderline = a.getBoolean(R.styleable.ZzPagerIndicator_zz_show_underline, true);
             underlineHeight = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_underline_height, 10);
             underlinePadding = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_underline_padding, 20);
             tabPadding = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_tab_padding, 24);
             zz_tab_icon_size = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_tab_icon_size, 80);
-            underlineColor = a.getColor(R.styleable.ZzPagerIndicator_zz_underline_color, 0xffe96d5b);
+            underlineColor = a.getColor(R.styleable.ZzPagerIndicator_zz_underline_color, 0xff438cff);
 
             if (isNeedScaleInPx) {
                 selectPointSize = AutoUtils.getPercentWidthSize(selectPointSize);

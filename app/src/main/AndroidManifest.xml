@@ -30,8 +30,8 @@
         <activity android:name=".MarkActivity"/>
         <activity android:name=".TabBarActivity"/>
         <activity android:name=".PreviewPicActivity"/>
-        <activity android:name="zhouzhuo810.me.zzandframe.ui.act.ImagePreviewActivity"/>
-        <activity android:name="zhouzhuo810.me.zzandframe.ui.act.MultiImagePreviewActivity"/>
+        <activity android:name=".PhotoActivity"/>
+        <activity android:name=".PagerActivity"/>
 
 
     </application>

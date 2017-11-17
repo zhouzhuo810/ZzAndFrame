@@ -1,10 +1,15 @@
 package zhouzhuo810.me.zzandframe.ui.act;
 
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
@@ -21,9 +26,15 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
+import com.yanzhenjie.permission.PermissionListener;
+import com.yanzhenjie.permission.Rationale;
+import com.yanzhenjie.permission.RationaleListener;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.autolayout.utils.AutoUtils;
 
+import java.io.File;
 import java.util.List;
 
 import rx.Subscriber;
@@ -32,15 +43,18 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 import zhouzhuo810.me.zzandframe.R;
+import zhouzhuo810.me.zzandframe.common.cons.ZzConst;
 import zhouzhuo810.me.zzandframe.common.rx.ExitEvent;
 import zhouzhuo810.me.zzandframe.common.rx.RxBus;
+import zhouzhuo810.me.zzandframe.common.utils.FileUtils;
+import zhouzhuo810.me.zzandframe.common.utils.SharedUtils;
 import zhouzhuo810.me.zzandframe.ui.adapter.LvAutoBaseAdapter;
 
 /**
  * BaseActivity
  * Created by zhouzhuo810 on 2017/7/25.
  */
-public abstract class BaseActivity extends AutoLayoutActivity implements IBaseActivity{
+public abstract class BaseActivity extends AutoLayoutActivity implements IBaseActivity {
 
     private boolean isForeground;
 
@@ -328,6 +342,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         lvD.setContentView(convertView);
         lvD.show();
     }
+
     public void hideListDialog() {
         if (lvD != null) {
             lvD.dismiss();
@@ -357,6 +372,118 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
     }
 
     @Override
+    public void choosePhoto(String dir, boolean crop) {
+        AndPermission.with(this)
+                .permission(Permission.STORAGE)
+                .requestCode(PERMISSION_CODE_STORAGE)
+                .rationale(new RationaleListener() {
+                    @Override
+                    public void showRequestPermissionRationale(int requestCode, Rationale rationale) {
+                        AndPermission.rationaleDialog(BaseActivity.this, rationale).show();
+                    }
+                })
+                .callback(new PermissionListener() {
+                    @Override
+                    public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
+                        Intent intent = new Intent(Intent.ACTION_PICK, null);
+                        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                        startActivityForResult(intent, REQUEST_CODE_CHOOSE);
+                    }
+
+                    @Override
+                    public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
+
+                    }
+                })
+                .start();
+    }
+
+    @Override
+    public void takePhoto(final String dir, boolean crop) {
+        AndPermission.with(this)
+                .permission(Permission.STORAGE, Permission.CAMERA)
+                .requestCode(PERMISSION_CODE_STORAGE)
+                .rationale(new RationaleListener() {
+                    @Override
+                    public void showRequestPermissionRationale(int requestCode, Rationale rationale) {
+                        AndPermission.rationaleDialog(BaseActivity.this, rationale).show();
+                    }
+                })
+                .callback(new PermissionListener() {
+                    @Override
+                    public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
+                        final File file = new File(dir);
+                        if (!file.isDirectory()) {
+                            file.mkdirs();
+                        }
+                        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);//构造intent
+                        Uri uri;
+                        String realPath = dir + File.separator + System.currentTimeMillis() + ".jpg";
+                        SharedUtils.putString(BaseActivity.this, ZzConst.SP_KEY_OF_CAMERA_PIC_PATH, realPath);
+                        final File targetFile = new File(realPath);
+                        if (Build.VERSION.SDK_INT < 24) {
+                            uri = Uri.fromFile(targetFile);
+                        } else {
+                            ContentValues contentValues = new ContentValues(1);
+                            contentValues.put(MediaStore.Images.Media.DATA, targetFile.getAbsolutePath());
+                            uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+                        }
+                        if (targetFile.exists()) {
+                            targetFile.delete();
+                        }
+                        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+                        startActivityForResult(cameraIntent, REQUEST_CODE_CAMERA);//发出intent，并要求返回调用结果
+
+                    }
+
+                    @Override
+                    public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
+
+                    }
+                })
+                .start();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (RESULT_OK == resultCode) {
+            switch (requestCode) {
+                case REQUEST_CODE_CHOOSE:
+                    if (data != null) {
+                        Uri uri = data.getData();
+                        if (uri != null) {
+                            String path = FileUtils.getRealFilePath(BaseActivity.this, uri);
+                            onPhotoChoosed(new File(path), path);
+                        }
+                    }
+                    break;
+                case REQUEST_CODE_CAMERA:
+                    String path = SharedUtils.getString(BaseActivity.this, ZzConst.SP_KEY_OF_CAMERA_PIC_PATH);
+                    if (path != null) {
+                        onPhotoTaked(new File(path), path);
+                    }
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public void onPhotoChoosed(File file, String filePath) {
+
+    }
+
+    @Override
+    public void onPhotoTaked(File file, String filePath) {
+
+    }
+
+    @Override
+    public void onPhotoCroped(File file, String filePath) {
+
+    }
+
+    @Override
     public void onBackPressed() {
         if (defaultBack()) {
             super.onBackPressed();
@@ -364,6 +491,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
             closeAct();
         }
     }
+
 
     @Override
     public void closeAct() {

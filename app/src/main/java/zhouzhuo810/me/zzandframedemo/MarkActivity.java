@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.File;
+
 import zhouzhuo810.me.zzandframe.common.utils.ToastUtils;
 import zhouzhuo810.me.zzandframe.ui.act.BaseActivity;
 import zhouzhuo810.me.zzandframe.ui.widget.MarkView;
@@ -132,6 +134,7 @@ public class MarkActivity extends BaseActivity {
     public void destroy() {
 
     }
+
 
     @Override
     public void saveState(Bundle outState) {

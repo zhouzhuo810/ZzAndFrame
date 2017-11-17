@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ZzAndFrame</string>
+    <string name="choose_photo_text">相册</string>
+    <string name="take_photo_text">相机</string>
 </resources>

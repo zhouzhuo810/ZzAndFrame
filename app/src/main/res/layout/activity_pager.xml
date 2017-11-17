@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zz="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:zz="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <zhouzhuo810.me.zzandframe.ui.widget.TitleBar
@@ -10,24 +10,23 @@
         android:layout_width="match_parent"
         android:layout_height="120px"
         android:background="@color/colorPrimary"
-        zz:leftText="返回"
         zz:leftImg="@drawable/iv_back"
+        zz:leftText="返回"
         zz:showRightLayout="false"
         zz:textColorAll="#fff"
         zz:textSizeTitle="50px"
         zz:textSizeTwoSide="40px"
-        zz:titleText="下拉刷新上拉加载(RecyclerView)" />
+        zz:titleText="ViewPager指示器" />
 
-    <zhouzhuo810.me.zzandframe.ui.widget.ZzRvRefreshLayout
-        android:id="@+id/refresh"
+    <zhouzhuo810.me.zzandframe.ui.widget.zzpagerindicator.ZzPagerIndicator
+        android:id="@+id/indicator"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="120px"
+        zz:zz_indicator_type="tab_with_text"
+        zz:zz_is_need_scale_in_px="true" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </android.support.v7.widget.RecyclerView>
-    </zhouzhuo810.me.zzandframe.ui.widget.ZzRvRefreshLayout>
+    <zhouzhuo810.me.zzandframe.ui.widget.ZzViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
