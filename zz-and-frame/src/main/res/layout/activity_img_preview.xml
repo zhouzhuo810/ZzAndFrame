@@ -6,10 +6,10 @@
     android:background="@android:color/black"
     android:gravity="center"
     android:orientation="vertical">
-    <ImageView
+    <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/act_img_preview_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:transitionName="@string/transition_product_img"
-        android:scaleType="matrix" />
+        />
 </LinearLayout>

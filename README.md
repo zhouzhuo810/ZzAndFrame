@@ -49,11 +49,11 @@ app/build.gradle添加
 - 使用DisplayUtils#previewImage和#previewImages方法可以兼容转场动画
 
 ```java
-    DisplayUtils.previewImage((Activity) context, iv, url, -1, -1, true);
+    DisplayUtils.previewImage((Activity) context, iv, url, -1, true);
 ```
 
 ```java
-    DisplayUtils.previewImages((Activity) context, iv, urls, 0, -1, -1, true);
+    DisplayUtils.previewImages((Activity) context, iv, urls, 0, -1, true);
 ```
 - 新集成AndPermission功能；
 - 继承BaseActivity可以

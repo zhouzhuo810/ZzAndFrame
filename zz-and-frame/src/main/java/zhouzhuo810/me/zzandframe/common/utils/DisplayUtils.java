@@ -43,10 +43,9 @@ public class DisplayUtils {
         return point.y;
     }
 
-    public static void previewImage(Activity activity, ImageView iv, String url, int placeHolderId, int errorPicId, boolean crossFade) {
+    public static void previewImage(Activity activity, ImageView iv, String url, int errorPicId, boolean crossFade) {
         Intent intent = new Intent(activity, ImagePreviewActivity.class);
         intent.putExtra(ZzConst.IMG_PRE_PIC_URL, url);
-        intent.putExtra(ZzConst.IMG_PRE_PLACEHOLDER, placeHolderId);
         intent.putExtra(ZzConst.IMG_PRE_ERROR_PIC, errorPicId);
         intent.putExtra(ZzConst.IMG_PRE_CROSS_FADE, crossFade);
         if (Build.VERSION.SDK_INT >= 21) {
@@ -58,11 +57,10 @@ public class DisplayUtils {
         }
     }
 
-    public static void previewImages(Activity activity, ImageView iv, ArrayList<String> urls, int position, int placeHolderId, int errorPicId, boolean crossFade) {
+    public static void previewImages(Activity activity, ImageView iv, ArrayList<String> urls, int position, int errorPicId, boolean crossFade) {
         Intent intent = new Intent(activity, ImagePreviewActivity.class);
         intent.putExtra(ZzConst.IMG_PRE_MULTI_PIC_URL, urls);
         intent.putExtra(ZzConst.IMG_PRE_MULTI_PIC_POSITION, position);
-        intent.putExtra(ZzConst.IMG_PRE_PLACEHOLDER, placeHolderId);
         intent.putExtra(ZzConst.IMG_PRE_ERROR_PIC, errorPicId);
         intent.putExtra(ZzConst.IMG_PRE_CROSS_FADE, crossFade);
         if (Build.VERSION.SDK_INT >= 21) {

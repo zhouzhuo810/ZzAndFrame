@@ -3,14 +3,15 @@ package zhouzhuo810.me.zzandframe.ui.act;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
-import com.github.chrisbanes.photoview.PhotoViewAttacher;
+import com.github.chrisbanes.photoview.PhotoView;
 
 import java.io.File;
 
@@ -23,8 +24,7 @@ import zhouzhuo810.me.zzandframe.common.cons.ZzConst;
  */
 public class ImagePreviewActivity extends BaseActivity {
 
-    private ImageView iv;
-    private PhotoViewAttacher attacher;
+    private PhotoView iv;
     private boolean defaultBack = true;
 
     @Override
@@ -34,11 +34,9 @@ public class ImagePreviewActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        iv = (ImageView) findViewById(R.id.act_img_preview_iv);
-        attacher = new PhotoViewAttacher(iv);
-        attacher.setMaximumScale(10.0f);
-
-        attacher.setOnClickListener(new View.OnClickListener() {
+        iv = (PhotoView) findViewById(R.id.act_img_preview_iv);
+        iv.setMaximumScale(10.0f);
+        iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (Build.VERSION.SDK_INT >= 21) {
@@ -55,16 +53,13 @@ public class ImagePreviewActivity extends BaseActivity {
 
         final String url = getIntent().getStringExtra(ZzConst.IMG_PRE_PIC_URL);
         defaultBack = getIntent().getBooleanExtra(ZzConst.IMG_PRE_DEFAULT_BACK, true);
-        final int placeholderId = getIntent().getIntExtra(ZzConst.IMG_PRE_PLACEHOLDER, -1);
         final int errorPicId = getIntent().getIntExtra(ZzConst.IMG_PRE_ERROR_PIC, -1);
-        final boolean crossFade = getIntent().getBooleanExtra(ZzConst.IMG_PRE_CROSS_FADE, true);
+        final boolean crossFade = getIntent().getBooleanExtra(ZzConst.IMG_PRE_CROSS_FADE, false);
 
         if (url != null) {
             if (url.startsWith("http")) {
                 DrawableRequestBuilder<String> req = Glide.with(this)
-                        .load(url)
-                        .placeholder(placeholderId == -1 ? R.drawable.ic_default : placeholderId)
-                        .error(errorPicId == -1 ? R.drawable.ic_default : errorPicId);
+                        .load(url);
                 if (crossFade) {
                     req.crossFade();
                 }
@@ -76,15 +71,13 @@ public class ImagePreviewActivity extends BaseActivity {
 
                     @Override
                     public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                        attacher.update();
+                        iv.getAttacher().update();
                         return false;
                     }
                 }).into(iv);
             } else {
                 DrawableRequestBuilder<File> req = Glide.with(this)
-                        .load(new File(url))
-                        .placeholder(placeholderId == -1 ? R.drawable.ic_default : placeholderId)
-                        .error(errorPicId == -1 ? R.drawable.ic_default : errorPicId);
+                        .load(new File(url));
                 if (crossFade) {
                     req.crossFade();
                 }
@@ -96,13 +89,13 @@ public class ImagePreviewActivity extends BaseActivity {
 
                     @Override
                     public boolean onResourceReady(GlideDrawable resource, File model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                        attacher.update();
+                        iv.getAttacher().update();
                         return false;
                     }
                 }).into(iv);
             }
         } else {
-            iv.setImageResource(placeholderId == -1 ? R.drawable.ic_default : placeholderId);
+            iv.setImageResource(errorPicId == -1 ? R.drawable.ic_default : errorPicId);
         }
     }
 

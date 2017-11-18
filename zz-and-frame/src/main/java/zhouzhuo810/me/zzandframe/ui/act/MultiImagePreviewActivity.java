@@ -10,6 +10,11 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
 import com.github.chrisbanes.photoview.OnViewTapListener;
 import com.github.chrisbanes.photoview.PhotoView;
 
@@ -49,12 +54,11 @@ public class MultiImagePreviewActivity extends BaseActivity {
 
         List<String> imgs = getIntent().getStringArrayListExtra(ZzConst.IMG_PRE_MULTI_PIC_URL);
         defaultBack = getIntent().getBooleanExtra(ZzConst.IMG_PRE_DEFAULT_BACK, true);
-        final int placeholderId = getIntent().getIntExtra(ZzConst.IMG_PRE_PLACEHOLDER, -1);
         final int errorPicId = getIntent().getIntExtra(ZzConst.IMG_PRE_ERROR_PIC, -1);
-        final boolean crossFade = getIntent().getBooleanExtra(ZzConst.IMG_PRE_CROSS_FADE, true);
+        final boolean crossFade = getIntent().getBooleanExtra(ZzConst.IMG_PRE_CROSS_FADE, false);
         int position = getIntent().getIntExtra(ZzConst.IMG_PRE_MULTI_PIC_POSITION, 0);
         if (imgs != null && imgs.size() > 0) {
-            MultiImagePageAdapter adapter = new MultiImagePageAdapter(this, imgs, placeholderId, errorPicId, crossFade);
+            MultiImagePageAdapter adapter = new MultiImagePageAdapter(this, imgs, errorPicId, crossFade);
 
             adapter.setOnViewTapListener(new OnViewTapListener() {
                 @Override
@@ -75,7 +79,6 @@ public class MultiImagePreviewActivity extends BaseActivity {
 
         private OnViewTapListener onViewTapListener;
         private Context context;
-        private int placeHolderId;
         private int errorPicId;
         private boolean crossFade;
 
@@ -85,10 +88,9 @@ public class MultiImagePreviewActivity extends BaseActivity {
 
         private List<String> imgs;
 
-        public MultiImagePageAdapter(Context context, List<String> imgs, int placeHolderId, int errorPicId, boolean crossFade) {
+        public MultiImagePageAdapter(Context context, List<String> imgs, int errorPicId, boolean crossFade) {
             this.context = context;
             this.imgs = imgs;
-            this.placeHolderId = placeHolderId;
             this.errorPicId = errorPicId;
             this.crossFade = crossFade;
         }
@@ -105,28 +107,51 @@ public class MultiImagePreviewActivity extends BaseActivity {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            PhotoView photoView = new PhotoView(container.getContext());
-
+            final PhotoView photoView = new PhotoView(container.getContext());
             container.addView(photoView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            photoView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            photoView.setMaximumScale(10.0f);
             photoView.setOnViewTapListener(onViewTapListener);
             String url = imgs.get(position);
-            if (url.startsWith("http")) {
-                DrawableRequestBuilder<String> req = Glide.with(context).load(imgs.get(position))
-                        .placeholder(placeHolderId == -1 ? R.drawable.ic_default : placeHolderId)
-                        .error(errorPicId == -1 ? R.drawable.ic_default : errorPicId);
-                if (crossFade) {
-                    req.crossFade();
+            if (url.length() > 0) {
+                if (url.startsWith("http")) {
+                    DrawableRequestBuilder<String> req = Glide.with(context).load(imgs.get(position));
+                    if (crossFade) {
+                        req.crossFade();
+                    }
+                    req.listener(new RequestListener<String, GlideDrawable>() {
+                        @Override
+                        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                            photoView.getAttacher().update();
+                            return false;
+                        }
+                    });
+                    req.into(photoView);
+                } else {
+                    DrawableRequestBuilder<File> req = Glide.with(context).load(new File(imgs.get(position)));
+                    if (crossFade) {
+                        req.crossFade();
+                    }
+                    req.listener(new RequestListener<File, GlideDrawable>() {
+                        @Override
+                        public boolean onException(Exception e, File model, Target<GlideDrawable> target, boolean isFirstResource) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(GlideDrawable resource, File model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                            photoView.getAttacher().update();
+                            return false;
+                        }
+                    });
+                    req.into(photoView);
                 }
-                req.into(photoView);
             } else {
-                DrawableRequestBuilder<File> req = Glide.with(context).load(new File(imgs.get(position)))
-                        .placeholder(placeHolderId == -1 ? R.drawable.ic_default : placeHolderId)
-                        .error(errorPicId == -1 ? R.drawable.ic_default : errorPicId);
-                if (crossFade) {
-                    req.crossFade();
-                }
-                req.into(photoView);
+                photoView.setImageResource(errorPicId == -1 ? R.drawable.ic_default : errorPicId);
             }
             return photoView;
         }
