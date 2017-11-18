@@ -103,7 +103,7 @@ public class PhotoActivity extends BaseActivity {
 
     @Override
     public void onPhotoTaked(File file, String filePath) {
-
+        ToastUtils.showCustomBgToast(filePath);
     }
 
     @Override
@@ -113,7 +113,7 @@ public class PhotoActivity extends BaseActivity {
 
     @Override
     public void onPhotoCroped(File file, String filePath) {
-        ToastUtils.showCustomBgToast(filePath);
+
     }
 
     @Override
