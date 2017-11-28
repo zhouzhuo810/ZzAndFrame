@@ -42,7 +42,7 @@
         zz:tb_markTextColor="#fff"
         zz:tb_markTextSize="30px"
         zz:tb_tabCount="FIVE"
-        zz:tb_show_img="false"
+        zz:tb_show_img="true"
         zz:tb_show_text="true"
         zz:tb_show_underline="true"
         zz:tb_tabNames="@array/tabNames"

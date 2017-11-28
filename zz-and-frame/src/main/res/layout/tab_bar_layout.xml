@@ -21,8 +21,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10px"
+            android:layout_marginBottom="4px"
             android:layout_marginTop="10px"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <ImageView
@@ -81,7 +82,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10px"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="4px"
             android:layout_marginTop="10px"
             android:orientation="vertical">
 
@@ -141,8 +143,9 @@
             android:id="@+id/ll2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10px"
+            android:layout_marginBottom="4px"
             android:layout_marginTop="10px"
             android:orientation="vertical">
 
@@ -203,7 +206,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10px"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="4px"
             android:layout_marginTop="10px"
             android:orientation="vertical">
 
@@ -263,8 +267,9 @@
             android:id="@+id/ll4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10px"
+            android:layout_marginBottom="4px"
             android:layout_marginTop="10px"
             android:orientation="vertical">
 
