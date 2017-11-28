@@ -3,6 +3,7 @@ package com.zhy.autolayout;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 ;
@@ -18,6 +19,7 @@ public class AutoLayoutActivity extends AppCompatActivity {
     @Override
     public View onCreateView(String name, Context context, AttributeSet attrs) {
         View view = null;
+        Log.e("TTT", "name = " + name);
         switch (name) {
             case LAYOUT_FRAMELAYOUT:
                 view = new AutoFrameLayout(context, attrs);

@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20px"
+            android:layout_marginTop="10px"
             android:scaleType="fitXY" />
         <zhouzhuo810.me.zzandframe.ui.widget.MarkView
             android:id="@+id/mv0"
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="6px"
+            android:layout_marginTop="3px"
             android:layout_marginLeft="-6px"
             android:layout_toRightOf="@id/iv0"
             app:mv_bgColor="#ff0000"
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="15px"
+            android:layout_marginBottom="10px"
             android:layout_below="@id/iv0"
             android:layout_marginTop="10px"
             android:text="Tab0"
@@ -64,14 +64,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20px"
+            android:layout_marginTop="10px"
             android:scaleType="fitXY" />
         <zhouzhuo810.me.zzandframe.ui.widget.MarkView
             android:id="@+id/mv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:layout_marginTop="6px"
+            android:layout_marginTop="3px"
             android:layout_marginLeft="-6px"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@id/iv1"
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/iv1"
-            android:layout_marginBottom="15px"
+            android:layout_marginBottom="10px"
             android:layout_marginTop="10px"
             android:text="Tab1"
             android:textColor="#000" />
@@ -107,14 +107,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20px"
+            android:layout_marginTop="10px"
             android:scaleType="fitXY" />
         <zhouzhuo810.me.zzandframe.ui.widget.MarkView
             android:id="@+id/mv2"
             android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6px"
+            android:layout_marginTop="3px"
             android:layout_marginLeft="-6px"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@id/iv2"
@@ -129,7 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/iv2"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="15px"
+            android:layout_marginBottom="10px"
             android:layout_marginTop="10px"
             android:text="Tab2"
             android:textColor="#000" />
@@ -149,7 +149,7 @@
             android:id="@+id/iv3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20px"
+            android:layout_marginTop="10px"
             android:layout_centerHorizontal="true"
             android:scaleType="fitXY" />
 
@@ -157,7 +157,7 @@
             android:id="@+id/mv3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6px"
+            android:layout_marginTop="3px"
             android:layout_marginLeft="-6px"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@id/iv3"
@@ -174,7 +174,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/iv3"
-            android:layout_marginBottom="15px"
+            android:layout_marginBottom="10px"
             android:layout_marginTop="10px"
             android:text="Tab3"
             android:textColor="#000" />
@@ -195,13 +195,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20px"
+            android:layout_marginTop="10px"
             android:scaleType="fitXY" />
         <zhouzhuo810.me.zzandframe.ui.widget.MarkView
             android:id="@+id/mv4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6px"
+            android:layout_marginTop="3px"
             android:layout_marginLeft="-6px"
             android:visibility="gone"
             android:layout_alignParentTop="true"
@@ -217,7 +217,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/iv4"
-            android:layout_marginBottom="15px"
+            android:layout_marginBottom="10px"
             android:layout_marginTop="10px"
             android:text="Tab4"
             android:textColor="#000" />
