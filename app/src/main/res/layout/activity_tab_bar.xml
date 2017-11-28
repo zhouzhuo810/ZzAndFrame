@@ -41,7 +41,10 @@
         zz:tb_markBgColor="@color/colorAccent"
         zz:tb_markTextColor="#fff"
         zz:tb_markTextSize="30px"
-        zz:tb_tabCount="FOUR"
+        zz:tb_tabCount="FIVE"
+        zz:tb_show_img="false"
+        zz:tb_show_text="true"
+        zz:tb_show_underline="true"
         zz:tb_tabNames="@array/tabNames"
         zz:tb_textColorPress="@color/colorPrimary"
         zz:tb_textSize="36px">

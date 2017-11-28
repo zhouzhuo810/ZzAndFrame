@@ -26,18 +26,23 @@ public class TabBar extends LinearLayout {
     private RelativeLayout ll0;
     private ImageView iv0;
     private TextView tv0;
+    private View line0;
     private RelativeLayout ll1;
     private ImageView iv1;
     private TextView tv1;
+    private View line1;
     private RelativeLayout ll2;
     private ImageView iv2;
     private TextView tv2;
+    private View line2;
     private RelativeLayout ll3;
     private ImageView iv3;
     private TextView tv3;
+    private View line3;
     private RelativeLayout ll4;
     private ImageView iv4;
     private TextView tv4;
+    private View line4;
 
     private int position = 0;
 
@@ -56,6 +61,9 @@ public class TabBar extends LinearLayout {
     private MarkView mv3;
     private MarkView mv4;
     private boolean showMarkView;
+    private boolean showImg;
+    private boolean showText;
+    private boolean showUnderLine;
 
     public enum TabCount {
         ONE,
@@ -95,26 +103,31 @@ public class TabBar extends LinearLayout {
             return;
         }
         View root = LayoutInflater.from(context).inflate(R.layout.tab_bar_layout, this, false);
-        ll0 = (RelativeLayout) root.findViewById(R.id.ll0);
+        ll0 = (RelativeLayout) root.findViewById(R.id.rl0);
         iv0 = (ImageView) root.findViewById(R.id.iv0);
         tv0 = (TextView) root.findViewById(R.id.tv0);
         mv0 = (MarkView) root.findViewById(R.id.mv0);
-        ll1 = (RelativeLayout) root.findViewById(R.id.ll1);
+        line0 = root.findViewById(R.id.line_0);
+        ll1 = (RelativeLayout) root.findViewById(R.id.rl1);
         iv1 = (ImageView) root.findViewById(R.id.iv1);
         tv1 = (TextView) root.findViewById(R.id.tv1);
         mv1 = (MarkView) root.findViewById(R.id.mv1);
-        ll2 = (RelativeLayout) root.findViewById(R.id.ll2);
+        line1 = root.findViewById(R.id.line_1);
+        ll2 = (RelativeLayout) root.findViewById(R.id.rl2);
         iv2 = (ImageView) root.findViewById(R.id.iv2);
         tv2 = (TextView) root.findViewById(R.id.tv2);
         mv2 = (MarkView) root.findViewById(R.id.mv2);
-        ll3 = (RelativeLayout) root.findViewById(R.id.ll3);
+        line2 = root.findViewById(R.id.line_2);
+        ll3 = (RelativeLayout) root.findViewById(R.id.rl3);
         iv3 = (ImageView) root.findViewById(R.id.iv3);
         tv3 = (TextView) root.findViewById(R.id.tv3);
         mv3 = (MarkView) root.findViewById(R.id.mv3);
-        ll4 = (RelativeLayout) root.findViewById(R.id.ll4);
+        line3 = root.findViewById(R.id.line_3);
+        ll4 = (RelativeLayout) root.findViewById(R.id.rl4);
         iv4 = (ImageView) root.findViewById(R.id.iv4);
         tv4 = (TextView) root.findViewById(R.id.tv4);
         mv4 = (MarkView) root.findViewById(R.id.mv4);
+        line4 = root.findViewById(R.id.line_4);
         initAttrs(context, attrs);
         initEvent();
         addView(root);
@@ -135,6 +148,28 @@ public class TabBar extends LinearLayout {
             int markBgColor = t.getColor(R.styleable.TabBar_tb_markBgColor, 0xffff0000);
             setMarkBgColor(markBgColor);
             showMarkView = t.getBoolean(R.styleable.TabBar_tb_showMarkView, false);
+            showImg = t.getBoolean(R.styleable.TabBar_tb_show_img, true);
+            showText = t.getBoolean(R.styleable.TabBar_tb_show_text, true);
+            showUnderLine = t.getBoolean(R.styleable.TabBar_tb_show_underline, false);
+
+            setVisible(mv0, showMarkView);
+            setVisible(mv1, showMarkView);
+            setVisible(mv2, showMarkView);
+            setVisible(mv3, showMarkView);
+            setVisible(mv4, showMarkView);
+
+            setVisible(tv0, showText);
+            setVisible(tv1, showText);
+            setVisible(tv2, showText);
+            setVisible(tv3, showText);
+            setVisible(tv4, showText);
+
+            setVisible(iv0, showImg);
+            setVisible(iv1, showImg);
+            setVisible(iv2, showImg);
+            setVisible(iv3, showImg);
+            setVisible(iv4, showImg);
+
             textColorNormal = t.getColor(R.styleable.TabBar_tb_textColorNormal, 0x7f999999);
             textColorPress = t.getColor(R.styleable.TabBar_tb_textColorPress, 0xff000000);
             tabCount = t.getInt(R.styleable.TabBar_tb_tabCount, 5);
@@ -266,6 +301,7 @@ public class TabBar extends LinearLayout {
         mv4.setTextColor(color);
         return this;
     }
+
     public TabBar setMarkTextColorRes(int colorRes) {
         mv0.setTextColorRes(colorRes);
         mv1.setTextColorRes(colorRes);
@@ -424,68 +460,142 @@ public class TabBar extends LinearLayout {
         tv2.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
         tv3.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
         tv4.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
-        if (pressIcons != null && pressIcons.length > 0) {
-            for (int i = 0; i < pressIcons.length; i++) {
-                if (position == i) {
-                    switch (i) {
-                        case 0:
-                            iv0.setImageResource(pressIcons[0]);
-                            tv0.setTextColor(textColorPress);
-                            break;
-                        case 1:
-                            iv1.setImageResource(pressIcons[1]);
-                            tv1.setTextColor(textColorPress);
-                            break;
-                        case 2:
-                            iv2.setImageResource(pressIcons[2]);
-                            tv2.setTextColor(textColorPress);
-                            break;
-                        case 3:
-                            iv3.setImageResource(pressIcons[3]);
-                            tv3.setTextColor(textColorPress);
-                            break;
-                        case 4:
-                            iv4.setImageResource(pressIcons[4]);
-                            tv4.setTextColor(textColorPress);
-                            break;
+        if (showImg) {
+            if (pressIcons != null && pressIcons.length > 0) {
+                for (int i = 0; i < pressIcons.length; i++) {
+                    if (position == i) {
+                        switch (i) {
+                            case 0:
+                                iv0.setImageResource(pressIcons[0]);
+                                tv0.setTextColor(textColorPress);
+                                if (showUnderLine) {
+                                    line0.setVisibility(VISIBLE);
+                                    line0.setBackgroundColor(textColorPress);
+
+                                    setVisible2(line1, false);
+                                    setVisible2(line2, false);
+                                    setVisible2(line3, false);
+                                    setVisible2(line4, false);
+                                }
+                                break;
+                            case 1:
+                                iv1.setImageResource(pressIcons[1]);
+                                tv1.setTextColor(textColorPress);
+                                if (showUnderLine) {
+                                    line1.setVisibility(VISIBLE);
+                                    line1.setBackgroundColor(textColorPress);
+
+                                    setVisible2(line0, false);
+                                    setVisible2(line2, false);
+                                    setVisible2(line3, false);
+                                    setVisible2(line4, false);
+                                }
+                                break;
+                            case 2:
+                                iv2.setImageResource(pressIcons[2]);
+                                tv2.setTextColor(textColorPress);
+                                if (showUnderLine) {
+                                    line2.setVisibility(VISIBLE);
+                                    line2.setBackgroundColor(textColorPress);
+
+                                    setVisible2(line0, false);
+                                    setVisible2(line1, false);
+                                    setVisible2(line3, false);
+                                    setVisible2(line4, false);
+                                }
+                                break;
+                            case 3:
+                                iv3.setImageResource(pressIcons[3]);
+                                tv3.setTextColor(textColorPress);
+                                if (showUnderLine) {
+                                    line3.setVisibility(VISIBLE);
+                                    line3.setBackgroundColor(textColorPress);
+
+                                    setVisible2(line0, false);
+                                    setVisible2(line1, false);
+                                    setVisible2(line2, false);
+                                    setVisible2(line4, false);
+                                }
+                                break;
+                            case 4:
+                                iv4.setImageResource(pressIcons[4]);
+                                tv4.setTextColor(textColorPress);
+                                if (showUnderLine) {
+                                    line4.setVisibility(VISIBLE);
+                                    line4.setBackgroundColor(textColorPress);
+
+                                    setVisible2(line0, false);
+                                    setVisible2(line1, false);
+                                    setVisible2(line2, false);
+                                    setVisible2(line3, false);
+                                }
+                                break;
+                        }
+                        break;
                     }
-                    break;
                 }
             }
-        }
-        if (normalIcons != null && normalIcons.length > 0) {
-            for (int i = 0; i < normalIcons.length; i++) {
-                if (position != i) {
-                    switch (i) {
-                        case 0:
-                            iv0.setImageResource(normalIcons[0]);
-                            tv0.setTextColor(textColorNormal);
-                            break;
-                        case 1:
-                            iv1.setImageResource(normalIcons[1]);
-                            tv1.setTextColor(textColorNormal);
-                            break;
-                        case 2:
-                            iv2.setImageResource(normalIcons[2]);
-                            tv2.setTextColor(textColorNormal);
-                            break;
-                        case 3:
-                            iv3.setImageResource(normalIcons[3]);
-                            tv3.setTextColor(textColorNormal);
-                            break;
-                        case 4:
-                            iv4.setImageResource(normalIcons[4]);
-                            tv4.setTextColor(textColorNormal);
-                            break;
+            if (normalIcons != null && normalIcons.length > 0) {
+                for (int i = 0; i < normalIcons.length; i++) {
+                    if (position != i) {
+                        switch (i) {
+                            case 0:
+                                iv0.setImageResource(normalIcons[0]);
+                                tv0.setTextColor(textColorNormal);
+                                break;
+                            case 1:
+                                iv1.setImageResource(normalIcons[1]);
+                                tv1.setTextColor(textColorNormal);
+                                break;
+                            case 2:
+                                iv2.setImageResource(normalIcons[2]);
+                                tv2.setTextColor(textColorNormal);
+                                break;
+                            case 3:
+                                iv3.setImageResource(normalIcons[3]);
+                                tv3.setTextColor(textColorNormal);
+                                break;
+                            case 4:
+                                iv4.setImageResource(normalIcons[4]);
+                                tv4.setTextColor(textColorNormal);
+                                break;
+                        }
                     }
                 }
             }
+        } else if (showText) {
+            tv0.setTextColor(position == 0 ? textColorPress : textColorNormal);
+            tv1.setTextColor(position == 1 ? textColorPress : textColorNormal);
+            tv2.setTextColor(position == 2 ? textColorPress : textColorNormal);
+            tv3.setTextColor(position == 3 ? textColorPress : textColorNormal);
+            tv4.setTextColor(position == 4 ? textColorPress : textColorNormal);
+
+            if (showUnderLine) {
+                line0.setBackgroundColor(position == 0 ? textColorPress : textColorNormal);
+                line1.setBackgroundColor(position == 1 ? textColorPress : textColorNormal);
+                line2.setBackgroundColor(position == 2 ? textColorPress : textColorNormal);
+                line3.setBackgroundColor(position == 3 ? textColorPress : textColorNormal);
+                line4.setBackgroundColor(position == 4 ? textColorPress : textColorNormal);
+
+                setVisible2(line0, position == 0);
+                setVisible2(line1, position == 1);
+                setVisible2(line2, position == 2);
+                setVisible2(line3, position == 3);
+                setVisible2(line4, position == 4);
+            }
         }
+
     }
 
     private void setVisible(View view, boolean visible) {
         if (view != null) {
             view.setVisibility(visible ? VISIBLE : GONE);
+        }
+    }
+
+    private void setVisible2(View view, boolean visible) {
+        if (view != null) {
+            view.setVisibility(visible ? VISIBLE : INVISIBLE);
         }
     }
 

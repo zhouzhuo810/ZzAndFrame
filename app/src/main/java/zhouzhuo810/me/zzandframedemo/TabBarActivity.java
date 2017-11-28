@@ -23,12 +23,14 @@ public class TabBarActivity extends BaseActivity {
             R.drawable.ic_chat,
             R.drawable.ic_contact,
             R.drawable.ic_find,
+            R.drawable.ic_me,
             R.drawable.ic_me
     };
     private int[] normalIcons = {
             R.drawable.ic_chat_normal,
             R.drawable.ic_contact_normal,
             R.drawable.ic_find_normal,
+            R.drawable.ic_me_normal,
             R.drawable.ic_me_normal
     };
     private TextView tvName;
@@ -64,6 +66,8 @@ public class TabBarActivity extends BaseActivity {
                 .setMarkShapeAtPosition(3, MarkView.MarkShape.RECT)
                 .setMaxMarkNumberAtPosition(3, 40)
                 .setMarkNumberAtPosition(3, 41)
+                .showMarkViewAt(4)
+                .setMarkNumberAtPosition(4, 50)
                 .update();
     }
 
