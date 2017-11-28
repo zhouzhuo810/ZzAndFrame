@@ -260,6 +260,10 @@ public class TabBar extends LinearLayout {
         tv4.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
     }
 
+    public int getSelection() {
+        return position;
+    }
+
     public TabBar setImageSize(int imageSize) {
         int size = AutoUtils.getPercentWidthSize(imageSize);
         iv0.getLayoutParams().width = size;
