@@ -19,7 +19,6 @@ public class AutoLayoutActivity extends AppCompatActivity {
     @Override
     public View onCreateView(String name, Context context, AttributeSet attrs) {
         View view = null;
-        Log.e("TTT", "name = " + name);
         switch (name) {
             case LAYOUT_FRAMELAYOUT:
                 view = new AutoFrameLayout(context, attrs);
