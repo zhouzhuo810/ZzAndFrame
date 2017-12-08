@@ -60,8 +60,9 @@ public class MarkActivity extends BaseActivity {
     @Override
     public void initEvent() {
         titleBar.setOnTitleClickListener(new TitleBar.OnTitleClick() {
+
             @Override
-            public void onLeftClick(ImageView ivLeft, TextView tvLeft) {
+            public void onLeftClick(ImageView ivLeft, MarkView mv, TextView tvLeft) {
                 closeAct();
             }
 
@@ -71,9 +72,10 @@ public class MarkActivity extends BaseActivity {
             }
 
             @Override
-            public void onRightClick(ImageView ivRight, TextView tvRight) {
+            public void onRightClick(ImageView ivRight, MarkView mv, TextView tvRight) {
 
             }
+
         });
 
         btnDec.setOnClickListener(new View.OnClickListener() {

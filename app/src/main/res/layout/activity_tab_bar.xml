@@ -13,8 +13,11 @@
         zz:leftImg="@drawable/iv_back"
         zz:leftText="返回"
         zz:showLeftImg="true"
-        zz:showRightLayout="false"
+        zz:showRightLayout="true"
         zz:textColorAll="#fff"
+        zz:rightText="动画"
+        zz:showRightText="true"
+        zz:showRightImg="false"
         zz:textSizeTitle="50px"
         zz:textSizeTwoSide="40px"
         zz:titleText="小周工具集合" />

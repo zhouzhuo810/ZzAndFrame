@@ -3,7 +3,6 @@ package zhouzhuo810.me.zzandframe.ui.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.media.Image;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -33,13 +32,17 @@ public class TitleBar extends RelativeLayout {
     private LinearLayout llRight;
 
     private OnTitleClick titleClick;
+    private MarkView mvLeft;
+    private RelativeLayout rlRight;
+    private MarkView mvRight;
+    private RelativeLayout rlLeft;
 
     public interface OnTitleClick {
-        void onLeftClick(ImageView ivLeft, TextView tvLeft);
+        void onLeftClick(ImageView ivLeft, MarkView mv, TextView tvLeft);
 
         void onTitleClick(TextView tvTitle);
 
-        void onRightClick(ImageView ivRight, TextView tvRight);
+        void onRightClick(ImageView ivRight, MarkView mv, TextView tvRight);
     }
 
     /**
@@ -73,7 +76,11 @@ public class TitleBar extends RelativeLayout {
         llLeft = (LinearLayout) root.findViewById(R.id.ll_back);
         tvTitle = (TextView) root.findViewById(R.id.tv_title);
         ivRight = (ImageView) root.findViewById(R.id.iv_right);
+        rlRight = (RelativeLayout) root.findViewById(R.id.rl_right);
+        rlLeft = (RelativeLayout) root.findViewById(R.id.rl_left);
         tvRight = (TextView) root.findViewById(R.id.tv_right);
+        mvLeft = (MarkView) root.findViewById(R.id.mv_left);
+        mvRight = (MarkView) root.findViewById(R.id.mv_right);
         llRight = (LinearLayout) root.findViewById(R.id.ll_right);
         initAttrs(context, attrs);
         initEvent();
@@ -89,17 +96,23 @@ public class TitleBar extends RelativeLayout {
             boolean showLeftLayout = t.getBoolean(R.styleable.TitleBar_showLeftLayout, true);
             boolean showRightLayout = t.getBoolean(R.styleable.TitleBar_showRightLayout, false);
             boolean showLeftImg = t.getBoolean(R.styleable.TitleBar_showLeftImg, true);
-            boolean showLeftText = t.getBoolean(R.styleable.TitleBar_showLeftText, true);
+            boolean showLeftText = t.getBoolean(R.styleable.TitleBar_showLeftText, false);
+            boolean showLeftMarkView = t.getBoolean(R.styleable.TitleBar_showLeftMarkView, false);
+            boolean showRightMarkView = t.getBoolean(R.styleable.TitleBar_showRightMarkView, false);
             boolean showTitle = t.getBoolean(R.styleable.TitleBar_showTitle, true);
             boolean showRightImg = t.getBoolean(R.styleable.TitleBar_showRightImg, false);
             boolean showRightText = t.getBoolean(R.styleable.TitleBar_showRightText, true);
             setVisible(llLeft, showLeftLayout);
             setVisible(llRight, showRightLayout);
             setVisible(ivLeft, showLeftImg);
+            setVisible(rlLeft, showLeftImg);
             setVisible(tvLeft, showLeftText);
             setVisible(tvTitle, showTitle);
             setVisible(ivRight, showRightImg);
+            setVisible(rlRight, showRightImg);
             setVisible(tvRight, showRightText);
+            setVisible(mvLeft, showLeftMarkView);
+            setVisible(mvRight, showRightMarkView);
             /*img*/
             int leftDrawableId = t.getResourceId(R.styleable.TitleBar_leftImg, -1);
             int rightDrawableId = t.getResourceId(R.styleable.TitleBar_rightImg, -1);
@@ -134,10 +147,15 @@ public class TitleBar extends RelativeLayout {
             setVisible(llLeft, true);
             setVisible(llRight, false);
             setVisible(ivLeft, false);
-            setVisible(tvLeft, true);
+            setVisible(rlLeft, false);
+            setVisible(tvLeft, false);
             setVisible(tvTitle, true);
             setVisible(ivRight, false);
+            setVisible(rlRight, false);
             setVisible(tvRight, false);
+            setVisible(mvLeft, false);
+            setVisible(mvRight, false);
+
             /*textSize*/
             int textSizeTitle = AutoUtils.getPercentWidthSize(50);
             int textSizeTwoSide = AutoUtils.getPercentWidthSize(40);
@@ -175,7 +193,7 @@ public class TitleBar extends RelativeLayout {
             @Override
             public void onClick(View view) {
                 if (titleClick != null) {
-                    titleClick.onLeftClick(ivLeft, tvLeft);
+                    titleClick.onLeftClick(ivLeft, mvLeft,  tvLeft);
                 }
             }
         });
@@ -184,7 +202,7 @@ public class TitleBar extends RelativeLayout {
             @Override
             public void onClick(View view) {
                 if (titleClick != null) {
-                    titleClick.onRightClick(ivRight, tvRight);
+                    titleClick.onRightClick(ivRight, mvLeft, tvRight);
                 }
             }
         });
@@ -192,6 +210,18 @@ public class TitleBar extends RelativeLayout {
 
     public ImageView getIvLeft() {
         return ivLeft;
+    }
+
+    public RelativeLayout getRlLeft() {
+        return rlLeft;
+    }
+
+    public MarkView getMvLeft() {
+        return mvLeft;
+    }
+
+    public MarkView getMvRight() {
+        return mvRight;
     }
 
     public TextView getTvLeft() {
@@ -218,5 +248,7 @@ public class TitleBar extends RelativeLayout {
         return llRight;
     }
 
-
+    public RelativeLayout getRlRight() {
+        return rlRight;
+    }
 }

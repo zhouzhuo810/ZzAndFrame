@@ -1,7 +1,15 @@
 package zhouzhuo810.me.zzandframedemo;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
+import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -69,13 +77,23 @@ public class TabBarActivity extends BaseActivity {
                 .showMarkViewAt(4)
                 .setMarkNumberAtPosition(4, 50)
                 .update();
+
+        tabBar.getLl0().setVisibility(View.INVISIBLE);
+        tabBar.getLl1().setVisibility(View.INVISIBLE);
+        tabBar.getLl2().setVisibility(View.INVISIBLE);
+        tabBar.getLl3().setVisibility(View.INVISIBLE);
+        tabBar.getLl4().setVisibility(View.INVISIBLE);
+
+        titleBar.getLlLeft().setVisibility(View.INVISIBLE);
+        titleBar.getLlRight().setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void initEvent() {
         titleBar.setOnTitleClickListener(new TitleBar.OnTitleClick() {
+
             @Override
-            public void onLeftClick(ImageView ivLeft, TextView tvLeft) {
+            public void onLeftClick(ImageView ivLeft, MarkView mv, TextView tvLeft) {
                 closeAct();
             }
 
@@ -85,8 +103,8 @@ public class TabBarActivity extends BaseActivity {
             }
 
             @Override
-            public void onRightClick(ImageView ivRight, TextView tvRight) {
-
+            public void onRightClick(ImageView ivRight, MarkView mv, TextView tvRight) {
+                showAnim();
             }
         });
 
@@ -96,10 +114,223 @@ public class TabBarActivity extends BaseActivity {
                 tvName.setText(tv.getText().toString());
             }
         });
+
+
     }
+
+    private void showAnim() {
+
+        ObjectAnimator anim1 = ObjectAnimator.ofFloat(tabBar.getLl0(), "y",
+                tabBar.getLl0().getHeight(), 0);
+        anim1.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                tabBar.getLl0().setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        ObjectAnimator anim2 = ObjectAnimator.ofFloat(tabBar.getLl1(), "y",
+                tabBar.getLl1().getHeight(), 0);
+        anim2.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                tabBar.getLl1().setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        ObjectAnimator anim3 = ObjectAnimator.ofFloat(tabBar.getLl2(), "y",
+                tabBar.getLl2().getHeight(), 0);
+        anim3.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                tabBar.getLl2().setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        ObjectAnimator anim4 = ObjectAnimator.ofFloat(tabBar.getLl3(), "y",
+                tabBar.getLl3().getHeight(), 0);
+        anim4.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                tabBar.getLl3().setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        ObjectAnimator anim5 = ObjectAnimator.ofFloat(tabBar.getLl4(), "y",
+                tabBar.getLl4().getHeight(), 0);
+        anim5.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                tabBar.getLl4().setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        AnimatorSet animSet = new AnimatorSet();
+        animSet.setDuration(100);
+        animSet.setInterpolator(new LinearInterpolator());
+        //两个动画同时执行
+        animSet.playSequentially(anim1, anim2, anim3, anim4, anim5);
+        animSet.start();
+
+
+    }
+
+    private void showAnim2() {
+        ObjectAnimator anim1 = ObjectAnimator.ofFloat(titleBar.getLlLeft(), "x",
+                -titleBar.getLlLeft().getWidth(), 0);
+        anim1.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                titleBar.getLlLeft().setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        float x = titleBar.getLlRight().getX();
+        ObjectAnimator anim2 = ObjectAnimator.ofFloat(titleBar.getLlRight(), "x",
+                x + titleBar.getLlRight().getWidth(), x);
+        anim2.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                titleBar.getLlRight().setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+        AnimatorSet animSet = new AnimatorSet();
+        animSet.setDuration(200);
+        animSet.setInterpolator(new FastOutSlowInInterpolator());
+        //两个动画同时执行
+        animSet.playSequentially(anim1, anim2);
+        animSet.start();
+    }
+
+    /**
+     * 底部弹出
+     *
+     * @param view
+     */
+    private void verticalRun(final View view) {
+        ValueAnimator animator = ValueAnimator.ofFloat(-view.getHeight(), 0);
+        animator.setTarget(view);
+        animator.setDuration(1000).start();
+//      animator.setInterpolator(value)
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                view.setTranslationY((Float) animation.getAnimatedValue());
+            }
+        });
+    }
+
 
     @Override
     public void resume() {
+        new Handler()
+                .postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        showAnim();
+                        showAnim2();
+                    }
+                }, 2000);
 
     }
 

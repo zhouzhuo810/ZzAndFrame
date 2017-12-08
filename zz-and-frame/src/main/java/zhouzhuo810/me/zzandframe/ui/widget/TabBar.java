@@ -636,6 +636,26 @@ public class TabBar extends LinearLayout {
         });
     }
 
+    public RelativeLayout getLl0() {
+        return ll0;
+    }
+
+    public RelativeLayout getLl1() {
+        return ll1;
+    }
+
+    public RelativeLayout getLl2() {
+        return ll2;
+    }
+
+    public RelativeLayout getLl3() {
+        return ll3;
+    }
+
+    public RelativeLayout getLl4() {
+        return ll4;
+    }
+
     public void setSelection(int i) {
         if (onTabBarClick != null) {
             switch (i) {

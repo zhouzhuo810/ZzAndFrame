@@ -12,6 +12,7 @@ import java.io.File;
 
 import zhouzhuo810.me.zzandframe.common.utils.ToastUtils;
 import zhouzhuo810.me.zzandframe.ui.act.BaseActivity;
+import zhouzhuo810.me.zzandframe.ui.widget.MarkView;
 import zhouzhuo810.me.zzandframe.ui.widget.TitleBar;
 
 /**
@@ -48,8 +49,9 @@ public class PhotoActivity extends BaseActivity {
     @Override
     public void initEvent() {
         titleBar.setOnTitleClickListener(new TitleBar.OnTitleClick() {
+
             @Override
-            public void onLeftClick(ImageView ivLeft, TextView tvLeft) {
+            public void onLeftClick(ImageView ivLeft, MarkView mv, TextView tvLeft) {
                 closeAct();
             }
 
@@ -59,7 +61,7 @@ public class PhotoActivity extends BaseActivity {
             }
 
             @Override
-            public void onRightClick(ImageView ivRight, TextView tvRight) {
+            public void onRightClick(ImageView ivRight, MarkView mv, TextView tvRight) {
 
             }
         });

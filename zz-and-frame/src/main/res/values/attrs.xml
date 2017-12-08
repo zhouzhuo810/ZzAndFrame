@@ -6,8 +6,10 @@
         <attr name="showRightLayout" format="boolean" />
         <attr name="showLeftImg" format="boolean" />
         <attr name="showLeftText" format="boolean" />
+        <attr name="showLeftMarkView" format="boolean" />
         <attr name="showRightImg" format="boolean" />
         <attr name="showRightText" format="boolean" />
+        <attr name="showRightMarkView" format="boolean" />
         <attr name="leftImg" format="reference" />
         <attr name="leftText" format="string|reference" />
         <attr name="titleText" format="string|reference" />

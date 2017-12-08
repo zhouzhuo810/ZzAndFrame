@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import zhouzhuo810.me.zzandframe.ui.act.BaseActivity;
+import zhouzhuo810.me.zzandframe.ui.widget.MarkView;
 import zhouzhuo810.me.zzandframe.ui.widget.TitleBar;
 import zhouzhuo810.me.zzandframe.ui.widget.ZzViewPager;
 import zhouzhuo810.me.zzandframe.ui.widget.zzpagerindicator.ZzPagerIndicator;
@@ -47,8 +48,9 @@ public class PagerActivity extends BaseActivity {
     @Override
     public void initEvent() {
         titleBar.setOnTitleClickListener(new TitleBar.OnTitleClick() {
+
             @Override
-            public void onLeftClick(ImageView ivLeft, TextView tvLeft) {
+            public void onLeftClick(ImageView ivLeft, MarkView mv, TextView tvLeft) {
                 closeAct();
             }
 
@@ -58,9 +60,10 @@ public class PagerActivity extends BaseActivity {
             }
 
             @Override
-            public void onRightClick(ImageView ivRight, TextView tvRight) {
+            public void onRightClick(ImageView ivRight, MarkView mv, TextView tvRight) {
 
             }
+
         });
 
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
