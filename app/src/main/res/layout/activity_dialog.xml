@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zz="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <zhouzhuo810.me.zzandframe.ui.widget.TitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:background="@color/colorPrimary"
+        zz:ttb_leftImg="@drawable/iv_back"
+        zz:ttb_leftText="返回"
+        zz:ttb_showRightLayout="false"
+        zz:ttb_textColorAll="#fff"
+        zz:ttb_textSizeTitle="50px"
+        zz:ttb_textSizeTwoSide="40px"
+        zz:ttb_titleText="对话框" />
+
+    <Button
+        android:id="@+id/btn_two_btn_ios"
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="30px"
+        android:background="@drawable/btn_save_selector"
+        android:text="IOS样式两个按钮"
+        android:textColor="#fff"
+        android:textSize="40px" />
+</LinearLayout>

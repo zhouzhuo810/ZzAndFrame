@@ -139,4 +139,16 @@
         android:textColor="#fff"
         android:textSize="40px" />
 
+    <Button
+        android:id="@+id/btn_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="30px"
+        android:background="@drawable/btn_save_selector"
+        android:text="对话框"
+        android:textColor="#fff"
+        android:textSize="40px" />
+
 </LinearLayout>

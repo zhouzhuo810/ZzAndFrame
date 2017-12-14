@@ -33,6 +33,7 @@ public class MainActivity extends BaseActivity {
     private Button btnPreview;
     private Button btnPhoto;
     private Button btnPager;
+    private Button btnDialog;
 
     @Override
     public int getLayoutId() {
@@ -56,6 +57,7 @@ public class MainActivity extends BaseActivity {
         btnPreview = (Button) findViewById(R.id.btn_preview);
         btnPhoto = (Button) findViewById(R.id.btn_photo);
         btnPager = (Button) findViewById(R.id.btn_pager);
+        btnDialog = (Button) findViewById(R.id.btn_dialog);
     }
 
     @Override
@@ -138,6 +140,14 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, PagerActivity.class);
+                startActWithIntent(intent);
+            }
+        });
+
+        btnDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, DialogActivity.class);
                 startActWithIntent(intent);
             }
         });

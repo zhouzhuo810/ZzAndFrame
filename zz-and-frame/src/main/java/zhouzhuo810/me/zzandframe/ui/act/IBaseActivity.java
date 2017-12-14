@@ -36,6 +36,12 @@ public interface IBaseActivity {
         void onCancel();
     }
 
+    interface OnIOSTwoBtnEditClick {
+        void onLeftClick();
+
+        void onRightClick();
+    }
+
     interface OnItemClick {
         void onItemClick(int position, String content);
     }
@@ -45,6 +51,7 @@ public interface IBaseActivity {
 
         void onOK();
     }
+
 
     /**
      * 获取布局id

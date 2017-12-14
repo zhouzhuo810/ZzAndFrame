@@ -169,6 +169,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
     }
 
     public void showPd(String msg, boolean cancelable) {
+        hidePd();
         View convertView = LayoutInflater.from(this).inflate(R.layout.layout_progress_dialog, null);
         AutoUtils.auto(convertView);
         TextView tvContent = (TextView) convertView.findViewById(R.id.tv_msg);
@@ -185,6 +186,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
     }
 
     public void showTwoBtnDialog(String title, String msg, boolean cancelable, final OnTwoBtnClick onTwoBtnClick) {
+        hideTwoBtnDialog();
         View convertView = LayoutInflater.from(this).inflate(R.layout.layout_two_btn_dialog, null);
         AutoUtils.auto(convertView);
         TextView tvTitle = (TextView) convertView.findViewById(R.id.tv_title);
@@ -222,8 +224,61 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         twoBtnD.show();
     }
 
+    public void showTwoBtnDialogIOSStyle(String title, String msg, String leftBtnText, String rightBtnText, int leftColor, int rightColor,
+                                         boolean cancelable, final OnIOSTwoBtnEditClick onTwoBtnClick) {
+        hideTwoBtnDialog();
+        View convertView = LayoutInflater.from(this).inflate(R.layout.layout_two_btn_dialog_ios, null);
+        AutoUtils.auto(convertView);
+        TextView tvTitle = (TextView) convertView.findViewById(R.id.tv_title);
+        tvTitle.setText(title);
+        TextView tvContent = (TextView) convertView.findViewById(R.id.tv_msg);
+        tvContent.setText(msg);
+        twoBtnD = new Dialog(this, R.style.transparentWindow);
+        Button btnLeft = (Button) convertView.findViewById(R.id.btn_left);
+        if (leftBtnText != null) {
+            btnLeft.setText(leftBtnText);
+        }
+        if (leftColor != -1) {
+            btnLeft.setTextColor(leftColor);
+        }
+        Button btnRight = (Button) convertView.findViewById(R.id.btn_right);
+        if (rightBtnText != null) {
+            btnRight.setText(rightBtnText);
+        }
+        if (rightColor != -1) {
+            btnRight.setTextColor(rightColor);
+        }
+        btnLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideTwoBtnDialog();
+                if (onTwoBtnClick != null) {
+                    onTwoBtnClick.onLeftClick();
+                }
+            }
+        });
+        btnRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideTwoBtnDialog();
+                if (onTwoBtnClick != null) {
+                    onTwoBtnClick.onRightClick();
+                }
+            }
+        });
+        Window window = twoBtnD.getWindow();
+        WindowManager.LayoutParams wl = window.getAttributes();
+        wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        twoBtnD.onWindowAttributesChanged(wl);
+        twoBtnD.setCanceledOnTouchOutside(cancelable);
+        twoBtnD.setContentView(convertView);
+        twoBtnD.show();
+    }
+
     //Fixme by zz 2017/7/19 下午12:18 修改内容：添加两个按钮输入对话框
     public void showTwoBtnEditDialog(String title, String hint, String defString, boolean cancelable, final OnTwoBtnEditClick onTwoBtnClick) {
+        hideTwoBtnEditDialog();
         View convertView = LayoutInflater.from(this).inflate(R.layout.layout_two_btn_et_dialog, null);
         AutoUtils.auto(convertView);
         TextView tvTitle = (TextView) convertView.findViewById(R.id.tv_title);
@@ -266,7 +321,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
     }
 
     public void showUpdateDialog(String title, String msg, boolean cancelable, final OnOneBtnClickListener oneBtnClickListener) {
-        hideTwoBtnDialog();
+        hideUpdateDialog();
         View convertView = LayoutInflater.from(this).inflate(R.layout.layout_update_dialog, null);
         AutoUtils.auto(convertView);
         TextView tvTitle = (TextView) convertView.findViewById(R.id.tv_title);
@@ -283,7 +338,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideTwoBtnDialog();
+                hideUpdateDialog();
                 if (oneBtnClickListener != null) {
                     oneBtnClickListener.onOK();
                 }
