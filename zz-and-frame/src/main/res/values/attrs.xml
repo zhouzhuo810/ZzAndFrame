@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="TitleBar">
-        <attr name="showLeftLayout" format="boolean" />
-        <attr name="showTitle" format="boolean" />
-        <attr name="showRightLayout" format="boolean" />
-        <attr name="showLeftImg" format="boolean" />
-        <attr name="showLeftText" format="boolean" />
-        <attr name="showLeftMarkView" format="boolean" />
-        <attr name="showRightImg" format="boolean" />
-        <attr name="showRightText" format="boolean" />
-        <attr name="showRightMarkView" format="boolean" />
-        <attr name="leftImg" format="reference" />
-        <attr name="leftText" format="string|reference" />
-        <attr name="titleText" format="string|reference" />
-        <attr name="rightImg" format="reference" />
-        <attr name="rightText" format="string|reference" />
-        <attr name="textSizeTitle" format="dimension|reference" />
-        <attr name="textSizeTwoSide" format="dimension|reference" />
-        <attr name="textColorAll" format="color|reference" />
+        <attr name="ttb_showLeftLayout" format="boolean" />
+        <attr name="ttb_showTitle" format="boolean" />
+        <attr name="ttb_showRightLayout" format="boolean" />
+        <attr name="ttb_showLeftImg" format="boolean" />
+        <attr name="ttb_showLeftText" format="boolean" />
+        <attr name="ttb_showLeftMarkView" format="boolean" />
+        <attr name="ttb_showRightImg" format="boolean" />
+        <attr name="ttb_showRightText" format="boolean" />
+        <attr name="ttb_showRightMarkView" format="boolean" />
+        <attr name="ttb_leftImg" format="reference" />
+        <attr name="ttb_leftText" format="string|reference" />
+        <attr name="ttb_titleText" format="string|reference" />
+        <attr name="ttb_rightImg" format="reference" />
+        <attr name="ttb_rightText" format="string|reference" />
+        <attr name="ttb_textSizeTitle" format="dimension|reference" />
+        <attr name="ttb_textSizeTwoSide" format="dimension|reference" />
+        <attr name="ttb_textColorAll" format="color|reference" />
     </declare-styleable>
 
     <declare-styleable name="MarkView">

@@ -11,12 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="120px"
         android:background="@color/colorPrimary"
-        zz:leftText="返回"
-        zz:showRightLayout="false"
-        zz:textColorAll="#fff"
-        zz:textSizeTitle="50px"
-        zz:textSizeTwoSide="40px"
-        zz:titleText="选图和拍照" />
+        zz:ttb_leftText="返回"
+        zz:ttb_showRightLayout="false"
+        zz:ttb_textColorAll="#fff"
+        zz:ttb_textSizeTitle="50px"
+        zz:ttb_textSizeTwoSide="40px"
+        zz:ttb_titleText="选图和拍照" />
 
     <Button
         android:id="@+id/btn_album"

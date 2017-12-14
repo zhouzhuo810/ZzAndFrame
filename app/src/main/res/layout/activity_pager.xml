@@ -10,13 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="120px"
         android:background="@color/colorPrimary"
-        zz:leftImg="@drawable/iv_back"
-        zz:leftText="返回"
-        zz:showRightLayout="false"
-        zz:textColorAll="#fff"
-        zz:textSizeTitle="50px"
-        zz:textSizeTwoSide="40px"
-        zz:titleText="ViewPager指示器" />
+        zz:ttb_leftImg="@drawable/iv_back"
+        zz:ttb_leftText="返回"
+        zz:ttb_showRightLayout="false"
+        zz:ttb_textColorAll="#fff"
+        zz:ttb_textSizeTitle="50px"
+        zz:ttb_textSizeTwoSide="40px"
+        zz:ttb_titleText="ViewPager指示器" />
 
     <zhouzhuo810.me.zzandframe.ui.widget.zzpagerindicator.ZzPagerIndicator
         android:id="@+id/indicator"

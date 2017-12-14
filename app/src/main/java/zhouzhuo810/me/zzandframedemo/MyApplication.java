@@ -10,8 +10,6 @@ import zhouzhuo810.me.zzandframe.ui.app.BaseApplication;
  */
 public class MyApplication extends BaseApplication {
 
-    private static MyApplication INSTANCE;
-
     @Override
     public void onCreate() {
         super.onCreate();

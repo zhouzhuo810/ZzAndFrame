@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -70,7 +71,7 @@ public class TitleBar extends RelativeLayout {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        View root = LayoutInflater.from(context).inflate(R.layout.title_layout, null);
+        View root = LayoutInflater.from(context).inflate(R.layout.title_layout, this, false);
         ivLeft = (ImageView) root.findViewById(R.id.iv_back);
         tvLeft = (TextView) root.findViewById(R.id.tv_back);
         llLeft = (LinearLayout) root.findViewById(R.id.ll_back);
@@ -82,10 +83,9 @@ public class TitleBar extends RelativeLayout {
         mvLeft = (MarkView) root.findViewById(R.id.mv_left);
         mvRight = (MarkView) root.findViewById(R.id.mv_right);
         llRight = (LinearLayout) root.findViewById(R.id.ll_right);
-        initAttrs(context, attrs);
         initEvent();
         addView(root);
-
+        initAttrs(context, attrs);
         setGravity(Gravity.CENTER_VERTICAL);
     }
 
@@ -93,15 +93,15 @@ public class TitleBar extends RelativeLayout {
         if (attrs != null) {
             TypedArray t = context.obtainStyledAttributes(attrs, R.styleable.TitleBar);
             /*visibility*/
-            boolean showLeftLayout = t.getBoolean(R.styleable.TitleBar_showLeftLayout, true);
-            boolean showRightLayout = t.getBoolean(R.styleable.TitleBar_showRightLayout, false);
-            boolean showLeftImg = t.getBoolean(R.styleable.TitleBar_showLeftImg, true);
-            boolean showLeftText = t.getBoolean(R.styleable.TitleBar_showLeftText, false);
-            boolean showLeftMarkView = t.getBoolean(R.styleable.TitleBar_showLeftMarkView, false);
-            boolean showRightMarkView = t.getBoolean(R.styleable.TitleBar_showRightMarkView, false);
-            boolean showTitle = t.getBoolean(R.styleable.TitleBar_showTitle, true);
-            boolean showRightImg = t.getBoolean(R.styleable.TitleBar_showRightImg, false);
-            boolean showRightText = t.getBoolean(R.styleable.TitleBar_showRightText, true);
+            boolean showLeftLayout = t.getBoolean(R.styleable.TitleBar_ttb_showLeftLayout, true);
+            boolean showRightLayout = t.getBoolean(R.styleable.TitleBar_ttb_showRightLayout, false);
+            boolean showLeftImg = t.getBoolean(R.styleable.TitleBar_ttb_showLeftImg, true);
+            boolean showLeftText = t.getBoolean(R.styleable.TitleBar_ttb_showLeftText, false);
+            boolean showLeftMarkView = t.getBoolean(R.styleable.TitleBar_ttb_showLeftMarkView, false);
+            boolean showRightMarkView = t.getBoolean(R.styleable.TitleBar_ttb_showRightMarkView, false);
+            boolean showTitle = t.getBoolean(R.styleable.TitleBar_ttb_showTitle, true);
+            boolean showRightImg = t.getBoolean(R.styleable.TitleBar_ttb_showRightImg, false);
+            boolean showRightText = t.getBoolean(R.styleable.TitleBar_ttb_showRightText, true);
             setVisible(llLeft, showLeftLayout);
             setVisible(llRight, showRightLayout);
             setVisible(ivLeft, showLeftImg);
@@ -114,8 +114,8 @@ public class TitleBar extends RelativeLayout {
             setVisible(mvLeft, showLeftMarkView);
             setVisible(mvRight, showRightMarkView);
             /*img*/
-            int leftDrawableId = t.getResourceId(R.styleable.TitleBar_leftImg, -1);
-            int rightDrawableId = t.getResourceId(R.styleable.TitleBar_rightImg, -1);
+            int leftDrawableId = t.getResourceId(R.styleable.TitleBar_ttb_leftImg, -1);
+            int rightDrawableId = t.getResourceId(R.styleable.TitleBar_ttb_rightImg, -1);
             if (leftDrawableId != -1) {
                 ivLeft.setImageResource(leftDrawableId);
             }
@@ -123,22 +123,24 @@ public class TitleBar extends RelativeLayout {
                 ivRight.setImageResource(rightDrawableId);
             }
             /*textSize*/
-            int textSizeTitle = t.getDimensionPixelSize(R.styleable.TitleBar_textSizeTitle, 50);
+            int textSizeTitle = t.getDimensionPixelSize(R.styleable.TitleBar_ttb_textSizeTitle, 50);
+            Log.e("XXX", "textsize title before= " + textSizeTitle);
             textSizeTitle = AutoUtils.getPercentWidthSize(textSizeTitle);
-            int textSizeTwoSide = t.getDimensionPixelSize(R.styleable.TitleBar_textSizeTwoSide, 40);
+            Log.e("XXX", "textsize title after= " + textSizeTitle);
+            int textSizeTwoSide = t.getDimensionPixelSize(R.styleable.TitleBar_ttb_textSizeTwoSide, 40);
             textSizeTwoSide = AutoUtils.getPercentWidthSize(textSizeTwoSide);
             tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeTitle);
             tvLeft.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeTwoSide);
             tvRight.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeTwoSide);
             /*textColor*/
-            int color = t.getColor(R.styleable.TitleBar_textColorAll, Color.WHITE);
+            int color = t.getColor(R.styleable.TitleBar_ttb_textColorAll, Color.WHITE);
             tvTitle.setTextColor(color);
             tvLeft.setTextColor(color);
             tvRight.setTextColor(color);
             /*text*/
-            String leftText = t.getString(R.styleable.TitleBar_leftText);
-            String rightText = t.getString(R.styleable.TitleBar_rightText);
-            String titleText = t.getString(R.styleable.TitleBar_titleText);
+            String leftText = t.getString(R.styleable.TitleBar_ttb_leftText);
+            String rightText = t.getString(R.styleable.TitleBar_ttb_rightText);
+            String titleText = t.getString(R.styleable.TitleBar_ttb_titleText);
             tvLeft.setText(leftText);
             tvRight.setText(rightText);
             tvTitle.setText(titleText);

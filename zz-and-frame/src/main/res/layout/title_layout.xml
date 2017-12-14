@@ -40,7 +40,8 @@
                 app:mv_markNumber="100"
                 app:mv_maxMarkNumber="99"
                 app:mv_textColor="#fff"
-                app:mv_textSize="32px" />
+                app:mv_textSize="32px"
+                />
         </RelativeLayout>
 
         <TextView
@@ -52,7 +53,7 @@
             android:layout_marginLeft="20px"
             android:layout_marginRight="20px"
             android:textColor="#fff"
-            android:textSize="40px" />
+            />
     </LinearLayout>
 
     <TextView
@@ -66,8 +67,7 @@
         android:gravity="center"
         android:maxLines="1"
         android:text="标题"
-        android:textColor="#fff"
-        android:textSize="50px" />
+        />
 
     <LinearLayout
         android:id="@+id/ll_right"
@@ -86,7 +86,7 @@
             android:layout_marginLeft="20px"
             android:layout_marginRight="20px"
             android:textColor="#fff"
-            android:textSize="40px" />
+            />
 
 
         <RelativeLayout
