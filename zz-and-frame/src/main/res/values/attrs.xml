@@ -124,6 +124,8 @@
         <attr name="zz_tab_icon_size" format="dimension|reference" />
         <attr name="zz_show_underline" format="boolean" />
         <attr name="zz_should_tab_expand" format="boolean" />
+        <attr name="zz_normal_tab_bg" format="reference" />
+        <attr name="zz_select_tab_bg" format="reference" />
 
         <!--for point-->
         <attr name="zz_select_point_size" format="dimension|reference" />

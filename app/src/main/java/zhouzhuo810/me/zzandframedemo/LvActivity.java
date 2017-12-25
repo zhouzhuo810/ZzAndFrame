@@ -3,17 +3,18 @@ package zhouzhuo810.me.zzandframedemo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import zhouzhuo810.me.zzandframe.common.utils.ToastUtils;
 import zhouzhuo810.me.zzandframe.ui.act.BaseActivity;
+import zhouzhuo810.me.zzandframe.ui.adapter.LvAutoBaseAdapter;
 import zhouzhuo810.me.zzandframe.ui.widget.IFooterCreator;
 import zhouzhuo810.me.zzandframe.ui.widget.MarkView;
 import zhouzhuo810.me.zzandframe.ui.widget.TitleBar;
@@ -181,6 +182,21 @@ public class LvActivity extends BaseActivity {
 
             }
 
+        });
+
+        adapter.setOnItemClickListener(new LvAutoBaseAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                ToastUtils.showCustomBgToast("click" + position);
+            }
+        });
+
+        adapter.setOnItemLongClickListener(new LvAutoBaseAdapter.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(View view, int position) {
+                ToastUtils.showCustomBgToast("longclick" + position);
+                return true;
+            }
         });
 
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

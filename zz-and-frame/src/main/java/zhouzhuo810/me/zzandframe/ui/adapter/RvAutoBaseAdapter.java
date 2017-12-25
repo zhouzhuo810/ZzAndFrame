@@ -32,8 +32,24 @@ public abstract class RvAutoBaseAdapter<T> extends RecyclerView.Adapter<RvAutoBa
 
     protected Context context;
     protected List<T> data;
+    private OnItemClickListener onItemClickListener;
+    private OnItemLongClickListener onItemLongClickListener;
 
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
 
+    public interface OnItemLongClickListener {
+        boolean onItemLongClick(View view, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+        this.onItemLongClickListener = onItemLongClickListener;
+    }
 
     public RvAutoBaseAdapter(Context context, List<T> data) {
         this.context = context;
@@ -59,7 +75,23 @@ public abstract class RvAutoBaseAdapter<T> extends RecyclerView.Adapter<RvAutoBa
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
+        if (onItemClickListener != null) {
+            holder.getConvertView().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onItemClick(v, holder.getAdapterPosition());
+                }
+            });
+        }
+        if (onItemLongClickListener != null) {
+            holder.getConvertView().setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    return onItemLongClickListener.onItemLongClick(v, holder.getAdapterPosition());
+                }
+            });
+        }
         fillData(holder, data.get(position), position);
     }
 

@@ -84,9 +84,17 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onRightClick(ImageView ivRight, MarkView mv, TextView tvRight) {
                 ToastUtils.showShortToast(tvRight.getText().toString().trim());
-                showNormalNotice(tvRight.getText().toString());
+                showNormalNoticeWithCustomVoice(tvRight.getText().toString());
+
             }
 
+        });
+
+        btnNotice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showNormalNotice(btnNotice.getText().toString());
+            }
         });
 
         btnLv.setOnClickListener(new View.OnClickListener() {
@@ -158,6 +166,11 @@ public class MainActivity extends BaseActivity {
     private void showNormalNotice(String s) {
         NoticeUtils.showNormalNotice(MyApplication.getBaseInstance(), s,
                 s, true, false, R.mipmap.ic_launcher, true, true, MainActivity.class);
+    }
+
+    private void showNormalNoticeWithCustomVoice(String s) {
+        NoticeUtils.showNormalNoticeWithCustomVoice(MyApplication.getBaseInstance(), s,
+                s, true, false, R.mipmap.ic_launcher, true, R.raw.msg_sound, false, MainActivity.class);
     }
 
 

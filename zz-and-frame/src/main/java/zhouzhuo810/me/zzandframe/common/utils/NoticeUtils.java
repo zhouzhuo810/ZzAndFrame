@@ -4,6 +4,8 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
@@ -15,7 +17,7 @@ public class NoticeUtils {
     public static final int NOTICE_NORMAL = 0x01;
     public static final int NOTICE_PROGRESS = 0x02;
 
-    public static void showNormalNotice(Context context,String title,
+    public static void showNormalNotice(Context context, String title,
                                         String content, boolean autoCancel,
                                         boolean onGoing, int smallIcon,
                                         boolean voice, boolean vibrate,
@@ -30,6 +32,27 @@ public class NoticeUtils {
                 .setDefaults(voice ? Notification.DEFAULT_SOUND : Notification.DEFAULT_ALL)
                 .setVibrate(vibrate ? new long[]{200, 200} : null)
                 .build();
+        NotificationManagerCompat nm = NotificationManagerCompat.from(context);
+        nm.notify(NOTICE_NORMAL, notification);
+    }
+
+    public static void showNormalNoticeWithCustomVoice(Context context, String title,
+                                                       String content, boolean autoCancel,
+                                                       boolean onGoing, int smallIcon,
+                                                       boolean voice, int voiceId, boolean vibrate,
+                                                       Class cls) {
+        NotificationCompat.Builder b = new NotificationCompat.Builder(context);
+        b.setContentTitle(title)
+                .setContentText(content)
+                .setWhen(System.currentTimeMillis())
+                .setAutoCancel(autoCancel)
+                .setOngoing(onGoing)
+                .setSmallIcon(smallIcon)
+                .setVibrate(vibrate ? new long[]{200, 200} : null);
+        if (voice) {
+            b.setSound(Uri.parse("android.resource://" + SystemUtils.getPackageInfo(context).packageName + "/" + voiceId));
+        }
+        Notification notification = b.build();
         NotificationManagerCompat nm = NotificationManagerCompat.from(context);
         nm.notify(NOTICE_NORMAL, notification);
     }

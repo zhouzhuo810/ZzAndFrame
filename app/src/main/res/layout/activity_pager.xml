@@ -22,6 +22,8 @@
         android:id="@+id/indicator"
         android:layout_width="match_parent"
         android:layout_height="120px"
+        zz:zz_normal_tab_bg="@drawable/ic_tab_bg_normal"
+        zz:zz_select_tab_bg="@drawable/ic_tab_bg_select"
         zz:zz_indicator_type="tab_with_text"
         zz:zz_is_need_scale_in_px="true" />
 

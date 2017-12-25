@@ -54,6 +54,8 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
     private int underlineHeight = 10;
     private int underlinePadding = 0;
     private int underlineColor = 0xff438cff;
+    private int tabBgNormalId;
+    private int tabBgSelectId;
 
     private int tabPadding = 24;
     private int zz_tab_icon_size = 80;
@@ -103,6 +105,8 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
             selectPointSize = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_select_point_size, 100);
             unSelectPointSize = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_unselect_point_size, 90);
             spacing = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_point_spacing, 8);
+            tabBgNormalId = a.getResourceId(R.styleable.ZzPagerIndicator_zz_normal_tab_bg, -1);
+            tabBgSelectId = a.getResourceId(R.styleable.ZzPagerIndicator_zz_select_tab_bg, -1);
 
             tabTextColorSelect = a.getColor(R.styleable.ZzPagerIndicator_zz_select_tab_text_color, 0xff438cff);
             tabTextColorUnSelect = a.getColor(R.styleable.ZzPagerIndicator_zz_unselect_tab_text_color, 0xff000000);
@@ -361,6 +365,7 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
                 }
             });
             tv.setPadding(tabPadding, 0, tabPadding, 0);
+
             mIndicatorContainer.addView(tv, i, shouldExpand ? expandedTabLayoutParams : defaultTabLayoutParams);
         }
     }
@@ -371,6 +376,9 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 currentPosition = position;
                 currentPositionOffset = positionOffset;
+
+                scrollToChild(position, (int) (positionOffset * mIndicatorContainer.getChildAt(position).getWidth()));
+
                 invalidate();
             }
 
@@ -391,10 +399,14 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                if (indicatorType == IndicatorType.TabWithIcon) {
-                    if (state == ViewPager.SCROLL_STATE_IDLE) {
-                        scrollToChild(mViewPager.getCurrentItem(), 0);
-                    }
+                switch (indicatorType) {
+                    case TabWithIcon:
+                    case TabWithText:
+                    case TabWithIconAndText:
+                        if (state == ViewPager.SCROLL_STATE_IDLE) {
+                            scrollToChild(mViewPager.getCurrentItem(), 0);
+                        }
+                        break;
                 }
             }
         });
@@ -499,9 +511,15 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
             if (i == position) {
                 tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, tabTextSizeSelect);
                 tv.setTextColor(tabTextColorSelect);
+                if (tabBgSelectId != -1) {
+                    tv.setBackgroundResource(tabBgSelectId);
+                }
             } else {
                 tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, tabTextSizeUnSelect);
                 tv.setTextColor(tabTextColorUnSelect);
+                if (tabBgNormalId != -1) {
+                    tv.setBackgroundResource(tabBgNormalId);
+                }
             }
         }
     }
@@ -514,9 +532,15 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
             if (i == position) {
                 tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, tabTextSizeSelect);
                 tv.setTextColor(tabTextColorSelect);
+                if (tabBgSelectId != -1) {
+                    tv.setBackgroundResource(tabBgSelectId);
+                }
             } else {
                 tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, tabTextSizeUnSelect);
                 tv.setTextColor(tabTextColorUnSelect);
+                if (tabBgNormalId != -1) {
+                    tv.setBackgroundResource(tabBgNormalId);
+                }
             }
             if (i == position) {
                 if (mViewPager.getAdapter() instanceof ZzBasePagerAdapter) {
