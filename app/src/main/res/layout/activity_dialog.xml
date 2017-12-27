@@ -29,4 +29,16 @@
         android:text="IOS样式两个按钮"
         android:textColor="#fff"
         android:textSize="40px" />
+
+    <Button
+        android:id="@+id/btn_two_btn_et_ios"
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="30px"
+        android:background="@drawable/btn_save_selector"
+        android:text="IOS样式两个按钮带输入框"
+        android:textColor="#fff"
+        android:textSize="40px" />
 </LinearLayout>

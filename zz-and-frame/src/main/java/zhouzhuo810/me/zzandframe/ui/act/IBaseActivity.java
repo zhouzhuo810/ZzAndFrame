@@ -30,6 +30,12 @@ public interface IBaseActivity {
         void onCancel();
     }
 
+    interface OnIOSTwoBtnClick {
+        void onLeftClick();
+
+        void onRightClick();
+    }
+
     interface OnTwoBtnEditClick {
         void onOk(String content);
 
@@ -37,9 +43,11 @@ public interface IBaseActivity {
     }
 
     interface OnIOSTwoBtnEditClick {
-        void onLeftClick();
+        void onImgClick(EditText et);
 
-        void onRightClick();
+        void onLeftClick(String content);
+
+        void onRightClick(String content);
     }
 
     interface OnItemClick {

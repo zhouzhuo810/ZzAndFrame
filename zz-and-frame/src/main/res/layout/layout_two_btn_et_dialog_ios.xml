@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="790px"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_ios_top_shape"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30px"
+                android:gravity="center"
+                android:text="你好"
+                android:textColor="#4a4a4a"
+                android:textSize="41px" />
+
+
+            <TextView
+                android:id="@+id/tv_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_below="@id/tv_title"
+                android:layout_marginTop="44px"
+                android:layout_weight="1"
+                android:gravity="center|left"
+                android:paddingLeft="40px"
+                android:paddingRight="40px"
+                android:text="你好"
+                android:textColor="#999"
+                android:textSize="36px" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="50px">
+
+                <EditText
+                    android:id="@+id/et_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="170px"
+                    android:background="@drawable/base_et_bg_selector"
+                    android:gravity="top|left"
+                    android:hint="保养内容"
+                    android:padding="20px"
+                    android:textColor="@color/colorBlack"
+                    android:textColorHint="#eee"
+                    android:textSize="31px" />
+
+                <ImageView
+                    android:id="@+id/iv_voice"
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:src="@drawable/ic_default"
+                    android:layout_marginRight="20px"
+                    android:layout_marginBottom="20px"
+                    android:visibility="gone"
+                    android:layout_alignBottom="@id/et_content"
+                    android:layout_alignParentRight="true"
+                    app:layout_auto_baseheight="width" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#eee" />
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="125px"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_left"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/dialog_ios_left_btn_selector"
+                android:text="@string/ok_text"
+                android:textColor="#9b9b9b"
+                android:textSize="46px" />
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#eee" />
+
+            <Button
+                android:id="@+id/btn_right"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/dialog_ios_right_btn_selector"
+                android:text="@string/cancel_text"
+                android:textColor="#45c1f9"
+                android:textSize="46px" />
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

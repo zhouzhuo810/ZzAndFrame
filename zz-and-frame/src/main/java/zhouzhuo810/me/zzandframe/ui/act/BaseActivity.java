@@ -22,6 +22,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -225,7 +226,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
     }
 
     public void showTwoBtnDialogIOSStyle(String title, String msg, String leftBtnText, String rightBtnText, int leftColor, int rightColor,
-                                         boolean cancelable, final OnIOSTwoBtnEditClick onTwoBtnClick) {
+                                         boolean cancelable, final OnIOSTwoBtnClick onTwoBtnClick) {
         hideTwoBtnDialog();
         View convertView = LayoutInflater.from(this).inflate(R.layout.layout_two_btn_dialog_ios, null);
         AutoUtils.auto(convertView);
@@ -319,6 +320,88 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         twoBtnEtD.setContentView(convertView);
         twoBtnEtD.show();
     }
+
+    //Fixme by zz 2017/7/19 下午12:18 修改内容：添加两个按钮输入对话框
+    public void showTwoBtnEditDialogIOSStyle(String title, String msg, String hint, String defString,
+                                             String leftBtnText, String rightBtnText, int leftColor, int rightColor,
+                                             boolean showPic, int drawableId, boolean cancelable,
+                                             final OnIOSTwoBtnEditClick onTwoBtnClick) {
+        hideTwoBtnEditDialog();
+        View convertView = LayoutInflater.from(this).inflate(R.layout.layout_two_btn_et_dialog_ios, null);
+        AutoUtils.auto(convertView);
+        TextView tvTitle = (TextView) convertView.findViewById(R.id.tv_title);
+        tvTitle.setText(title);
+        TextView tvMsg = (TextView) convertView.findViewById(R.id.tv_msg);
+        if (msg != null) {
+            tvMsg.setVisibility(View.VISIBLE);
+            tvMsg.setText(msg);
+        } else {
+            tvMsg.setVisibility(View.GONE);
+        }
+
+        final EditText etContent = (EditText) convertView.findViewById(R.id.et_content);
+        etContent.setHint(hint);
+        if (defString != null) {
+            etContent.setText(defString);
+        }
+        ImageView iv = (ImageView) convertView.findViewById(R.id.iv_voice);
+        iv.setVisibility(showPic ? View.VISIBLE : View.GONE);
+        if (drawableId != -1) {
+            iv.setImageResource(drawableId);
+            iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onTwoBtnClick != null) {
+                        onTwoBtnClick.onImgClick(etContent);
+                    }
+                }
+            });
+        }
+        twoBtnEtD = new Dialog(this, R.style.transparentWindow);
+        Button btnLeft = (Button) convertView.findViewById(R.id.btn_left);
+        if (leftBtnText != null) {
+            btnLeft.setText(leftBtnText);
+        }
+        if (leftColor != -1) {
+            btnLeft.setTextColor(leftColor);
+        }
+        Button btnRight = (Button) convertView.findViewById(R.id.btn_right);
+        if (rightBtnText != null) {
+            btnRight.setText(rightBtnText);
+        }
+        if (rightColor != -1) {
+            btnRight.setTextColor(rightColor);
+        }
+        btnLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideTwoBtnEditDialog();
+                if (onTwoBtnClick != null) {
+                    String content = etContent.getText().toString().trim();
+                    onTwoBtnClick.onLeftClick(content);
+                }
+            }
+        });
+        btnRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideTwoBtnEditDialog();
+                if (onTwoBtnClick != null) {
+                    String content = etContent.getText().toString().trim();
+                    onTwoBtnClick.onRightClick(content);
+                }
+            }
+        });
+        Window window = twoBtnEtD.getWindow();
+        WindowManager.LayoutParams wl = window.getAttributes();
+        wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        twoBtnEtD.onWindowAttributesChanged(wl);
+        twoBtnEtD.setCanceledOnTouchOutside(cancelable);
+        twoBtnEtD.setContentView(convertView);
+        twoBtnEtD.show();
+    }
+
 
     public void showUpdateDialog(String title, String msg, boolean cancelable, final OnOneBtnClickListener oneBtnClickListener) {
         hideUpdateDialog();
