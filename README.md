@@ -56,7 +56,7 @@ app/build.gradle添加
     DisplayUtils.previewImages((Activity) context, iv, urls, 0, -1, true);
 ```
 - 新集成AndPermission功能；
-- 继承BaseActivity可以
+- 继承BaseActivity可以选择图片和拍照；
 
 
 ## 控件简介
