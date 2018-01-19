@@ -40,8 +40,8 @@ public class AutoToolbar extends Toolbar {
         mSubTextSize = loadTextSizeFromTextAppearance(subtitleTextAppearance);
 
         //防止 menu 定义 textSize，而 Toolbar 无定义 textSize 时，title 的 textSize 随 menu 变化
-        if (mTextSize == NO_VALID) mTextSize = 40;
-        if (mSubTextSize == NO_VALID) mSubTextSize = 30;
+        if (mTextSize == NO_VALID) mTextSize = AutoUtils.getPercentWidthSize(45);
+        if (mSubTextSize == NO_VALID) mSubTextSize = AutoUtils.getPercentWidthSize(36);
 
         a.recycle();
     }

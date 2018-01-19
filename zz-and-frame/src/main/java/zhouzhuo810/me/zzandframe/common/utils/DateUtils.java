@@ -47,11 +47,11 @@ public class DateUtils {
     }
 
     public static String getHourMinuteSecond() {
-        return new SimpleDateFormat("HH:mm:ss", Locale.CHINA).format(new Date());
+        return new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
     }
 
     public static String getHourMinute() {
-        return new SimpleDateFormat("HH:mm", Locale.CHINA).format(new Date());
+        return new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
     }
 
     public static String millToYMDHMS(long mills, String splitDate) {

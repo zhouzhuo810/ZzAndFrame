@@ -17,7 +17,7 @@ project/build.gradle添加
 app/build.gradle添加
 
 ```
-    compile 'com.github.zhouzhuo810:ZzAndFrame:1.1.8'
+    compile 'com.github.zhouzhuo810:ZzAndFrame:1.1.9'
 ```
 
 ## 说明
@@ -121,3 +121,11 @@ app/build.gradle添加
 ### JSONTool
 
 - Json格式化工具
+
+### EncodeUtils
+
+- 编解码工具类
+ 
+### EncryptUtils
+
+- 加解密工具类

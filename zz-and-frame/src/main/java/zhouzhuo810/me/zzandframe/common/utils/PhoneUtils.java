@@ -20,8 +20,16 @@ public class PhoneUtils {
     /**
      * 直接打电话
      *
-     * @param context
-     * @param phone
+     * <p>需要权限：</p>
+     * <p>
+     * {@code <uses-permission android:name="android.permission.CALL_PHONE" />}
+     * </p>
+     * <p>
+     * {@link android.Manifest.permission#CALL_PHONE}
+     * </p>
+     *
+     * @param context 上下文
+     * @param phone   手机号
      */
     public static void call(Context context, String phone) {
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phone));
@@ -40,10 +48,10 @@ public class PhoneUtils {
 
 
     /**
-     * 拨号界面
+     * 使用拨号界面拨打电话
      *
-     * @param context
-     * @param phone
+     * @param context 上下文
+     * @param phone   手机号
      */
     public static void dial(Context context, String phone) {
         Intent intent = new Intent(Intent.ACTION_DIAL);
@@ -52,12 +60,21 @@ public class PhoneUtils {
         context.startActivity(intent);
     }
 
+
     /**
      * 发短信
      *
-     * @param context
-     * @param phone
-     * @param msg
+     * <p>需要权限：</p>
+     * <p>
+     * {@code <uses-permission android:name="android.permission.SEND_SMS" />}
+     * </p>
+     * <p>
+     * {@link android.Manifest.permission#SEND_SMS}
+     * </p>
+     *
+     * @param context 上下文
+     * @param phone   手机号
+     * @param msg     发送消息
      */
     public static void sendSMS(Context context, String phone, String msg) {
         if (Build.VERSION.SDK_INT >= 19) {

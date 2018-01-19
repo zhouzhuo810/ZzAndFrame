@@ -25,37 +25,43 @@ public interface IBaseFragment {
 
     /**
      * 开始刷新
+     *
      * @param refresh SwipeRefreshLayout
      */
     void startRefresh(SwipeRefreshLayout refresh);
 
     /**
      * 停止刷新
+     *
      * @param refresh SwipeRefreshLayout
      */
     void stopRefresh(SwipeRefreshLayout refresh);
 
     /**
      * 进入动画
+     *
      * @return resId
      */
     int inAnimation();
 
     /**
      * 关闭动画
+     *
      * @return resId
      */
     int outAnimation();
 
     /**
      * 打开Activity
+     *
      * @param intent intent
      */
     void startActWithIntent(Intent intent);
 
     /**
      * 打开Activity，带返回结果
-     * @param intent intent
+     *
+     * @param intent      intent
      * @param requestCode 请求码
      */
     void startActWithIntentForResult(Intent intent, int requestCode);
@@ -66,5 +72,10 @@ public interface IBaseFragment {
 
     void destroyView();
 
+    /**
+     * 获取强转为BaseActivity类型的getActivity()对象
+     *
+     * @return act
+     */
     BaseActivity getBaseAct();
 }

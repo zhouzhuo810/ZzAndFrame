@@ -26,12 +26,24 @@ public class ToastUtils {
     private ToastUtils() {
     }
 
+    /**
+     * 初始化
+     *
+     * @param context     上下文
+     * @param bgColorId   背景颜色id
+     * @param textColorId 文字颜色id
+     */
     public static void init(Context context, int bgColorId, int textColorId) {
         toast = null;
         ToastUtils.bgColor = context.getResources().getColor(bgColorId);
         ToastUtils.textColorId = context.getResources().getColor(textColorId);
     }
 
+    /**
+     * 显示自定义背景吐司通知
+     *
+     * @param msg 消息
+     */
     public static void showCustomBgToast(String msg) {
         LayoutInflater inflater = (LayoutInflater) BaseApplication.getBaseInstance().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.toast_custom, null);
@@ -50,6 +62,9 @@ public class ToastUtils {
         toast.show();
     }
 
+    /**
+     * 隐藏自定义背景吐司通知
+     */
     public static void hideCustomBgToast() {
         if (toast != null) {
             toast.cancel();

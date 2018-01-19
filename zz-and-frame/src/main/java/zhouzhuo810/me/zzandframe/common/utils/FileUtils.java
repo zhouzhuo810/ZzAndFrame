@@ -6,14 +6,19 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.provider.SyncStateContract;
+import android.support.v4.BuildConfig;
+import android.support.v4.content.FileProvider;
 
 import java.io.File;
 
 /**
- *
+ * 文件操作工具类
+ * <p>
  * Created by zhouzhuo810 on 2017/7/25.
  */
 public class FileUtils {
@@ -25,6 +30,7 @@ public class FileUtils {
 
     /**
      * 删除指定文件夹里的所有文件
+     *
      * @param dir 文件夹路径
      * @return {@link FileUtils#NOT_DIR},{@link FileUtils#NO_FILES},{@link FileUtils#DELETE_OK},{@link FileUtils#DELETE_NOT_ALL_OK}
      */
@@ -46,6 +52,7 @@ public class FileUtils {
 
     /**
      * 复制file1重命名到file2
+     *
      * @param filePath1 原文件路径
      * @param filePath2 新文件路径
      * @return 成功返回filePath2, 失败返回null
@@ -65,6 +72,7 @@ public class FileUtils {
 
     /**
      * 获取所有文件
+     *
      * @param path 路径
      * @return 所有文件
      */
@@ -81,6 +89,13 @@ public class FileUtils {
     }
 
 
+    /**
+     * Uri转path
+     *
+     * @param context 上下文
+     * @param uri     Uri
+     * @return file path
+     */
     public static String getRealFilePath(Context context, final Uri uri) {
         if (null == uri)
             return null;
@@ -91,7 +106,7 @@ public class FileUtils {
         else if (ContentResolver.SCHEME_FILE.equals(scheme)) {
             data = uri.getPath();
         } else if (ContentResolver.SCHEME_CONTENT.equals(scheme)) {
-            Cursor cursor = context.getContentResolver().query(uri, new String[] { MediaStore.Images.ImageColumns.DATA }, null, null, null);
+            Cursor cursor = context.getContentResolver().query(uri, new String[]{MediaStore.Images.ImageColumns.DATA}, null, null, null);
             if (null != cursor) {
                 if (cursor.moveToFirst()) {
                     int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
@@ -110,17 +125,29 @@ public class FileUtils {
         return data;
     }
 
-    public static Uri getUri(final String filePath) {
-        return Uri.fromFile(new File(filePath));
+    /**
+     * file path转Uri
+     *
+     * @param context   上下文
+     * @param filePath  文件路径
+     * @param authority applicationId + .provider
+     * @return Uri
+     */
+    public static Uri filePathToUri(Context context, final String filePath, final String authority) {
+        if (Build.VERSION.SDK_INT > 23) {
+            return FileProvider.getUriForFile(context, authority,
+                    new File(filePath));
+        } else {
+            return Uri.fromFile(new File(filePath));
+        }
     }
 
     /**
      * 根据Uri获取图片绝对路径，解决Android4.4以上版本Uri转换
      *
-     * @param context
-     * @param imageUri
-     * @author yaoxing
-     * @date 2014-10-12
+     * @param context  上下文
+     * @param imageUri 图片Uri
+     * @return 文件路径
      */
     @TargetApi(19)
     public static String getImageAbsolutePath(Context context, Uri imageUri) {
@@ -151,7 +178,7 @@ public class FileUtils {
                     contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
                 }
                 String selection = MediaStore.Images.Media._ID + "=?";
-                String[] selectionArgs = new String[] { split[1] };
+                String[] selectionArgs = new String[]{split[1]};
                 return getDataColumn(context, contentUri, selection, selectionArgs);
             }
         } // MediaStore (and general)
@@ -168,10 +195,10 @@ public class FileUtils {
         return null;
     }
 
-    public static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
+    private static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
         Cursor cursor = null;
         String column = MediaStore.Images.Media.DATA;
-        String[] projection = { column };
+        String[] projection = {column};
         try {
             cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
             if (cursor != null && cursor.moveToFirst()) {
@@ -186,38 +213,34 @@ public class FileUtils {
     }
 
     /**
-     * @param uri
-     *                The Uri to check.
+     * @param uri The Uri to check.
      * @return Whether the Uri authority is ExternalStorageProvider.
      */
-    public static boolean isExternalStorageDocument(Uri uri) {
+    private static boolean isExternalStorageDocument(Uri uri) {
         return "com.android.externalstorage.documents".equals(uri.getAuthority());
     }
 
     /**
-     * @param uri
-     *                The Uri to check.
+     * @param uri The Uri to check.
      * @return Whether the Uri authority is DownloadsProvider.
      */
-    public static boolean isDownloadsDocument(Uri uri) {
+    private static boolean isDownloadsDocument(Uri uri) {
         return "com.android.providers.downloads.documents".equals(uri.getAuthority());
     }
 
     /**
-     * @param uri
-     *                The Uri to check.
+     * @param uri The Uri to check.
      * @return Whether the Uri authority is MediaProvider.
      */
-    public static boolean isMediaDocument(Uri uri) {
+    private static boolean isMediaDocument(Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
 
     /**
-     * @param uri
-     *                The Uri to check.
+     * @param uri The Uri to check.
      * @return Whether the Uri authority is Google Photos.
      */
-    public static boolean isGooglePhotosUri(Uri uri) {
+    private static boolean isGooglePhotosUri(Uri uri) {
         return "com.google.android.apps.photos.content".equals(uri.getAuthority());
     }
 }

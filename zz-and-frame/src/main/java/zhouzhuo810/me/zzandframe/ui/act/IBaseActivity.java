@@ -117,11 +117,30 @@ public interface IBaseActivity {
     void takePhoto(String dir, boolean crop);
 
 
+    /**
+     * 拍照回调结果
+     *
+     * @param file     文件
+     * @param filePath 文件路径
+     */
     void onPhotoTaked(File file, String filePath);
 
+    /**
+     * 照片选择回调结果
+     *
+     * @param file     文件
+     * @param filePath 文件路径
+     */
     void onPhotoChoosed(File file, String filePath);
 
-    void onPhotoCroped(File file, String filePath);
+    /**
+     * 照片裁剪回调结果(暂时未实现)
+     *
+     * @param file     文件
+     * @param filePath 文件路径
+     */
+    @Deprecated
+    void onPhotoCropped(File file, String filePath);
 
     /**
      * 开始刷新

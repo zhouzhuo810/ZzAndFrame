@@ -18,7 +18,7 @@ import zhouzhuo810.me.zzandframe.ui.act.BaseActivity;
  * BaseFragment
  * Created by zhouzhuo810 on 2017/7/25.
  */
-public abstract class BaseFragment extends Fragment implements IBaseFragment{
+public abstract class BaseFragment extends Fragment implements IBaseFragment {
 
     protected View rootView;
 
@@ -96,6 +96,9 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment{
 
     @Override
     public BaseActivity getBaseAct() {
+        if (getActivity() == null) {
+            return null;
+        }
         return (BaseActivity) getActivity();
     }
 

@@ -618,7 +618,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
     }
 
     @Override
-    public void onPhotoCroped(File file, String filePath) {
+    public void onPhotoCropped(File file, String filePath) {
 
     }
 

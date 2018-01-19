@@ -21,6 +21,12 @@ import zhouzhuo810.me.zzandframe.ui.act.ImagePreviewActivity;
  */
 public class DisplayUtils {
 
+    /**
+     * 获取屏幕宽度
+     *
+     * @param activity act
+     * @return 宽度
+     */
     public static int getScreenWidth(Activity activity) {
         Display defaultDisplay = activity.getWindowManager().getDefaultDisplay();
         Point point = new Point();
@@ -32,6 +38,12 @@ public class DisplayUtils {
         return point.x;
     }
 
+    /**
+     * 获取屏幕高度
+     *
+     * @param activity act
+     * @return 高度
+     */
     public static int getScreenHeight(Activity activity) {
         Display defaultDisplay = activity.getWindowManager().getDefaultDisplay();
         Point point = new Point();
@@ -43,6 +55,18 @@ public class DisplayUtils {
         return point.y;
     }
 
+    /**
+     * 大图预览
+     * <p>
+     * <p>需要注册如下Activity <br/><br/>
+     * {@code  <activity android:name="zhouzhuo810.me.zzandframe.ui.act.ImagePreviewActivity" />} </p>
+     *
+     * @param activity   act
+     * @param iv         小图对应ImageView
+     * @param url        图片路径，支持本地path或网络url
+     * @param errorPicId 加载失败时id
+     * @param crossFade  是否使用过渡动画
+     */
     public static void previewImage(Activity activity, ImageView iv, String url, int errorPicId, boolean crossFade) {
         Intent intent = new Intent(activity, ImagePreviewActivity.class);
         intent.putExtra(ZzConst.IMG_PRE_PIC_URL, url);
@@ -57,6 +81,19 @@ public class DisplayUtils {
         }
     }
 
+    /**
+     * 多图预览
+     * <p>
+     * <p>需要注册如下Activity <br/><br/>
+     * {@code  <activity android:name="zhouzhuo810.me.zzandframe.ui.act.MultiImagePreviewActivity" />} </p>
+     *
+     * @param activity   act
+     * @param iv         点击的图片对应的ImageView
+     * @param urls       本地图片path或网络图片url集合
+     * @param position   点击图片的position
+     * @param errorPicId 加载失败时id
+     * @param crossFade  是否使用过渡动画
+     */
     public static void previewImages(Activity activity, ImageView iv, ArrayList<String> urls, int position, int errorPicId, boolean crossFade) {
         Intent intent = new Intent(activity, ImagePreviewActivity.class);
         intent.putExtra(ZzConst.IMG_PRE_MULTI_PIC_URL, urls);
