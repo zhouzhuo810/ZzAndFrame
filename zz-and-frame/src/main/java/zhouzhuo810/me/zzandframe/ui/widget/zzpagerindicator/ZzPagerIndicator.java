@@ -377,7 +377,13 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
                 currentPosition = position;
                 currentPositionOffset = positionOffset;
 
-                scrollToChild(position, (int) (positionOffset * mIndicatorContainer.getChildAt(position).getWidth()));
+                switch (indicatorType) {
+                    case TabWithIcon:
+                    case TabWithText:
+                    case TabWithIconAndText:
+                        scrollToChild(position, (int) (positionOffset * mIndicatorContainer.getChildAt(position).getWidth()));
+                        break;
+                }
 
                 invalidate();
             }
