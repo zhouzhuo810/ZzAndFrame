@@ -17,7 +17,7 @@ project/build.gradle添加
 app/build.gradle添加
 
 ```
-    compile 'com.github.zhouzhuo810:ZzAndFrame:1.2.0'
+    compile 'com.github.zhouzhuo810:ZzAndFrame:1.2.1'
 ```
 
 添加上面依赖即同时依赖下面内容：
@@ -41,7 +41,7 @@ app/build.gradle添加
     //glide
     compile 'com.github.bumptech.glide:glide:3.8.0'
     //andpermission
-    compile 'com.yanzhenjie:permission:1.1.2'
+    compile 'com.yanzhenjie:permission:2.0.0-alpha'
 ```
 
 ## 说明
