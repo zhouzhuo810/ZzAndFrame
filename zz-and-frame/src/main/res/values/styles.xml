@@ -3,5 +3,8 @@
     <style name="transparentWindow" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@drawable/dialog_custom_bg</item>
     </style>
-
+    <style name="ZzAnimationDialog">
+        <item name="android:windowEnterAnimation">@anim/bottom_dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/bottom_dialog_exit</item>
+    </style>
 </resources>

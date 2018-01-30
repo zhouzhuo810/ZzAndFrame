@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--次品录入-->
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:background="#193a559b"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="40px"
+        android:paddingRight="40px">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35px"
+            android:layout_weight="1"
+            android:text="添加"
+            android:textColor="#4a4a4a"
+            android:textSize="41px" />
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="60px"
+            android:layout_height="60px"
+            android:src="@drawable/ic_chat"
+            app:layout_auto_baseheight="width" />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="40px"
+        android:paddingRight="40px">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="105px"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="笔记本电脑电源上盖ST16"
+                android:textColor="@color/colorBlack"
+                android:textSize="40px" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#f4f4f5" />
+
+        <EditText
+            android:id="@+id/et_bad_note"
+            android:layout_width="match_parent"
+            android:layout_height="70px"
+            android:layout_marginBottom="20px"
+            android:layout_marginTop="20px"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="请输入备注内容"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="#ccc"
+            android:textSize="36px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20px"
+            android:text="次品原因"
+            android:textColor="@color/colorBlack"
+            android:textSize="40px" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_reason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60px"
+            android:text="次品数量"
+            android:textColor="@color/colorBlack"
+            android:textSize="40px" />
+
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30px"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btn_dec"
+                android:layout_width="108px"
+                android:layout_height="93px"
+                android:gravity="center"
+                android:text="一"
+                android:textColor="#FF333333"
+                android:textSize="31px" />
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="93px"
+                android:background="#ddd" />
+
+            <TextView
+                android:layout_width="162px"
+                android:layout_height="93px"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="#FF333333"
+                android:textSize="48px" />
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="93px"
+                android:background="#ddd" />
+
+            <TextView
+                android:id="@+id/btn_add"
+                android:layout_width="108px"
+                android:layout_height="93px"
+                android:gravity="center"
+                android:text="+"
+                android:textColor="#FF333333"
+                android:textSize="46px" />
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:paddingBottom="30px"
+        android:paddingLeft="40px"
+        android:paddingRight="40px"
+        android:paddingTop="30px">
+
+        <TextView
+            android:id="@+id/tv_reason_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="缺料"
+            android:textColor="@color/colorBlack"
+            android:textSize="41px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_marginRight="20px"
+            android:text="*"
+            android:textColor="#9a9a9a"
+            android:textSize="41px" />
+
+        <TextView
+            android:id="@+id/tv_bad_qty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="3"
+            android:textColor="#ce0106"
+            android:textSize="41px" />
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="208px"
+            android:layout_height="78px"
+            android:background="@drawable/btn_save_selector"
+            android:gravity="center"
+            android:text="@string/ok_text"
+            android:textColor="@color/colorWhite"
+            android:textSize="41px" />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

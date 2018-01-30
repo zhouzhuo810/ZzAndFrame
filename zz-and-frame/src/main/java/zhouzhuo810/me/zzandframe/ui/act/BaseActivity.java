@@ -2,6 +2,7 @@ package zhouzhuo810.me.zzandframe.ui.act;
 
 import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -9,11 +10,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,11 +28,12 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
-import com.yanzhenjie.permission.PermissionListener;
 import com.yanzhenjie.permission.Rationale;
-import com.yanzhenjie.permission.RationaleListener;
+import com.yanzhenjie.permission.RequestExecutor;
+import com.yanzhenjie.permission.SettingService;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.autolayout.utils.AutoUtils;
 
@@ -49,7 +51,6 @@ import zhouzhuo810.me.zzandframe.common.rx.ExitEvent;
 import zhouzhuo810.me.zzandframe.common.rx.RxBus;
 import zhouzhuo810.me.zzandframe.common.utils.FileUtils;
 import zhouzhuo810.me.zzandframe.common.utils.SharedUtils;
-import zhouzhuo810.me.zzandframe.common.utils.ToastUtils;
 import zhouzhuo810.me.zzandframe.ui.adapter.LvAutoBaseAdapter;
 
 /**
@@ -67,6 +68,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
     private Dialog twoBtnEtD;
     private Dialog lvD;
     private Dialog updateD;
+    private Dialog customBottomDialog;
 
 
     public boolean isForeground() {
@@ -177,10 +179,12 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         tvContent.setText(msg);
         pd = new Dialog(this, R.style.transparentWindow);
         Window window = pd.getWindow();
-        WindowManager.LayoutParams wl = window.getAttributes();
-        wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
-        wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        pd.onWindowAttributesChanged(wl);
+        if (window != null) {
+            WindowManager.LayoutParams wl = window.getAttributes();
+            wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            pd.onWindowAttributesChanged(wl);
+        }
         pd.setCanceledOnTouchOutside(cancelable);
         pd.setContentView(convertView);
         pd.show();
@@ -216,10 +220,12 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
             }
         });
         Window window = twoBtnD.getWindow();
-        WindowManager.LayoutParams wl = window.getAttributes();
-        wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
-        wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        twoBtnD.onWindowAttributesChanged(wl);
+        if (window != null) {
+            WindowManager.LayoutParams wl = window.getAttributes();
+            wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            twoBtnD.onWindowAttributesChanged(wl);
+        }
         twoBtnD.setCanceledOnTouchOutside(cancelable);
         twoBtnD.setContentView(convertView);
         twoBtnD.show();
@@ -268,10 +274,12 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
             }
         });
         Window window = twoBtnD.getWindow();
-        WindowManager.LayoutParams wl = window.getAttributes();
-        wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
-        wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        twoBtnD.onWindowAttributesChanged(wl);
+        if (window != null) {
+            WindowManager.LayoutParams wl = window.getAttributes();
+            wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            twoBtnD.onWindowAttributesChanged(wl);
+        }
         twoBtnD.setCanceledOnTouchOutside(cancelable);
         twoBtnD.setContentView(convertView);
         twoBtnD.show();
@@ -312,10 +320,12 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
             }
         });
         Window window = twoBtnEtD.getWindow();
-        WindowManager.LayoutParams wl = window.getAttributes();
-        wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
-        wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        twoBtnEtD.onWindowAttributesChanged(wl);
+        if (window != null) {
+            WindowManager.LayoutParams wl = window.getAttributes();
+            wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            twoBtnEtD.onWindowAttributesChanged(wl);
+        }
         twoBtnEtD.setCanceledOnTouchOutside(cancelable);
         twoBtnEtD.setContentView(convertView);
         twoBtnEtD.show();
@@ -393,15 +403,54 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
             }
         });
         Window window = twoBtnEtD.getWindow();
-        WindowManager.LayoutParams wl = window.getAttributes();
-        wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
-        wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        twoBtnEtD.onWindowAttributesChanged(wl);
+        if (window != null) {
+            WindowManager.LayoutParams wl = window.getAttributes();
+            wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            twoBtnEtD.onWindowAttributesChanged(wl);
+        }
         twoBtnEtD.setCanceledOnTouchOutside(cancelable);
         twoBtnEtD.setContentView(convertView);
         twoBtnEtD.show();
     }
 
+    /**
+     * 显示自定义底部弹出对话框
+     * @param convertView 对话框内容
+     * @param cancelable 是否点击空白区域取消
+     * @param onDismissListener 取消监听
+     */
+    public void showCustomBottomDialog(View convertView, boolean cancelable, DialogInterface.OnDismissListener onDismissListener) {
+        hideCustomBottomDialog();
+        AutoUtils.auto(convertView);
+        customBottomDialog = new Dialog(this, R.style.transparentWindow);
+        if (onDismissListener != null) {
+            customBottomDialog.setOnDismissListener(onDismissListener);
+        }
+        Window window = customBottomDialog.getWindow();
+        if (window != null) {
+            window.setWindowAnimations(R.style.ZzAnimationDialog);
+            window.getDecorView().setPadding(0, 0, 0, 0);
+            WindowManager.LayoutParams wl = window.getAttributes();
+            wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            window.setGravity(Gravity.BOTTOM);
+            customBottomDialog.onWindowAttributesChanged(wl);
+        }
+        customBottomDialog.setCanceledOnTouchOutside(cancelable);
+        customBottomDialog.setContentView(convertView);
+        customBottomDialog.show();
+    }
+
+    /**
+     * 隐藏自定义底部弹出对话框
+     */
+    public void hideCustomBottomDialog() {
+        if (customBottomDialog != null) {
+            customBottomDialog.dismiss();
+            customBottomDialog = null;
+        }
+    }
 
     public void showUpdateDialog(String title, String msg, boolean cancelable, final OnOneBtnClickListener oneBtnClickListener) {
         hideUpdateDialog();
@@ -428,10 +477,12 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
             }
         });
         Window window = updateD.getWindow();
-        WindowManager.LayoutParams wl = window.getAttributes();
-        wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
-        wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        updateD.onWindowAttributesChanged(wl);
+        if (window != null) {
+            WindowManager.LayoutParams wl = window.getAttributes();
+            wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            updateD.onWindowAttributesChanged(wl);
+        }
         updateD.setCanceledOnTouchOutside(cancelable);
         updateD.setContentView(convertView);
         updateD.show();
@@ -473,10 +524,12 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         lvD = new Dialog(this, R.style.transparentWindow);
         lvD.setOnDismissListener(dismissListener);
         Window window = lvD.getWindow();
-        WindowManager.LayoutParams wl = window.getAttributes();
-        wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
-        wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        lvD.onWindowAttributesChanged(wl);
+        if (window != null) {
+            WindowManager.LayoutParams wl = window.getAttributes();
+            wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            lvD.onWindowAttributesChanged(wl);
+        }
         lvD.setCanceledOnTouchOutside(cancelable);
         lvD.setContentView(convertView);
         lvD.show();
@@ -513,25 +566,54 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
     @Override
     public void choosePhoto(String dir, boolean crop) {
         AndPermission.with(this)
-                .permission(Permission.STORAGE)
-                .requestCode(PERMISSION_CODE_STORAGE)
-                .rationale(new RationaleListener() {
+                .permission(Permission.WRITE_EXTERNAL_STORAGE)
+                .rationale(new Rationale() {
                     @Override
-                    public void showRequestPermissionRationale(int requestCode, Rationale rationale) {
-                        AndPermission.rationaleDialog(BaseActivity.this, rationale).show();
+                    public void showRationale(final Context context, List<String> permissions, final RequestExecutor executor) {
+                        showTwoBtnDialogIOSStyle("提示", "拒绝将无法使用相册功能，是否继续授权", null, null, -1, -1, false, new OnIOSTwoBtnClick() {
+                            @Override
+                            public void onLeftClick() {
+                                // 如果用户中断：
+                                executor.cancel();
+                            }
+
+                            @Override
+                            public void onRightClick() {
+                                // 如果用户继续：
+                                executor.execute();
+                            }
+                        });
                     }
                 })
-                .callback(new PermissionListener() {
+                .onDenied(new Action() {
                     @Override
-                    public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
+                    public void onAction(List<String> permissions) {
+                        if (AndPermission.hasAlwaysDeniedPermission(BaseActivity.this, permissions)) {
+                            // 这里使用一个Dialog展示没有这些权限应用程序无法继续运行，询问用户是否去设置中授权。
+                            final SettingService settingService = AndPermission.permissionSetting(BaseActivity.this);
+                            showTwoBtnDialogIOSStyle("权限申请", "拒绝将无法使用相册功能，是否到设置里打开读写手机存储权限", null, null, -1, -1, false, new OnIOSTwoBtnClick() {
+                                @Override
+                                public void onLeftClick() {
+                                    // 如果用户不同意去设置：
+                                    settingService.cancel();
+                                }
+
+                                @Override
+                                public void onRightClick() {
+                                    // 如果用户同意去设置：
+                                    settingService.execute();
+                                }
+                            });
+
+                        }
+                    }
+                })
+                .onGranted(new Action() {
+                    @Override
+                    public void onAction(List<String> permissions) {
                         Intent intent = new Intent(Intent.ACTION_PICK, null);
                         intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
                         startActivityForResult(intent, REQUEST_CODE_CHOOSE);
-                    }
-
-                    @Override
-                    public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
-
                     }
                 })
                 .start();
@@ -540,17 +622,54 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
     @Override
     public void takePhoto(final String dir, boolean crop) {
         AndPermission.with(this)
-                .permission(Permission.STORAGE, Permission.CAMERA)
-                .requestCode(PERMISSION_CODE_STORAGE)
-                .rationale(new RationaleListener() {
+                .permission(Permission.WRITE_EXTERNAL_STORAGE, Permission.CAMERA)
+                .rationale(new Rationale() {
                     @Override
-                    public void showRequestPermissionRationale(int requestCode, Rationale rationale) {
-                        AndPermission.rationaleDialog(BaseActivity.this, rationale).show();
+                    public void showRationale(final Context context, List<String> permissions, final RequestExecutor executor) {
+                        showTwoBtnDialogIOSStyle("提示", "拒绝将无法使用拍照功能，是否继续授权", null, null, -1, -1, false, new OnIOSTwoBtnClick() {
+                            @Override
+                            public void onLeftClick() {
+                                // 如果用户中断：
+                                executor.cancel();
+                            }
+
+                            @Override
+                            public void onRightClick() {
+                                // 如果用户继续：
+                                executor.execute();
+                            }
+                        });
+
+
                     }
                 })
-                .callback(new PermissionListener() {
+                .onDenied(new Action() {
                     @Override
-                    public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
+                    public void onAction(List<String> permissions) {
+                        if (AndPermission.hasAlwaysDeniedPermission(BaseActivity.this, permissions)) {
+                            // 这里使用一个Dialog展示没有这些权限应用程序无法继续运行，询问用户是否去设置中授权。
+
+                            final SettingService settingService = AndPermission.permissionSetting(BaseActivity.this);
+                            showTwoBtnDialogIOSStyle("权限申请", "拒绝将无法使用拍照功能，是否到设置里打开相机和读写手机存储权限", null, null, -1, -1, false, new OnIOSTwoBtnClick() {
+                                @Override
+                                public void onLeftClick() {
+                                    // 如果用户不同意去设置：
+                                    settingService.cancel();
+                                }
+
+                                @Override
+                                public void onRightClick() {
+                                    // 如果用户同意去设置：
+                                    settingService.execute();
+                                }
+                            });
+
+                        }
+                    }
+                })
+                .onGranted(new Action() {
+                    @Override
+                    public void onAction(List<String> permissions) {
                         final File file = new File(dir);
                         if (!file.isDirectory()) {
                             file.mkdirs();
@@ -572,12 +691,6 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
                         }
                         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
                         startActivityForResult(cameraIntent, REQUEST_CODE_CAMERA);//发出intent，并要求返回调用结果
-
-                    }
-
-                    @Override
-                    public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
-
                     }
                 })
                 .start();
@@ -698,6 +811,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         hideListDialog();
         hideTwoBtnDialog();
         hideTwoBtnEditDialog();
+        hideCustomBottomDialog();
         if (compositeSubscription != null)
             compositeSubscription.unsubscribe();
     }

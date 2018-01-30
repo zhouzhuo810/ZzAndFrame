@@ -1,7 +1,9 @@
 package zhouzhuo810.me.zzandframedemo;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,11 +24,13 @@ public class DialogActivity extends BaseActivity {
     private TitleBar titleBar;
     private Button btnTwoBtnIos;
     private Button btnTwoBtnEtIos;
+    private Button btnBottomSheet;
 
     private void assignViews() {
         titleBar = (TitleBar) findViewById(R.id.title_bar);
         btnTwoBtnIos = (Button) findViewById(R.id.btn_two_btn_ios);
         btnTwoBtnEtIos = (Button) findViewById(R.id.btn_two_btn_et_ios);
+        btnBottomSheet = (Button) findViewById(R.id.btn_custom_bottom);
     }
 
 
@@ -102,6 +106,26 @@ public class DialogActivity extends BaseActivity {
                                 ToastUtils.showCustomBgToast("right click, content="+content);
                             }
                         });
+            }
+        });
+
+        btnBottomSheet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View root = LayoutInflater.from(DialogActivity.this).inflate(R.layout.dialog_custom, null);
+                Button btnOK = (Button) root.findViewById(R.id.btn_ok);
+                btnOK.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        hideCustomBottomDialog();
+                    }
+                });
+                showCustomBottomDialog(root, false, new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+
+                    }
+                });
             }
         });
 

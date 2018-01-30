@@ -114,11 +114,6 @@ public class PhotoActivity extends BaseActivity {
     }
 
     @Override
-    public void onPhotoCroped(File file, String filePath) {
-
-    }
-
-    @Override
     public void saveState(Bundle outState) {
 
     }
@@ -128,3 +123,4 @@ public class PhotoActivity extends BaseActivity {
 
     }
 }
+
