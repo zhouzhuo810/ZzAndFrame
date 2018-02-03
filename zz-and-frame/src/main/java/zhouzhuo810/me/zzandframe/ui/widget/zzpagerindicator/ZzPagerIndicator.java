@@ -90,6 +90,8 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
 
     private void init(Context context, AttributeSet attrs) {
 
+        setHorizontalScrollBarEnabled(false);
+
         setFillViewport(true);
         setWillNotDraw(false);
 
