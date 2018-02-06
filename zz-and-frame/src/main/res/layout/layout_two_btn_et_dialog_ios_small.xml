@@ -23,7 +23,7 @@
                 android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
+                android:layout_marginTop="50px"
                 android:gravity="center"
                 android:text="你好"
                 android:textColor="#4a4a4a"
@@ -39,30 +39,31 @@
                 android:gravity="center|left"
                 android:paddingLeft="40px"
                 android:paddingRight="40px"
-                android:text="你好"
+                android:text="消息"
                 android:textColor="#999"
                 android:textSize="41px" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="40px"
-                >
+                android:layout_margin="50px">
 
                 <EditText
                     android:id="@+id/et_content"
                     android:layout_width="match_parent"
-                    android:layout_height="170px"
+                    android:layout_height="90px"
                     android:background="@drawable/base_et_rect_bg_selector"
-                    android:gravity="top|left"
+                    android:gravity="center_vertical|left"
                     android:hint="提示内容"
-                    android:padding="20px"
+                    android:paddingLeft="20px"
+                    android:maxLines="1"
+                    android:paddingRight="90px"
                     android:textColor="@color/colorBlack"
                     android:textColorHint="#eee"
                     android:textSize="36px" />
 
                 <ImageView
-                    android:id="@+id/iv_voice"
+                    android:id="@+id/iv_clear"
                     android:layout_width="50px"
                     android:layout_height="50px"
                     android:src="@drawable/ic_default"
@@ -76,6 +77,7 @@
 
             <View
                 android:layout_width="match_parent"
+                android:layout_marginTop="30px"
                 android:layout_height="1px"
                 android:background="#eee" />
 

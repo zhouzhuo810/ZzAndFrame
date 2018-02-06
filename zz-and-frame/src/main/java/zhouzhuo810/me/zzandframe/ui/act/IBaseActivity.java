@@ -50,6 +50,14 @@ public interface IBaseActivity {
         void onRightClick(String content);
     }
 
+
+    interface OnIOSTwoBtnSmallEditClick {
+
+        void onLeftClick(String content);
+
+        void onRightClick(String content);
+    }
+
     interface OnItemClick {
         void onItemClick(int position, String content);
     }

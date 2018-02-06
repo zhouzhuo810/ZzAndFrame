@@ -25,11 +25,13 @@ public class DialogActivity extends BaseActivity {
     private Button btnTwoBtnIos;
     private Button btnTwoBtnEtIos;
     private Button btnBottomSheet;
+    private Button btnTwoBtnEtIosSingle;
 
     private void assignViews() {
         titleBar = (TitleBar) findViewById(R.id.title_bar);
         btnTwoBtnIos = (Button) findViewById(R.id.btn_two_btn_ios);
         btnTwoBtnEtIos = (Button) findViewById(R.id.btn_two_btn_et_ios);
+        btnTwoBtnEtIosSingle = (Button) findViewById(R.id.btn_two_btn_et_ios_single);
         btnBottomSheet = (Button) findViewById(R.id.btn_custom_bottom);
     }
 
@@ -96,6 +98,23 @@ public class DialogActivity extends BaseActivity {
                                 ToastUtils.showCustomBgToast("say something");
                             }
 
+                            @Override
+                            public void onLeftClick(String content) {
+                                ToastUtils.showCustomBgToast("left click, "+"content="+content);
+                            }
+
+                            @Override
+                            public void onRightClick(String content) {
+                                ToastUtils.showCustomBgToast("right click, content="+content);
+                            }
+                        });
+            }
+        });
+        btnTwoBtnEtIosSingle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTwoBtnEditDialogIOSStyleSmall("保养完成", "确认已完成所有保养工作?", "保养内容",
+                        null, "确认", "取消", -1, -1, true, R.drawable.ic_chat, false, new OnIOSTwoBtnSmallEditClick() {
                             @Override
                             public void onLeftClick(String content) {
                                 ToastUtils.showCustomBgToast("left click, "+"content="+content);

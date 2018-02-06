@@ -331,8 +331,25 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         twoBtnEtD.show();
     }
 
+    /**
+     * 显示多行两个按钮输入iOS样式对话框
+     * 手动关闭对话框使用{@link #hideTwoBtnEditDialog()}
+     *
+     * @param title         标题
+     * @param msg           消息,没有传null
+     * @param hintString    输入框提示
+     * @param defString     输入框默认，没有传null
+     * @param leftBtnText   左边按钮文字
+     * @param rightBtnText  右边按钮文字
+     * @param leftColor     左边按钮文字颜色，默认传-1
+     * @param rightColor    右边按钮文字颜色，默认传-1
+     * @param showPic       是否显示图标
+     * @param drawableId    图标资源id
+     * @param cancelable    是否可取消
+     * @param onTwoBtnClick 按钮点击监听
+     */
     //Fixme by zz 2017/7/19 下午12:18 修改内容：添加两个按钮输入对话框
-    public void showTwoBtnEditDialogIOSStyle(String title, String msg, String hint, String defString,
+    public void showTwoBtnEditDialogIOSStyle(String title, String msg, String hintString, String defString,
                                              String leftBtnText, String rightBtnText, int leftColor, int rightColor,
                                              boolean showPic, int drawableId, boolean cancelable,
                                              final OnIOSTwoBtnEditClick onTwoBtnClick) {
@@ -350,7 +367,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         }
 
         final EditText etContent = (EditText) convertView.findViewById(R.id.et_content);
-        etContent.setHint(hint);
+        etContent.setHint(hintString);
         if (defString != null) {
             etContent.setText(defString);
         }
@@ -415,9 +432,104 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
     }
 
     /**
+     * 显示单行两个按钮输入iOS样式对话框
+     * 手动关闭对话框使用{@link #hideTwoBtnEditDialog()}
+     *
+     * @param title         标题
+     * @param msg           消息,没有传null
+     * @param hintString    输入框提示
+     * @param defString     输入框默认，没有传null
+     * @param leftBtnText   左边按钮文字
+     * @param rightBtnText  右边按钮文字
+     * @param leftColor     左边按钮文字颜色，默认传-1
+     * @param rightColor    右边按钮文字颜色，默认传-1
+     * @param enableClear   是否使用清空图标
+     * @param clearPicId    清空图标资源id
+     * @param cancelable    是否可取消
+     * @param onTwoBtnClick 按钮点击监听
+     */
+    //FIXME by zhouzhuo 时间：2018/2/6 下午1:41 修改内容：添加两个按钮小输入对话框
+    public void showTwoBtnEditDialogIOSStyleSmall(String title, String msg, String hintString, String defString,
+                                                  String leftBtnText, String rightBtnText, int leftColor, int rightColor,
+                                                  boolean enableClear, int clearPicId, boolean cancelable,
+                                                  final OnIOSTwoBtnSmallEditClick onTwoBtnClick) {
+        hideTwoBtnEditDialog();
+        View convertView = LayoutInflater.from(this).inflate(R.layout.layout_two_btn_et_dialog_ios_small, null);
+        AutoUtils.auto(convertView);
+        TextView tvTitle = (TextView) convertView.findViewById(R.id.tv_title);
+        tvTitle.setText(title);
+        TextView tvMsg = (TextView) convertView.findViewById(R.id.tv_msg);
+        if (msg != null) {
+            tvMsg.setVisibility(View.VISIBLE);
+            tvMsg.setText(msg);
+        } else {
+            tvMsg.setVisibility(View.GONE);
+        }
+
+        final EditText etContent = (EditText) convertView.findViewById(R.id.et_content);
+        etContent.setHint(hintString);
+        if (defString != null) {
+            etContent.setText(defString);
+        }
+        ImageView iv = (ImageView) convertView.findViewById(R.id.iv_clear);
+        if (enableClear) {
+            setEditListener(etContent, iv);
+        }
+        if (clearPicId != -1) {
+            iv.setImageResource(clearPicId);
+        }
+        twoBtnEtD = new Dialog(this, R.style.transparentWindow);
+        Button btnLeft = (Button) convertView.findViewById(R.id.btn_left);
+        if (leftBtnText != null) {
+            btnLeft.setText(leftBtnText);
+        }
+        if (leftColor != -1) {
+            btnLeft.setTextColor(leftColor);
+        }
+        Button btnRight = (Button) convertView.findViewById(R.id.btn_right);
+        if (rightBtnText != null) {
+            btnRight.setText(rightBtnText);
+        }
+        if (rightColor != -1) {
+            btnRight.setTextColor(rightColor);
+        }
+        btnLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideTwoBtnEditDialog();
+                if (onTwoBtnClick != null) {
+                    String content = etContent.getText().toString().trim();
+                    onTwoBtnClick.onLeftClick(content);
+                }
+            }
+        });
+        btnRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideTwoBtnEditDialog();
+                if (onTwoBtnClick != null) {
+                    String content = etContent.getText().toString().trim();
+                    onTwoBtnClick.onRightClick(content);
+                }
+            }
+        });
+        Window window = twoBtnEtD.getWindow();
+        if (window != null) {
+            WindowManager.LayoutParams wl = window.getAttributes();
+            wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            twoBtnEtD.onWindowAttributesChanged(wl);
+        }
+        twoBtnEtD.setCanceledOnTouchOutside(cancelable);
+        twoBtnEtD.setContentView(convertView);
+        twoBtnEtD.show();
+    }
+
+    /**
      * 显示自定义底部弹出对话框
-     * @param convertView 对话框内容
-     * @param cancelable 是否点击空白区域取消
+     *
+     * @param convertView       对话框内容
+     * @param cancelable        是否点击空白区域取消
      * @param onDismissListener 取消监听
      */
     public void showCustomBottomDialog(View convertView, boolean cancelable, DialogInterface.OnDismissListener onDismissListener) {
