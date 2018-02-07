@@ -207,7 +207,13 @@ public abstract class RvAutoBaseAdapter<T> extends RecyclerView.Adapter<RvAutoBa
 
         public ViewHolder setVisible(int viewId, boolean visible) {
             View view = getView(viewId);
-            view.setVisibility(visible ? View.VISIBLE : View.GONE);
+            view.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
+            return this;
+        }
+
+        public ViewHolder setGone(int viewId, boolean gone) {
+            View view = getView(viewId);
+            view.setVisibility(gone ? View.GONE : View.VISIBLE);
             return this;
         }
 
