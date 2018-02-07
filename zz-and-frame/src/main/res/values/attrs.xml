@@ -49,6 +49,7 @@
         <attr name="tb_show_underline" format="boolean" />
         <attr name="tb_textSize" format="dimension|reference" />
         <attr name="tb_imageSize" format="dimension|reference" />
+        <attr name="tb_textTopMargin" format="dimension|reference" />
         <attr name="tb_markTextSize" format="dimension|reference" />
         <attr name="tb_markPointSize" format="dimension|reference" />
         <attr name="tb_markTextColor" format="color|reference" />

@@ -138,6 +138,8 @@ public class TabBar extends LinearLayout {
             TypedArray t = context.obtainStyledAttributes(attrs, R.styleable.TabBar);
             int imageSize = t.getDimensionPixelSize(R.styleable.TabBar_tb_imageSize, 60);
             setImageSize(imageSize);
+            int textTopMargin = t.getDimensionPixelSize(R.styleable.TabBar_tb_textTopMargin, 5);
+            setTextTopMargin(textTopMargin);
             textSize = t.getDimensionPixelSize(R.styleable.TabBar_tb_textSize, 40);
             int markPointSize = t.getDimensionPixelSize(R.styleable.TabBar_tb_markPointSize, 24);
             setMarkPointSize(markPointSize);
@@ -251,6 +253,8 @@ public class TabBar extends LinearLayout {
                 }
             }
             t.recycle();
+        } else {
+            textSize = 40;
         }
         textSize = AutoUtils.getPercentWidthSize(textSize);
         tv0.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
@@ -264,18 +268,48 @@ public class TabBar extends LinearLayout {
         return position;
     }
 
+    public TabBar setTextTopMargin(int marginTop) {
+        int size = AutoUtils.getPercentHeightSize(marginTop);
+        LayoutParams lp0 = (LayoutParams) tv0.getLayoutParams();
+        LayoutParams lp1 = (LayoutParams) tv1.getLayoutParams();
+        LayoutParams lp2 = (LayoutParams) tv2.getLayoutParams();
+        LayoutParams lp3 = (LayoutParams) tv3.getLayoutParams();
+        LayoutParams lp4 = (LayoutParams) tv4.getLayoutParams();
+        lp0.topMargin = size;
+        lp1.topMargin = size;
+        lp2.topMargin = size;
+        lp3.topMargin = size;
+        lp4.topMargin = size;
+        tv0.setLayoutParams(lp0);
+        tv1.setLayoutParams(lp1);
+        tv2.setLayoutParams(lp2);
+        tv3.setLayoutParams(lp3);
+        tv4.setLayoutParams(lp4);
+        return this;
+    }
+
     public TabBar setImageSize(int imageSize) {
         int size = AutoUtils.getPercentWidthSize(imageSize);
-        iv0.getLayoutParams().width = size;
-        iv0.getLayoutParams().height = size;
-        iv1.getLayoutParams().width = size;
-        iv1.getLayoutParams().height = size;
-        iv2.getLayoutParams().width = size;
-        iv2.getLayoutParams().height = size;
-        iv3.getLayoutParams().width = size;
-        iv3.getLayoutParams().height = size;
-        iv4.getLayoutParams().width = size;
-        iv4.getLayoutParams().height = size;
+        LayoutParams lp0 = (LayoutParams) iv0.getLayoutParams();
+        LayoutParams lp1 = (LayoutParams) iv1.getLayoutParams();
+        LayoutParams lp2 = (LayoutParams) iv2.getLayoutParams();
+        LayoutParams lp3 = (LayoutParams) iv3.getLayoutParams();
+        LayoutParams lp4 = (LayoutParams) iv4.getLayoutParams();
+        lp0.width = size;
+        lp0.height = size;
+        lp1.width = size;
+        lp1.height = size;
+        lp2.width = size;
+        lp2.height = size;
+        lp3.width = size;
+        lp3.height = size;
+        lp4.width = size;
+        lp4.height = size;
+        iv0.setLayoutParams(lp0);
+        iv1.setLayoutParams(lp1);
+        iv2.setLayoutParams(lp2);
+        iv3.setLayoutParams(lp3);
+        iv4.setLayoutParams(lp4);
         return this;
     }
 

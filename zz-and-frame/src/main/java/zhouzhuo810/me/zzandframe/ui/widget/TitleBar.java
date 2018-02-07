@@ -124,9 +124,7 @@ public class TitleBar extends RelativeLayout {
             }
             /*textSize*/
             int textSizeTitle = t.getDimensionPixelSize(R.styleable.TitleBar_ttb_textSizeTitle, 50);
-            Log.e("XXX", "textsize title before= " + textSizeTitle);
             textSizeTitle = AutoUtils.getPercentWidthSize(textSizeTitle);
-            Log.e("XXX", "textsize title after= " + textSizeTitle);
             int textSizeTwoSide = t.getDimensionPixelSize(R.styleable.TitleBar_ttb_textSizeTwoSide, 40);
             textSizeTwoSide = AutoUtils.getPercentWidthSize(textSizeTwoSide);
             tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeTitle);

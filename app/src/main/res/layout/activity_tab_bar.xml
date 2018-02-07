@@ -40,17 +40,18 @@
         android:id="@+id/tab_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        zz:tb_imageSize="50px"
+        zz:tb_imageSize="60px"
         zz:tb_markBgColor="@color/colorAccent"
         zz:tb_markTextColor="#fff"
         zz:tb_markTextSize="30px"
         zz:tb_tabCount="FIVE"
         zz:tb_show_img="true"
+        zz:tb_textTopMargin="5px"
         zz:tb_show_text="true"
         zz:tb_show_underline="true"
         zz:tb_tabNames="@array/tabNames"
         zz:tb_textColorPress="@color/colorPrimary"
-        zz:tb_textSize="36px">
+        zz:tb_textSize="30px">
 
     </zhouzhuo810.me.zzandframe.ui.widget.TabBar>
 </LinearLayout>
