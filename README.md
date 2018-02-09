@@ -17,7 +17,7 @@ project/build.gradle添加
 app/build.gradle添加
 
 ```
-    compile 'com.github.zhouzhuo810:ZzAndFrame:1.2.4'
+    compile 'com.github.zhouzhuo810:ZzAndFrame:1.2.5'
 ```
 
 添加上面依赖即同时依赖下面内容：

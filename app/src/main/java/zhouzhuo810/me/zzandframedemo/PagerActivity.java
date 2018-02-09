@@ -15,9 +15,9 @@ import zhouzhuo810.me.zzandframe.ui.widget.zzpagerindicator.ZzPagerIndicator;
 import zhouzhuo810.me.zzandframedemo.fgm.TestFragment;
 
 /**
+ * ZzPagerIndicator 示例
  * Created by zhouzhuo810 on 2017/11/17.
  */
-
 public class PagerActivity extends BaseActivity {
 
     private TitleBar titleBar;

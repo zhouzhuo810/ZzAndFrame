@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 19
-        versionName "1.18"
+        versionCode 20
+        versionName "1.19"
 
     }
     buildTypes {
@@ -44,7 +44,8 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.8.0'
     //andpermission
     compile 'com.yanzhenjie:permission:2.0.0-alpha'
-
+    //material design
+    compile 'com.android.support:design:25.3.1'
 }
 
 // 指定编码

@@ -12,21 +12,23 @@
         android:background="@color/colorPrimary"
         zz:ttb_leftImg="@drawable/iv_back"
         zz:ttb_leftText="返回"
-        zz:ttb_showLeftImg="true"
-        zz:ttb_showRightLayout="true"
-        zz:ttb_textColorAll="#fff"
         zz:ttb_rightText="动画"
-        zz:ttb_showRightText="true"
+        zz:ttb_showLeftImg="true"
         zz:ttb_showRightImg="false"
+        zz:ttb_showRightLayout="true"
+        zz:ttb_showRightText="true"
+        zz:ttb_textColorAll="#fff"
         zz:ttb_textSizeTitle="50px"
         zz:ttb_textSizeTwoSide="40px"
         zz:ttb_titleText="小周工具集合" />
+
 
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="@color/colorWhite"
         android:gravity="center"
         android:textColor="@color/colorPrimary"
         android:textSize="40px" />
@@ -44,14 +46,14 @@
         zz:tb_markBgColor="@color/colorAccent"
         zz:tb_markTextColor="#fff"
         zz:tb_markTextSize="30px"
-        zz:tb_tabCount="FIVE"
         zz:tb_show_img="true"
-        zz:tb_textTopMargin="5px"
         zz:tb_show_text="true"
         zz:tb_show_underline="true"
+        zz:tb_tabCount="FIVE"
         zz:tb_tabNames="@array/tabNames"
         zz:tb_textColorPress="@color/colorPrimary"
-        zz:tb_textSize="30px">
+        zz:tb_textSize="30px"
+        zz:tb_textTopMargin="5px">
 
     </zhouzhuo810.me.zzandframe.ui.widget.TabBar>
 </LinearLayout>
