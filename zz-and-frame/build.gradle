@@ -4,8 +4,8 @@ apply plugin: 'com.github.dcendents.android-maven' // 添加这个
 group='com.github.zhouzhuo810' // 指定group，com.github.<用户名>
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.3'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         minSdkVersion 15
@@ -24,8 +24,8 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.android.support:appcompat-v7:27.0.1'
+    compile 'com.android.support:recyclerview-v7:27.0.1'
     //retrofit
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     //string
@@ -45,7 +45,7 @@ dependencies {
     //andpermission
     compile 'com.yanzhenjie:permission:2.0.0-alpha'
     //material design
-    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:design:27.0.1'
 }
 
 // 指定编码

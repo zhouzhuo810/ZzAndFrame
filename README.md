@@ -17,13 +17,13 @@ project/build.gradle添加
 app/build.gradle添加
 
 ```
-    compile 'com.github.zhouzhuo810:ZzAndFrame:1.2.5'
+    compile 'com.github.zhouzhuo810:ZzAndFrame:1.2.6'
 ```
 
 添加上面依赖即同时依赖下面内容：
 ```
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.android.support:appcompat-v7:27.0.1'
+    compile 'com.android.support:recyclerview-v7:27.0.1'
     //retrofit
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     //string
@@ -43,7 +43,7 @@ app/build.gradle添加
     //andpermission
     compile 'com.yanzhenjie:permission:2.0.0-alpha'
     //material design
-    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:design:27.0.1'
 ```
 
 ## 说明
