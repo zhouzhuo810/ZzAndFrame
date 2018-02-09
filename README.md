@@ -42,6 +42,8 @@ app/build.gradle添加
     compile 'com.github.bumptech.glide:glide:3.8.0'
     //andpermission
     compile 'com.yanzhenjie:permission:2.0.0-alpha'
+    //material design
+    compile 'com.android.support:design:25.3.1'
 ```
 
 ## 说明
