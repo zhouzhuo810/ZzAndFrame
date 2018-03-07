@@ -6,12 +6,17 @@
 project/build.gradle添加
 
 ```
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
+allprojects {
+	repositories {
+		...
+		maven {
+		    url "https://jitpack.io"
+		}
+		maven {
+		    url "https://maven.google.com"
 		}
 	}
+}
 ```
 
 app/build.gradle添加
