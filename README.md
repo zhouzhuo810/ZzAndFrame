@@ -1,21 +1,22 @@
 # ZzAndFrame
 简易Android开发框架
 
-## 使用须知
-
-- minSdkVersion 15
-
 ## 用法
 
 project/build.gradle添加
 
 ```
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
+allprojects {
+	repositories {
+		...
+		maven {
+		    url "https://jitpack.io"
+		}
+		maven {
+		    url "https://maven.google.com"
 		}
 	}
+}
 ```
 
 app/build.gradle添加
@@ -166,3 +167,4 @@ app/build.gradle添加
 > v1.2.7
 
 - 修改默认Activity打开和关闭动画；
+
