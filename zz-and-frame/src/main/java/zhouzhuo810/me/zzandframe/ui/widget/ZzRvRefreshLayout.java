@@ -19,7 +19,7 @@ import com.zhy.autolayout.utils.AutoUtils;
  * Refresh For RecyclerView (support LoadMore).
  * Created by zhouzhuo810 on 2017/7/25.
  */
-public class ZzRvRefreshLayout extends SwipeRefreshLayout implements IRefresh{
+public class ZzRvRefreshLayout extends SwipeRefreshLayout implements IRefresh {
     private RecyclerView rv;
     private ZzLvRefreshLayout.OnLoadListener onLoadListener;
     private IFooterCreator footerCreator;
@@ -153,7 +153,7 @@ public class ZzRvRefreshLayout extends SwipeRefreshLayout implements IRefresh{
             if (rv == null) {
                 rv = (RecyclerView) child;
             }
-            if (rv.getLayoutManager()==null) {
+            if (rv.getLayoutManager() == null) {
                 rv.setLayoutManager(new LinearLayoutManager(getContext()));
             }
             removeView(child);
@@ -192,7 +192,6 @@ public class ZzRvRefreshLayout extends SwipeRefreshLayout implements IRefresh{
     public void setOnLoadListener(ZzLvRefreshLayout.OnLoadListener onLoadListener) {
         this.onLoadListener = onLoadListener;
     }
-
 
 
 }

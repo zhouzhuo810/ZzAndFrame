@@ -1,6 +1,10 @@
 # ZzAndFrame
 简易Android开发框架
 
+## 使用须知
+
+- minSdkVersion 15
+
 ## 用法
 
 project/build.gradle添加
@@ -17,7 +21,7 @@ project/build.gradle添加
 app/build.gradle添加
 
 ```
-    compile 'com.github.zhouzhuo810:ZzAndFrame:1.2.6'
+    compile 'com.github.zhouzhuo810:ZzAndFrame:1.2.7'
 ```
 
 添加上面依赖即同时依赖下面内容：
@@ -155,3 +159,10 @@ app/build.gradle添加
 ### EncryptUtils
 
 - 加解密工具类
+
+
+### 版本日志
+
+> v1.2.7
+
+- 修改默认Activity打开和关闭动画；

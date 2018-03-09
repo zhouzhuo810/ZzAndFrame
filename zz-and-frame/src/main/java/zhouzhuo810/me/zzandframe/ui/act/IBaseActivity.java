@@ -184,18 +184,33 @@ public interface IBaseActivity {
     void startActWithIntentForResult(Intent intent, int requestCode);
 
     /**
-     * 进入动画
+     * 启动Activity进入动画
      *
      * @return resId
      */
-    int inAnimation();
+    int openInAnimation();
 
     /**
-     * 关闭动画
+     * 启动Activity退出动画
      *
      * @return resId
      */
-    int outAnimation();
+    int openOutAnimation();
+
+    /**
+     * 关闭Activity进入动画
+     *
+     * @return resId
+     */
+    int closeInAnimation();
+
+    /**
+     * 关闭Activity退出动画
+     *
+     * @return resId
+     */
+    int closeOutAnimation();
+
 
     /**
      * 关闭Activity

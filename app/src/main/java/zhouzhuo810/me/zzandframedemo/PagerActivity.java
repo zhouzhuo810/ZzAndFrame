@@ -12,6 +12,7 @@ import zhouzhuo810.me.zzandframe.ui.widget.MarkView;
 import zhouzhuo810.me.zzandframe.ui.widget.TitleBar;
 import zhouzhuo810.me.zzandframe.ui.widget.ZzViewPager;
 import zhouzhuo810.me.zzandframe.ui.widget.zzpagerindicator.ZzPagerIndicator;
+import zhouzhuo810.me.zzandframe.ui.widget.zzpagerindicator.adapter.ZzFragmentPagerAdapter;
 import zhouzhuo810.me.zzandframedemo.fgm.TestFragment;
 
 /**

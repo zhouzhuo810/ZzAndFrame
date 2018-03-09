@@ -2,6 +2,7 @@ package zhouzhuo810.me.zzandframe.ui.fgm;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -24,7 +25,7 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(getLayoutId(), container, false);
 
         initView();
@@ -50,15 +51,24 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment {
     }
 
     @Override
-    public int inAnimation() {
-        return android.R.anim.slide_in_left;
+    public int closeInAnimation() {
+        return R.anim.zaf_slide_in_left;
     }
 
     @Override
-    public int outAnimation() {
-        return android.R.anim.slide_out_right;
+    public int closeOutAnimation() {
+        return R.anim.zaf_side_out_right;
     }
 
+    @Override
+    public int openInAnimation() {
+        return R.anim.zaf_slide_in_right;
+    }
+
+    @Override
+    public int openOutAnimation() {
+        return R.anim.zaf_side_out_left;
+    }
 
     @Override
     public void startRefresh(SwipeRefreshLayout refreshLayout) {
@@ -76,20 +86,25 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment {
         }
     }
 
+
     @Override
     public void startActWithIntent(Intent intent) {
         startActivity(intent);
-        ((BaseActivity) getActivity()).overridePendingTransition(inAnimation(), outAnimation());
+        if (getActivity() != null) {
+            ((BaseActivity) getActivity()).overridePendingTransition(openInAnimation(), openOutAnimation());
+        }
     }
 
     @Override
     public void startActWithIntentForResult(Intent intent, int requestCode) {
         startActivityForResult(intent, requestCode);
-        ((BaseActivity) getActivity()).overridePendingTransition(inAnimation(), outAnimation());
+        if (getActivity() != null) {
+            ((BaseActivity) getActivity()).overridePendingTransition(openInAnimation(), openOutAnimation());
+        }
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         saveState(outState);
     }

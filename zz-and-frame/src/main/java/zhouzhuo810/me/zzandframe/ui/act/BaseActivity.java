@@ -860,30 +860,41 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
     @Override
     public void closeAct() {
         finish();
-        overridePendingTransition(inAnimation(), outAnimation());
+        overridePendingTransition(closeInAnimation(), closeOutAnimation());
+    }
+
+
+    @Override
+    public int closeInAnimation() {
+        return R.anim.zaf_slide_in_left;
     }
 
     @Override
-    public int inAnimation() {
-        return android.R.anim.slide_in_left;
+    public int closeOutAnimation() {
+        return R.anim.zaf_side_out_right;
     }
 
     @Override
-    public int outAnimation() {
-        return android.R.anim.slide_out_right;
+    public int openInAnimation() {
+        return R.anim.zaf_slide_in_right;
+    }
+
+    @Override
+    public int openOutAnimation() {
+        return R.anim.zaf_side_out_left;
     }
 
 
     @Override
     public void startActWithIntent(Intent intent) {
         startActivity(intent);
-        overridePendingTransition(inAnimation(), outAnimation());
+        overridePendingTransition(openInAnimation(), openOutAnimation());
     }
 
     @Override
     public void startActWithIntentForResult(Intent intent, int requestCode) {
         startActivityForResult(intent, requestCode);
-        overridePendingTransition(inAnimation(), outAnimation());
+        overridePendingTransition(openInAnimation(), openOutAnimation());
     }
 
     @Override

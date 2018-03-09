@@ -25,6 +25,15 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="zhouzhuo810.me.zzandframe.ui.act.ImagePreviewActivity"
+            android:theme="@style/FullScreenStyle"
+            />
+        <activity
+            android:name="zhouzhuo810.me.zzandframe.ui.act.MultiImagePreviewActivity"
+            android:theme="@style/FullScreenStyle"
+            />
+
         <activity android:name=".LvActivity"/>
         <activity android:name=".RvActivity"/>
         <activity android:name=".MarkActivity"/>

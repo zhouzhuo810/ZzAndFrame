@@ -13,12 +13,26 @@ import zhouzhuo810.me.zzandframe.ui.act.BaseActivity;
  */
 public interface IBaseFragment {
 
+    /**
+     * 返回Fragment的布局id
+     *
+     * @return layoutId
+     */
     int getLayoutId();
 
+    /**
+     * 初始化视图，一般做findViewById以及初始化设置
+     */
     void initView();
 
+    /**
+     * 加载和填充数据
+     */
     void initData();
 
+    /**
+     * 设置点击，长按等监听事件
+     */
     void initEvent();
 
     void resume();
@@ -38,18 +52,33 @@ public interface IBaseFragment {
     void stopRefresh(SwipeRefreshLayout refresh);
 
     /**
-     * 进入动画
+     * 启动Activity进入动画
      *
      * @return resId
      */
-    int inAnimation();
+    int openInAnimation();
 
     /**
-     * 关闭动画
+     * 启动Activity退出动画
      *
      * @return resId
      */
-    int outAnimation();
+    int openOutAnimation();
+
+    /**
+     * 关闭Activity进入动画
+     *
+     * @return resId
+     */
+    int closeInAnimation();
+
+    /**
+     * 关闭Activity退出动画
+     *
+     * @return resId
+     */
+    int closeOutAnimation();
+
 
     /**
      * 打开Activity

@@ -9,10 +9,16 @@ import android.widget.TextView;
 
 public interface IFooterCreator {
     int getFooterLayoutId();
+
     int getFooterTextViewId();
+
     int getProgressBarId();
+
     String getNormalText();
+
     String getLoadingText();
+
     String getNoNeedLoadText();
+
     void onFooterClick(ProgressBar pb, TextView tv);
 }

@@ -116,7 +116,6 @@ public class ImagePreviewActivity extends BaseActivity {
 
     @Override
     public void destroy() {
-
     }
 
     @Override
