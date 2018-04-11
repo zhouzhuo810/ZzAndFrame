@@ -17,7 +17,7 @@
         <meta-data android:name="design_width" android:value="1080"/>
         <meta-data android:name="design_height" android:value="1920"/>
 
-        <activity android:name="zhouzhuo810.me.zzandframedemo.MainActivity">
+        <activity android:name="zhouzhuo810.me.zzandframedemo.MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,14 +34,14 @@
             android:theme="@style/FullScreenStyle"
             />
 
-        <activity android:name=".LvActivity"/>
-        <activity android:name=".RvActivity"/>
-        <activity android:name=".MarkActivity"/>
-        <activity android:name=".TabBarActivity"/>
-        <activity android:name=".PreviewPicActivity"/>
-        <activity android:name=".PhotoActivity"/>
-        <activity android:name=".PagerActivity"/>
-        <activity android:name=".DialogActivity"/>
+        <activity android:name=".LvActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".RvActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".MarkActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".TabBarActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".PreviewPicActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".PhotoActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".PagerActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".DialogActivity" android:screenOrientation="portrait"/>
 
 
     </application>

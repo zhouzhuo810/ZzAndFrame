@@ -113,6 +113,7 @@
             <enum name="tab_with_icon" value="2" />
             <enum name="tab_with_icon_and_text" value="3" />
         </attr>
+
         <!--for tab-->
         <attr name="zz_unselect_tab_text_size" format="dimension|reference" />
         <attr name="zz_unselect_tab_text_color" format="color|reference" />
@@ -127,6 +128,13 @@
         <attr name="zz_should_tab_expand" format="boolean" />
         <attr name="zz_normal_tab_bg" format="reference" />
         <attr name="zz_select_tab_bg" format="reference" />
+        <!--for tab with text and icon-->
+        <attr name="zz_tab_orientation" format="enum">
+            <enum name="vertical" value="0" />
+            <enum name="horizontal" value="1" />
+        </attr>
+        <attr name="zz_tab_icon_text_margin" format="dimension|reference" />
+        <attr name="zz_tab_is_horizontal_hide_icon" format="boolean" />
 
         <!--for point-->
         <attr name="zz_select_point_size" format="dimension|reference" />

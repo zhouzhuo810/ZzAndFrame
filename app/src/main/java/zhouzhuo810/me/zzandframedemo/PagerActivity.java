@@ -7,6 +7,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import zhouzhuo810.me.zzandframe.ui.act.BaseActivity;
 import zhouzhuo810.me.zzandframe.ui.widget.MarkView;
 import zhouzhuo810.me.zzandframe.ui.widget.TitleBar;
@@ -62,28 +65,27 @@ public class PagerActivity extends BaseActivity {
 
             @Override
             public void onRightClick(ImageView ivRight, MarkView mv, TextView tvRight) {
-
+                if (indicator.getTabTextIconOrientation() == ZzPagerIndicator.TabOrientation.HORIZONTAL) {
+                    indicator.setTabTextIconOrientation(ZzPagerIndicator.TabOrientation.VERTICAL);
+                    tvRight.setText("垂直");
+                } else {
+                    indicator.setTabTextIconOrientation(ZzPagerIndicator.TabOrientation.HORIZONTAL);
+                    tvRight.setText("水平");
+                }
             }
 
         });
 
-        viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+        int[] iconNormal = {R.drawable.ic_chat_normal, R.drawable.ic_contact_normal, R.drawable.ic_find_normal};
+        int[] iconSelected = {R.drawable.ic_chat, R.drawable.ic_contact, R.drawable.ic_find};
+        String[] titles = {"聊天", "联系人", "发现"};
 
-            @Override
-            public Fragment getItem(int position) {
-                return TestFragment.newInstance("fragment" + position);
-            }
 
-            @Override
-            public CharSequence getPageTitle(int position) {
-                return "fragment"+position;
-            }
-
-            @Override
-            public int getCount() {
-                return 3;
-            }
-        });
+        List<Fragment> fgm = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            fgm.add(TestFragment.newInstance(titles[i]));
+        }
+        viewPager.setAdapter(new ZzFragmentPagerAdapter(getSupportFragmentManager(), fgm, titles, iconSelected, iconNormal));
 
         indicator.setViewPager(viewPager);
         indicator.setCurrentItem(0, false);
