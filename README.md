@@ -22,7 +22,7 @@ allprojects {
 app/build.gradle添加
 
 ```
-    compile 'com.github.zhouzhuo810:ZzAndFrame:1.2.7'
+    compile 'com.github.zhouzhuo810:ZzAndFrame:1.2.8'
 ```
 
 添加上面依赖即同时依赖下面内容：
@@ -163,6 +163,10 @@ app/build.gradle添加
 
 
 ### 版本日志
+
+> v1.2.8
+
+- 修改ZzPagerIndicator添加水平图文模式和图片未选中隐藏模式；
 
 > v1.2.7
 
