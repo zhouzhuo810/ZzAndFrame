@@ -251,7 +251,7 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
     }
 
     private void drawPoints(Canvas canvas) {
-        if (mViewPager != null) {
+        if (mViewPager != null && mViewPager.getAdapter() != null) {
             int count = mViewPager.getAdapter().getCount();
             int index = mViewPager.getCurrentItem();
             int uLeft = (getWidth() - unSelectPointSize * count - spacing * (count - 1)) / 2;
@@ -289,8 +289,7 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
         addPageChangeListener();
         switch (indicatorType) {
             case RoundPoint:
-                int count = mViewPager.getAdapter().getCount();
-                setMinimumWidth(selectPointSize > unSelectPointSize ? selectPointSize * count + spacing * (count - 1) : unSelectPointSize * count + spacing * (count - 1));
+                setMinimumWidth(selectPointSize > unSelectPointSize ? selectPointSize * tabCount + spacing * (tabCount - 1) : unSelectPointSize * tabCount + spacing * (tabCount - 1));
                 break;
             case TabWithText:
                 setUpText();
@@ -322,6 +321,9 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
             tvParams.leftMargin = tabIconTextMargin;
         }
 
+        if (mViewPager == null) {
+            return;
+        }
         if (mViewPager.getAdapter() != null) {
             for (int i = 0; i < mViewPager.getAdapter().getCount(); i++) {
                 ImageView iv = new ImageView(getContext());
@@ -364,6 +366,9 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
 
     private void setUpIcons() {
         mIndicatorContainer.removeAllViews();
+        if (mViewPager == null) {
+            return;
+        }
         if (mViewPager.getAdapter() != null) {
             for (int i = 0; i < mViewPager.getAdapter().getCount(); i++) {
                 int icon = ((ZzBasePagerAdapter) mViewPager.getAdapter()).getUnselectedIcon(i);
@@ -387,6 +392,9 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
 
     private void setUpText() {
         mIndicatorContainer.removeAllViews();
+        if (mViewPager == null) {
+            return;
+        }
         if (mViewPager.getAdapter() != null) {
             for (int i = 0; i < mViewPager.getAdapter().getCount(); i++) {
                 TextView tv = new TextView(getContext());
@@ -537,6 +545,9 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
     }
 
     private void selectIcon(int position) {
+        if (mViewPager == null) {
+            return;
+        }
         if (mViewPager.getAdapter() != null) {
             for (int i = 0; i < mViewPager.getAdapter().getCount(); i++) {
                 ImageView iv = (ImageView) getItem(i);
@@ -553,6 +564,9 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
 
 
     private void selectText(int position) {
+        if (mViewPager == null) {
+            return;
+        }
         if (mViewPager.getAdapter() != null) {
             for (int i = 0; i < mViewPager.getAdapter().getCount(); i++) {
                 TextView tv = (TextView) getItem(i);
@@ -621,6 +635,9 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
     }
 
     private void selectIconAndText(int position) {
+        if (mViewPager == null) {
+            return;
+        }
         if (mViewPager.getAdapter() != null) {
             for (int i = 0; i < mViewPager.getAdapter().getCount(); i++) {
                 LinearLayout ll = (LinearLayout) getItem(i);

@@ -12,22 +12,22 @@ import java.util.Locale;
  */
 public class DateUtils {
 
-    public static final long ONE_DAY = 24*60*60*1000;
-    public static final long ONE_HOUR = 60*60*1000;
-    public static final long ONE_MINUTE = 60*1000;
+    public static final long ONE_DAY = 24 * 60 * 60 * 1000;
+    public static final long ONE_HOUR = 60 * 60 * 1000;
+    public static final long ONE_MINUTE = 60 * 1000;
 
     public static String formatDateToYMDHMS(Date date, String splitDate) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy"+splitDate+"MM"+splitDate+"dd HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy" + splitDate + "MM" + splitDate + "dd HH:mm:ss", Locale.getDefault());
         return sdf.format(date);
     }
 
     public static String formatDateToYMD(Date date, String split) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy"+split+"MM"+split+"dd", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy" + split + "MM" + split + "dd", Locale.getDefault());
         return sdf.format(date);
     }
 
     public static String formatTimeHMS(Date date, String split) {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH"+split+"mm"+split+"ss", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("HH" + split + "mm" + split + "ss", Locale.getDefault());
         return sdf.format(date);
     }
 
@@ -66,6 +66,10 @@ public class DateUtils {
         return formatTimeHMS(new Date(mills), split);
     }
 
+    public static long getDurationTwoDate(Date date1, Date date2) {
+        return Math.abs(date1.getTime() - date2.getTime());
+    }
+
     public static long timeStrToMills(String timeStr) {
         if (timeStr == null) {
             return 0;
@@ -83,8 +87,8 @@ public class DateUtils {
                 String m = time.split(":")[1];
                 String s = time.split(":")[2];
                 return new Date(
-                        Integer.parseInt(y)-1900,
-                        Integer.parseInt(M)-1,
+                        Integer.parseInt(y) - 1900,
+                        Integer.parseInt(M) - 1,
                         Integer.parseInt(d),
                         Integer.parseInt(h),
                         Integer.parseInt(m),
@@ -98,8 +102,8 @@ public class DateUtils {
                 String m = time.split(":")[1];
                 String s = time.split(":")[2];
                 return new Date(
-                        Integer.parseInt(y)-1900,
-                        Integer.parseInt(M)-1,
+                        Integer.parseInt(y) - 1900,
+                        Integer.parseInt(M) - 1,
                         Integer.parseInt(d),
                         Integer.parseInt(h),
                         Integer.parseInt(m),
@@ -118,7 +122,7 @@ public class DateUtils {
         long minute = gapMills % ONE_DAY % ONE_HOUR / ONE_MINUTE;
         long second = gapMills % ONE_DAY % ONE_HOUR % ONE_MINUTE / 1000;
         StringBuilder sb = new StringBuilder();
-        if (day>0) {
+        if (day > 0) {
             sb.append(day).append("天");
         }
         if (hour > 0) {
@@ -126,7 +130,7 @@ public class DateUtils {
         }
         if (minute > 0) {
             sb.append(minute).append("分钟").append("前");
-        } else if (day <=0 && hour <= 0) {
+        } else if (day <= 0 && hour <= 0) {
             sb.append("刚刚");
         } else {
             sb.append("前");
@@ -137,7 +141,6 @@ public class DateUtils {
         sb.append("前");*/
         return sb.toString();
     }
-
 
     public static int calWeek(int y, int m, int d) {
         int day = calPassDay(y, m, d);

@@ -22,33 +22,33 @@ allprojects {
 app/build.gradle添加
 
 ```
-    compile 'com.github.zhouzhuo810:ZzAndFrame:1.2.8'
+    implementation 'com.github.zhouzhuo810:ZzAndFrame:1.2.9'
 ```
 
 添加上面依赖即同时依赖下面内容：
 ```
-    compile 'com.android.support:appcompat-v7:27.0.1'
-    compile 'com.android.support:recyclerview-v7:27.0.1'
+    api 'com.android.support:appcompat-v7:27.1.1'
+    api 'com.android.support:recyclerview-v7:27.1.1'
     //retrofit
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    api 'com.squareup.retrofit2:retrofit:2.4.0'
     //string
-    compile 'com.squareup.retrofit2:converter-scalars:2.1.0'
+    api 'com.squareup.retrofit2:converter-scalars:2.1.0'
     //gson
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    api 'com.squareup.retrofit2:converter-gson:2.4.0'
     //rxjava
-    compile 'io.reactivex:rxjava:1.1.9'
-    compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    api 'io.reactivex:rxjava:1.1.9'
+    api 'io.reactivex:rxandroid:1.2.1'
+    api 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     //okhttp
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    compile 'com.squareup.okhttp3:okhttp-urlconnection:3.4.1'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    api 'com.squareup.okhttp3:okhttp:3.11.0'
+    api 'com.squareup.okhttp3:okhttp-urlconnection:3.10.0'
+    api 'com.squareup.okhttp3:logging-interceptor:3.11.0'
     //glide
-    compile 'com.github.bumptech.glide:glide:3.8.0'
+    api 'com.github.bumptech.glide:glide:3.8.0'
     //andpermission
-    compile 'com.yanzhenjie:permission:2.0.0-alpha'
+    api 'com.yanzhenjie:permission:2.0.0-rc12'
     //material design
-    compile 'com.android.support:design:27.0.1'
+    api 'com.android.support:design:27.1.1'
 ```
 
 ## 说明
@@ -163,6 +163,12 @@ app/build.gradle添加
 
 
 ### 版本日志
+
+> v1.2.9
+
+- 修改了DisplayUtils多图预览时Activity跳转错误问题；
+- 修复ISearch接口设计不合理问题；
+- 更新gradle和第三方库版本；
 
 > v1.2.8
 

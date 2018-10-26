@@ -7,6 +7,8 @@ import java.util.List;
  */
 
 public interface ISearch<T> {
+    void startSearch(List<T> list, String content);
+
     void startSearch(String content);
 
     void cancelSearch(List<T> list);

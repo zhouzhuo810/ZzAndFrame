@@ -11,7 +11,6 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.provider.SyncStateContract;
-import android.support.v4.BuildConfig;
 import android.support.v4.content.FileProvider;
 
 import java.io.File;

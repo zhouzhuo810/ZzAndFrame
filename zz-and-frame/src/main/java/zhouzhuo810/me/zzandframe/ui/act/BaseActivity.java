@@ -33,7 +33,7 @@ import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
 import com.yanzhenjie.permission.Rationale;
 import com.yanzhenjie.permission.RequestExecutor;
-import com.yanzhenjie.permission.SettingService;
+import com.yanzhenjie.permission.Setting;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.autolayout.utils.AutoUtils;
 
@@ -58,100 +58,100 @@ import zhouzhuo810.me.zzandframe.ui.adapter.LvAutoBaseAdapter;
  * Created by zhouzhuo810 on 2017/7/25.
  */
 public abstract class BaseActivity extends AutoLayoutActivity implements IBaseActivity {
-
+    
     private boolean isForeground;
-
+    
     private CompositeSubscription compositeSubscription;
-
+    
     private Dialog pd;
     private Dialog twoBtnD;
     private Dialog twoBtnEtD;
     private Dialog lvD;
     private Dialog updateD;
     private Dialog customBottomDialog;
-
-
+    
+    
     public boolean isForeground() {
         return isForeground;
     }
-
-
+    
+    
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-
+        
         registerExitObserver();
-
+        
         initView();
         initData();
         initEvent();
-
+        
     }
-
+    
     private void addSubscription(Subscription subscription) {
         if (compositeSubscription == null)
             compositeSubscription = new CompositeSubscription();
         if (subscription != null)
             compositeSubscription.add(subscription);
     }
-
-
+    
+    
     public void closeAllAct() {
         RxBus.getInstance().post(ExitEvent.getInstance());
     }
-
-
+    
+    
     private void registerExitObserver() {
         Subscription subscription = RxBus.getInstance()
-                .toObserverable()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Object>() {
-                    @Override
-                    public void onCompleted() {
+            .toObserverable()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Subscriber<Object>() {
+                @Override
+                public void onCompleted() {
+                }
+                
+                @Override
+                public void onError(Throwable e) {
+                }
+                
+                @Override
+                public void onNext(Object event) {
+                    if (event instanceof ExitEvent) {
+                        closeAct();
                     }
-
-                    @Override
-                    public void onError(Throwable e) {
-                    }
-
-                    @Override
-                    public void onNext(Object event) {
-                        if (event instanceof ExitEvent) {
-                            closeAct();
-                        }
-                    }
-                });
+                }
+            });
         addSubscription(subscription);
     }
-
+    
     @Override
     protected void onResume() {
         super.onResume();
         isForeground = true;
         resume();
     }
-
+    
     @Override
     protected void onPause() {
         super.onPause();
         isForeground = false;
         pause();
     }
-
+    
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState, outPersistentState);
         saveState(outState);
     }
-
+    
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         restoreState(savedInstanceState);
     }
-
+    
     @Override
     public void startRefresh(final SwipeRefreshLayout refresh) {
         if (refresh != null) {
@@ -163,14 +163,14 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
             });
         }
     }
-
+    
     @Override
     public void stopRefresh(SwipeRefreshLayout refresh) {
         if (refresh != null) {
             refresh.setRefreshing(false);
         }
     }
-
+    
     public void showPd(String msg, boolean cancelable) {
         hidePd();
         View convertView = LayoutInflater.from(this).inflate(R.layout.layout_progress_dialog, null);
@@ -189,7 +189,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         pd.setContentView(convertView);
         pd.show();
     }
-
+    
     public void showTwoBtnDialog(String title, String msg, boolean cancelable, final OnTwoBtnClick onTwoBtnClick) {
         hideTwoBtnDialog();
         View convertView = LayoutInflater.from(this).inflate(R.layout.layout_two_btn_dialog, null);
@@ -230,7 +230,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         twoBtnD.setContentView(convertView);
         twoBtnD.show();
     }
-
+    
     public void showTwoBtnDialogIOSStyle(String title, String msg, String leftBtnText, String rightBtnText, int leftColor, int rightColor,
                                          boolean cancelable, final OnIOSTwoBtnClick onTwoBtnClick) {
         hideTwoBtnDialog();
@@ -284,7 +284,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         twoBtnD.setContentView(convertView);
         twoBtnD.show();
     }
-
+    
     //Fixme by zz 2017/7/19 下午12:18 修改内容：添加两个按钮输入对话框
     public void showTwoBtnEditDialog(String title, String hint, String defString, boolean cancelable, final OnTwoBtnEditClick onTwoBtnClick) {
         hideTwoBtnEditDialog();
@@ -330,7 +330,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         twoBtnEtD.setContentView(convertView);
         twoBtnEtD.show();
     }
-
+    
     /**
      * 显示多行两个按钮输入iOS样式对话框
      * 手动关闭对话框使用{@link #hideTwoBtnEditDialog()}
@@ -365,7 +365,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         } else {
             tvMsg.setVisibility(View.GONE);
         }
-
+        
         final EditText etContent = (EditText) convertView.findViewById(R.id.et_content);
         etContent.setHint(hintString);
         if (defString != null) {
@@ -430,7 +430,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         twoBtnEtD.setContentView(convertView);
         twoBtnEtD.show();
     }
-
+    
     /**
      * 显示单行两个按钮输入iOS样式对话框
      * 手动关闭对话框使用{@link #hideTwoBtnEditDialog()}
@@ -465,7 +465,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         } else {
             tvMsg.setVisibility(View.GONE);
         }
-
+        
         final EditText etContent = (EditText) convertView.findViewById(R.id.et_content);
         etContent.setHint(hintString);
         if (defString != null) {
@@ -524,7 +524,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         twoBtnEtD.setContentView(convertView);
         twoBtnEtD.show();
     }
-
+    
     /**
      * 显示自定义底部弹出对话框
      *
@@ -553,7 +553,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         customBottomDialog.setContentView(convertView);
         customBottomDialog.show();
     }
-
+    
     /**
      * 隐藏自定义底部弹出对话框
      */
@@ -563,7 +563,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
             customBottomDialog = null;
         }
     }
-
+    
     public void showUpdateDialog(String title, String msg, boolean cancelable, final OnOneBtnClickListener oneBtnClickListener) {
         hideUpdateDialog();
         View convertView = LayoutInflater.from(this).inflate(R.layout.layout_update_dialog, null);
@@ -599,14 +599,14 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         updateD.setContentView(convertView);
         updateD.show();
     }
-
+    
     public void hideUpdateDialog() {
         if (updateD != null) {
             updateD.dismiss();
             updateD = null;
         }
     }
-
+    
     public void showListDialog(final List<String> items, boolean cancelable, DialogInterface.OnDismissListener dismissListener, final OnItemClick onItemClick) {
         hideListDialog();
         View convertView = LayoutInflater.from(this).inflate(R.layout.layout_list_dialog, null);
@@ -617,12 +617,12 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
             public int getLayoutId() {
                 return R.layout.list_item_lv_dialog;
             }
-
+            
             @Override
             protected void fillData(ViewHolder holder, String item, int position) {
                 holder.setText(R.id.tv_name, item);
             }
-
+            
         });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -646,168 +646,202 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
         lvD.setContentView(convertView);
         lvD.show();
     }
-
+    
     public void hideListDialog() {
         if (lvD != null) {
             lvD.dismiss();
             lvD = null;
         }
     }
-
+    
     public void hidePd() {
         if (pd != null) {
             pd.dismiss();
             pd = null;
         }
     }
-
+    
     public void hideTwoBtnDialog() {
         if (twoBtnD != null) {
             twoBtnD.dismiss();
             twoBtnD = null;
         }
     }
-
+    
     public void hideTwoBtnEditDialog() {
         if (twoBtnEtD != null) {
             twoBtnEtD.dismiss();
             twoBtnEtD = null;
         }
     }
-
+    
     @Override
     public void choosePhoto(String dir, boolean crop) {
         AndPermission.with(this)
-                .permission(Permission.WRITE_EXTERNAL_STORAGE)
-                .rationale(new Rationale() {
-                    @Override
-                    public void showRationale(final Context context, List<String> permissions, final RequestExecutor executor) {
-                        showTwoBtnDialogIOSStyle("提示", "拒绝将无法使用相册功能，是否继续授权", null, null, -1, -1, false, new OnIOSTwoBtnClick() {
-                            @Override
-                            public void onLeftClick() {
-                                // 如果用户中断：
-                                executor.cancel();
-                            }
-
-                            @Override
-                            public void onRightClick() {
-                                // 如果用户继续：
-                                executor.execute();
-                            }
-                        });
-                    }
-                })
-                .onDenied(new Action() {
-                    @Override
-                    public void onAction(List<String> permissions) {
-                        if (AndPermission.hasAlwaysDeniedPermission(BaseActivity.this, permissions)) {
-                            // 这里使用一个Dialog展示没有这些权限应用程序无法继续运行，询问用户是否去设置中授权。
-                            final SettingService settingService = AndPermission.permissionSetting(BaseActivity.this);
-                            showTwoBtnDialogIOSStyle("权限申请", "拒绝将无法使用相册功能，是否到设置里打开读写手机存储权限", null, null, -1, -1, false, new OnIOSTwoBtnClick() {
-                                @Override
-                                public void onLeftClick() {
-                                    // 如果用户不同意去设置：
-                                    settingService.cancel();
-                                }
-
-                                @Override
-                                public void onRightClick() {
-                                    // 如果用户同意去设置：
-                                    settingService.execute();
-                                }
-                            });
-
+            .runtime()
+            .permission(Permission.WRITE_EXTERNAL_STORAGE)
+            .rationale(new Rationale<List<String>>() {
+                @Override
+                public void showRationale(Context context, List<String> data, final RequestExecutor executor) {
+                    showTwoBtnDialogIOSStyle("提示", "拒绝将无法使用相册功能，是否继续授权", null, null, -1, -1, false, new OnIOSTwoBtnClick() {
+                        @Override
+                        public void onLeftClick() {
+                            // 如果用户中断：
+                            executor.cancel();
                         }
-                    }
-                })
-                .onGranted(new Action() {
-                    @Override
-                    public void onAction(List<String> permissions) {
-                        Intent intent = new Intent(Intent.ACTION_PICK, null);
-                        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                        startActivityForResult(intent, REQUEST_CODE_CHOOSE);
-                    }
-                })
-                .start();
+                        
+                        @Override
+                        public void onRightClick() {
+                            // 如果用户继续：
+                            executor.execute();
+                        }
+                    });
+                }
+            }).onDenied(new Action<List<String>>() {
+            @Override
+            public void onAction(List<String> data) {
+                if (AndPermission.hasAlwaysDeniedPermission(BaseActivity.this, data)) {
+                    // 这里使用一个Dialog展示没有这些权限应用程序无法继续运行，询问用户是否去设置中授权。
+                    showTwoBtnDialogIOSStyle("权限申请", "拒绝将无法使用相册功能，是否到设置里打开读写手机存储权限", null, null, -1, -1, false, new OnIOSTwoBtnClick() {
+                        @Override
+                        public void onLeftClick() {
+                            // 如果用户不同意去设置：
+                        }
+        
+                        @Override
+                        public void onRightClick() {
+                            // 如果用户同意去设置：
+                            AndPermission.with(BaseActivity.this).runtime().setting()
+                                .onComeback(new Setting.Action() {
+                                    @Override
+                                    public void onAction() {
+                                        if (AndPermission.hasPermissions(BaseActivity.this, Permission.WRITE_EXTERNAL_STORAGE)) {
+                                            Intent intent = new Intent(Intent.ACTION_PICK, null);
+                                            intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                                            startActivityForResult(intent, REQUEST_CODE_CHOOSE);
+                                        }
+                                    }
+                                })
+                                .start();
+                        }
+                    });
+                    
+                }
+            }
+        })
+            .onGranted(new Action<List<String>>() {
+                @Override
+                public void onAction(List<String> data) {
+                    Intent intent = new Intent(Intent.ACTION_PICK, null);
+                    intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                    startActivityForResult(intent, REQUEST_CODE_CHOOSE);
+                }
+            })
+            .start();
     }
-
+    
     @Override
     public void takePhoto(final String dir, boolean crop) {
         AndPermission.with(this)
-                .permission(Permission.WRITE_EXTERNAL_STORAGE, Permission.CAMERA)
-                .rationale(new Rationale() {
-                    @Override
-                    public void showRationale(final Context context, List<String> permissions, final RequestExecutor executor) {
-                        showTwoBtnDialogIOSStyle("提示", "拒绝将无法使用拍照功能，是否继续授权", null, null, -1, -1, false, new OnIOSTwoBtnClick() {
+            .runtime()
+            .permission(Permission.WRITE_EXTERNAL_STORAGE, Permission.CAMERA)
+            .rationale(new Rationale<List<String>>() {
+                @Override
+                public void showRationale(Context context, List<String> data, final RequestExecutor executor) {
+                    showTwoBtnDialogIOSStyle("提示", "拒绝将无法使用拍照功能，是否继续授权", null, null, -1, -1, false, new OnIOSTwoBtnClick() {
+                        @Override
+                        public void onLeftClick() {
+                            // 如果用户中断：
+                            executor.cancel();
+                        }
+                        
+                        @Override
+                        public void onRightClick() {
+                            // 如果用户继续：
+                            executor.execute();
+                        }
+                    });
+                }
+            })
+            .onDenied(new Action<List<String>>() {
+                @Override
+                public void onAction(List<String> data) {
+                    if (AndPermission.hasAlwaysDeniedPermission(BaseActivity.this, data)) {
+                        // 这里使用一个Dialog展示没有这些权限应用程序无法继续运行，询问用户是否去设置中授权。
+                        showTwoBtnDialogIOSStyle("权限申请", "拒绝将无法使用拍照功能，是否到设置里打开相机和读写手机存储权限", null, null, -1, -1, false, new OnIOSTwoBtnClick() {
                             @Override
                             public void onLeftClick() {
-                                // 如果用户中断：
-                                executor.cancel();
+                                // 如果用户不同意去设置：
                             }
-
+                            
                             @Override
                             public void onRightClick() {
-                                // 如果用户继续：
-                                executor.execute();
+                                // 如果用户同意去设置：
+                                AndPermission.with(BaseActivity.this).runtime().setting()
+                                    .onComeback(new Setting.Action() {
+                                        @Override
+                                        public void onAction() {
+                                            if (AndPermission.hasPermissions(BaseActivity.this, Permission.WRITE_EXTERNAL_STORAGE, Permission.CAMERA)) {
+                                                final File file = new File(dir);
+                                                if (!file.isDirectory()) {
+                                                    file.mkdirs();
+                                                }
+                                                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);//构造intent
+                                                Uri uri;
+                                                String realPath = dir + File.separator + System.currentTimeMillis() + ".jpg";
+                                                SharedUtils.putString(BaseActivity.this, ZzConst.SP_KEY_OF_CAMERA_PIC_PATH, realPath);
+                                                final File targetFile = new File(realPath);
+                                                if (Build.VERSION.SDK_INT < 24) {
+                                                    uri = Uri.fromFile(targetFile);
+                                                } else {
+                                                    ContentValues contentValues = new ContentValues(1);
+                                                    contentValues.put(MediaStore.Images.Media.DATA, targetFile.getAbsolutePath());
+                                                    uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+                                                }
+                                                if (targetFile.exists()) {
+                                                    targetFile.delete();
+                                                }
+                                                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+                                                startActivityForResult(cameraIntent, REQUEST_CODE_CAMERA);//发出intent，并要求返回调用结果
+                                            }
+                                        }
+                                    })
+                                    .start();
                             }
                         });
-
-
+                        
                     }
-                })
-                .onDenied(new Action() {
-                    @Override
-                    public void onAction(List<String> permissions) {
-                        if (AndPermission.hasAlwaysDeniedPermission(BaseActivity.this, permissions)) {
-                            // 这里使用一个Dialog展示没有这些权限应用程序无法继续运行，询问用户是否去设置中授权。
-
-                            final SettingService settingService = AndPermission.permissionSetting(BaseActivity.this);
-                            showTwoBtnDialogIOSStyle("权限申请", "拒绝将无法使用拍照功能，是否到设置里打开相机和读写手机存储权限", null, null, -1, -1, false, new OnIOSTwoBtnClick() {
-                                @Override
-                                public void onLeftClick() {
-                                    // 如果用户不同意去设置：
-                                    settingService.cancel();
-                                }
-
-                                @Override
-                                public void onRightClick() {
-                                    // 如果用户同意去设置：
-                                    settingService.execute();
-                                }
-                            });
-
-                        }
+                }
+            })
+            .onGranted(new Action<List<String>>() {
+                @Override
+                public void onAction(List<String> data) {
+                    final File file = new File(dir);
+                    if (!file.isDirectory()) {
+                        file.mkdirs();
                     }
-                })
-                .onGranted(new Action() {
-                    @Override
-                    public void onAction(List<String> permissions) {
-                        final File file = new File(dir);
-                        if (!file.isDirectory()) {
-                            file.mkdirs();
-                        }
-                        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);//构造intent
-                        Uri uri;
-                        String realPath = dir + File.separator + System.currentTimeMillis() + ".jpg";
-                        SharedUtils.putString(BaseActivity.this, ZzConst.SP_KEY_OF_CAMERA_PIC_PATH, realPath);
-                        final File targetFile = new File(realPath);
-                        if (Build.VERSION.SDK_INT < 24) {
-                            uri = Uri.fromFile(targetFile);
-                        } else {
-                            ContentValues contentValues = new ContentValues(1);
-                            contentValues.put(MediaStore.Images.Media.DATA, targetFile.getAbsolutePath());
-                            uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
-                        }
-                        if (targetFile.exists()) {
-                            targetFile.delete();
-                        }
-                        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-                        startActivityForResult(cameraIntent, REQUEST_CODE_CAMERA);//发出intent，并要求返回调用结果
+                    Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);//构造intent
+                    Uri uri;
+                    String realPath = dir + File.separator + System.currentTimeMillis() + ".jpg";
+                    SharedUtils.putString(BaseActivity.this, ZzConst.SP_KEY_OF_CAMERA_PIC_PATH, realPath);
+                    final File targetFile = new File(realPath);
+                    if (Build.VERSION.SDK_INT < 24) {
+                        uri = Uri.fromFile(targetFile);
+                    } else {
+                        ContentValues contentValues = new ContentValues(1);
+                        contentValues.put(MediaStore.Images.Media.DATA, targetFile.getAbsolutePath());
+                        uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
                     }
-                })
-                .start();
+                    if (targetFile.exists()) {
+                        targetFile.delete();
+                    }
+                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+                    startActivityForResult(cameraIntent, REQUEST_CODE_CAMERA);//发出intent，并要求返回调用结果
+                }
+            })
+            .start();
     }
-
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -831,22 +865,22 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
             }
         }
     }
-
+    
     @Override
     public void onPhotoChoosed(File file, String filePath) {
-
+    
     }
-
+    
     @Override
     public void onPhotoTaked(File file, String filePath) {
-
+    
     }
-
+    
     @Override
     public void onPhotoCropped(File file, String filePath) {
-
+    
     }
-
+    
     @Override
     public void onBackPressed() {
         if (defaultBack()) {
@@ -855,48 +889,48 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
             closeAct();
         }
     }
-
-
+    
+    
     @Override
     public void closeAct() {
         finish();
         overridePendingTransition(closeInAnimation(), closeOutAnimation());
     }
-
-
+    
+    
     @Override
     public int closeInAnimation() {
         return R.anim.zaf_slide_in_left;
     }
-
+    
     @Override
     public int closeOutAnimation() {
         return R.anim.zaf_side_out_right;
     }
-
+    
     @Override
     public int openInAnimation() {
         return R.anim.zaf_slide_in_right;
     }
-
+    
     @Override
     public int openOutAnimation() {
         return R.anim.zaf_side_out_left;
     }
-
-
+    
+    
     @Override
     public void startActWithIntent(Intent intent) {
         startActivity(intent);
         overridePendingTransition(openInAnimation(), openOutAnimation());
     }
-
+    
     @Override
     public void startActWithIntentForResult(Intent intent, int requestCode) {
         startActivityForResult(intent, requestCode);
         overridePendingTransition(openInAnimation(), openOutAnimation());
     }
-
+    
     @Override
     public void setEditListener(final EditText et, final View ivClear) {
         ivClear.setOnClickListener(new View.OnClickListener() {
@@ -909,11 +943,11 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
-
+            
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
-
+            
             @Override
             public void afterTextChanged(Editable editable) {
                 if (editable.length() == 0) {
@@ -924,7 +958,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseAc
             }
         });
     }
-
+    
     @Override
     protected void onDestroy() {
         super.onDestroy();

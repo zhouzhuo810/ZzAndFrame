@@ -15,6 +15,7 @@ import zhouzhuo810.me.zzandframe.R;
 import zhouzhuo810.me.zzandframe.common.cons.ZzConst;
 import zhouzhuo810.me.zzandframe.ui.act.BaseActivity;
 import zhouzhuo810.me.zzandframe.ui.act.ImagePreviewActivity;
+import zhouzhuo810.me.zzandframe.ui.act.MultiImagePreviewActivity;
 
 /**
  * Created by zhouzhuo810 on 2017/7/25.
@@ -95,7 +96,7 @@ public class DisplayUtils {
      * @param crossFade  是否使用过渡动画
      */
     public static void previewImages(Activity activity, ImageView iv, ArrayList<String> urls, int position, int errorPicId, boolean crossFade) {
-        Intent intent = new Intent(activity, ImagePreviewActivity.class);
+        Intent intent = new Intent(activity, MultiImagePreviewActivity.class);
         intent.putExtra(ZzConst.IMG_PRE_MULTI_PIC_URL, urls);
         intent.putExtra(ZzConst.IMG_PRE_MULTI_PIC_POSITION, position);
         intent.putExtra(ZzConst.IMG_PRE_ERROR_PIC, errorPicId);
