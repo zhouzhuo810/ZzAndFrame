@@ -22,7 +22,7 @@ allprojects {
 app/build.gradle添加
 
 ```
-    implementation 'com.github.zhouzhuo810:ZzAndFrame:1.2.9'
+    implementation 'com.github.zhouzhuo810:ZzAndFrame:1.3.0'
 ```
 
 添加上面依赖即同时依赖下面内容：
@@ -164,7 +164,7 @@ app/build.gradle添加
 
 ### 版本日志
 
-> v1.2.9
+> v1.3.0
 
 - 修改了DisplayUtils多图预览时Activity跳转错误问题；
 - 修复ISearch接口设计不合理问题；
