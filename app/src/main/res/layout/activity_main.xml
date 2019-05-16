@@ -30,31 +30,6 @@
         zz:ttb_textSizeTwoSide="40px"
         zz:ttb_titleText="小周工具集合" />
 
-
-    <Button
-        android:id="@+id/btn_lv"
-        android:layout_width="match_parent"
-        android:layout_height="120px"
-        android:layout_marginLeft="40px"
-        android:layout_marginRight="40px"
-        android:layout_marginTop="50px"
-        android:background="@drawable/btn_save_selector"
-        android:text="下拉刷新和上拉加载(ListView)"
-        android:textColor="#fff"
-        android:textSize="40px" />
-
-    <Button
-        android:id="@+id/btn_rv"
-        android:layout_width="match_parent"
-        android:layout_height="120px"
-        android:layout_marginLeft="40px"
-        android:layout_marginRight="40px"
-        android:layout_marginTop="30px"
-        android:background="@drawable/btn_save_selector"
-        android:text="下拉刷新和上拉加载(RecyclerView)"
-        android:textColor="#fff"
-        android:textSize="40px" />
-
     <Button
         android:id="@+id/btn_notice"
         android:layout_width="match_parent"

@@ -24,8 +24,6 @@ import zhouzhuo810.me.zzandframe.ui.widget.TitleBar;
 public class MainActivity extends BaseActivity {
 
     private TitleBar titleBar;
-    private Button btnLv;
-    private Button btnRv;
     private Button btnNotice;
     private Button btnToast;
     private Button btnMark;
@@ -48,8 +46,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initView() {
         titleBar = (TitleBar) findViewById(R.id.title_bar);
-        btnLv = (Button) findViewById(R.id.btn_lv);
-        btnRv = (Button) findViewById(R.id.btn_rv);
         btnNotice = (Button) findViewById(R.id.btn_notice);
         btnToast = (Button) findViewById(R.id.btn_toast);
         btnMark = (Button) findViewById(R.id.btn_mark);
@@ -94,21 +90,6 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 showNormalNotice(btnNotice.getText().toString());
-            }
-        });
-
-        btnLv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, LvActivity.class);
-                startActWithIntent(intent);
-            }
-        });
-        btnRv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, RvActivity.class);
-                startActWithIntent(intent);
             }
         });
 

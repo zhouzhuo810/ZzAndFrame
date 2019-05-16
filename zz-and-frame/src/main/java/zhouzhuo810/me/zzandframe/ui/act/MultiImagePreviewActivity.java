@@ -3,17 +3,18 @@ package zhouzhuo810.me.zzandframe.ui.act;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.bumptech.glide.DrawableRequestBuilder;
+import com.bumptech.glide.GifTypeRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.github.chrisbanes.photoview.OnViewTapListener;
 import com.github.chrisbanes.photoview.PhotoView;
@@ -101,12 +102,13 @@ public class MultiImagePreviewActivity extends BaseActivity {
         }
 
         @Override
-        public boolean isViewFromObject(View view, Object object) {
+        public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
             return view == object;
         }
 
+        @NonNull
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        public Object instantiateItem(@NonNull ViewGroup container, int position) {
             final PhotoView photoView = new PhotoView(container.getContext());
             container.addView(photoView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             photoView.setMaximumScale(10.0f);
@@ -114,23 +116,44 @@ public class MultiImagePreviewActivity extends BaseActivity {
             String url = imgs.get(position);
             if (url.length() > 0) {
                 if (url.startsWith("http")) {
-                    DrawableRequestBuilder<String> req = Glide.with(context).load(imgs.get(position));
-                    if (crossFade) {
-                        req.crossFade();
+                    if (url.endsWith(".gif")) {
+                        GifTypeRequest<String> req = Glide.with(context).load(imgs.get(position)).asGif();
+                        if (crossFade) {
+                            req.crossFade();
+                        }
+                        req.diskCacheStrategy(DiskCacheStrategy.SOURCE);
+                        req.listener(new RequestListener<String, GifDrawable>() {
+                            @Override
+                            public boolean onException(Exception e, String model, Target<GifDrawable> target, boolean isFirstResource) {
+                                return false;
+                            }
+    
+                            @Override
+                            public boolean onResourceReady(GifDrawable resource, String model, Target<GifDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                                photoView.getAttacher().update();
+                                return false;
+                            }
+                        });
+                        req.into(photoView);
+                    } else {
+                        DrawableRequestBuilder<String> req = Glide.with(context).load(imgs.get(position));
+                        if (crossFade) {
+                            req.crossFade();
+                        }
+                        req.listener(new RequestListener<String, GlideDrawable>() {
+                            @Override
+                            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                                return false;
+                            }
+        
+                            @Override
+                            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                                photoView.getAttacher().update();
+                                return false;
+                            }
+                        });
+                        req.into(photoView);
                     }
-                    req.listener(new RequestListener<String, GlideDrawable>() {
-                        @Override
-                        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                            return false;
-                        }
-
-                        @Override
-                        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                            photoView.getAttacher().update();
-                            return false;
-                        }
-                    });
-                    req.into(photoView);
                 } else {
                     DrawableRequestBuilder<File> req = Glide.with(context).load(new File(imgs.get(position)));
                     if (crossFade) {
@@ -157,7 +180,7 @@ public class MultiImagePreviewActivity extends BaseActivity {
         }
 
         @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
+        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
             container.removeView((View) object);
         }
 

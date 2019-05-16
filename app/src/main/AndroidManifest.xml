@@ -34,8 +34,6 @@
             android:theme="@style/FullScreenStyle"
             />
 
-        <activity android:name=".LvActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".RvActivity" android:screenOrientation="portrait"/>
         <activity android:name=".MarkActivity" android:screenOrientation="portrait"/>
         <activity android:name=".TabBarActivity" android:screenOrientation="portrait"/>
         <activity android:name=".PreviewPicActivity" android:screenOrientation="portrait"/>

@@ -22,25 +22,25 @@ allprojects {
 app/build.gradle添加
 
 ```
-    implementation 'com.github.zhouzhuo810:ZzAndFrame:1.3.2'
+    implementation 'com.github.zhouzhuo810:ZzAndFrame:1.3.3'
 ```
 
 添加上面依赖即同时依赖下面内容：
 ```
-    api 'com.android.support:appcompat-v7:27.1.1'
-    api 'com.android.support:recyclerview-v7:27.1.1'
+    api 'com.android.support:appcompat-v7:28.0.0'
+    api 'com.android.support:recyclerview-v7:28.0.0'
     //retrofit
-    api 'com.squareup.retrofit2:retrofit:2.4.0'
+    api 'com.squareup.retrofit2:retrofit:2.5.0'
     //string
     api 'com.squareup.retrofit2:converter-scalars:2.1.0'
     //gson
-    api 'com.squareup.retrofit2:converter-gson:2.4.0'
+    api 'com.squareup.retrofit2:converter-gson:2.5.0'
     //rxjava
     api 'io.reactivex:rxjava:1.1.9'
     api 'io.reactivex:rxandroid:1.2.1'
     api 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     //okhttp
-    api 'com.squareup.okhttp3:okhttp:3.11.0'
+    api 'com.squareup.okhttp3:okhttp:3.12.0'
     api 'com.squareup.okhttp3:okhttp-urlconnection:3.10.0'
     api 'com.squareup.okhttp3:logging-interceptor:3.11.0'
     //glide
@@ -48,7 +48,7 @@ app/build.gradle添加
     //andpermission
     api 'com.yanzhenjie:permission:2.0.0-rc12'
     //material design
-    api 'com.android.support:design:27.1.1'
+    api 'com.android.support:design:28.0.0'
 ```
 
 ## 说明

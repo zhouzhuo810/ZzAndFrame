@@ -136,7 +136,7 @@ public class MarkView extends View {
         textPaint = new Paint();
         textPaint.setTextSize(textSize);
         textPaint.setColor(textColor);
-        textPaint.setStyle(Paint.Style.STROKE);
+        textPaint.setStyle(Paint.Style.FILL);
         textPaint.setAntiAlias(true);
 
         bgPaint = new Paint();
