@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import zhouzhuo810.me.zzandframe.ui.widget.zzpagerindicator.intef.IIndicatorResProvider;
+
 /**
  * Created by zz on 2016/8/22.
  */
-public abstract class ZzBasePagerAdapter<K extends View, T> extends PagerAdapter {
+public abstract class ZzBasePagerAdapter<K extends View, T> extends PagerAdapter implements IIndicatorResProvider<T> {
 
     protected Context context;
     private List<K> views;
@@ -63,12 +65,6 @@ public abstract class ZzBasePagerAdapter<K extends View, T> extends PagerAdapter
     public CharSequence getPageTitle(int position) {
         return getTabText(datas.get(position), position);
     }
-
-    public abstract String getTabText(T t, int position);
-
-    public abstract int getSelectedIcon(int position);
-
-    public abstract int getUnselectedIcon(int position);
 
 
 }

@@ -20,9 +20,8 @@ import android.widget.TextView;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import zhouzhuo810.me.zzandframe.R;
-import zhouzhuo810.me.zzandframe.ui.widget.zzpagerindicator.adapter.ZzBasePagerAdapter;
-import zhouzhuo810.me.zzandframe.ui.widget.zzpagerindicator.adapter.ZzFragmentPagerAdapter;
 import zhouzhuo810.me.zzandframe.ui.widget.zzpagerindicator.en.IndicatorType;
+import zhouzhuo810.me.zzandframe.ui.widget.zzpagerindicator.intef.IIndicatorResProvider;
 import zhouzhuo810.me.zzandframe.ui.widget.zzpagerindicator.intef.IPagerIndicator;
 
 
@@ -30,11 +29,11 @@ import zhouzhuo810.me.zzandframe.ui.widget.zzpagerindicator.intef.IPagerIndicato
  * Created by zz on 2016/8/22.
  */
 public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndicator {
-
+    
     private IndicatorType indicatorType = IndicatorType.RoundPoint;
-
+    
     private ViewPager mViewPager;
-
+    
     private LinearLayout mIndicatorContainer;
     private boolean shouldExpand = false;
     private Paint selectPaint;
@@ -45,7 +44,7 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
     private int selectPointSize = 100;
     private int unSelectPointSize = 90;
     private int spacing = 8;
-
+    
     private boolean showUnderline = true;
     private int tabTextColorSelect = 0xff438cff;
     private int tabTextColorUnSelect = 0xff000000;
@@ -58,66 +57,66 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
     private int tabBgNormalId;
     private int tabBgSelectId;
     private TabOrientation tabTextIconOrientation = TabOrientation.VERTICAL;
-
+    
     private int tabPadding = 24;
     private int zz_tab_icon_size = 80;
-
+    
     private LinearLayout.LayoutParams defaultTabLayoutParams;
     private LinearLayout.LayoutParams expandedTabLayoutParams;
-
+    
     private int currentPosition = 0;
     private float currentPositionOffset = 0f;
-
+    
     private int tabCount;
     private int lastScrollX = 0;
     private boolean isNeedScaleInPx = false;
-
+    
     private boolean horizontalHideIconMode = false;
-
+    
     public static enum TabOrientation {
         VERTICAL, HORIZONTAL
     }
-
+    
     public ZzPagerIndicator(Context context) {
         super(context);
         init(context, null);
     }
-
+    
     public ZzPagerIndicator(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
-
+        
     }
-
+    
     public ZzPagerIndicator(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
-
+        
     }
-
+    
     private void init(Context context, AttributeSet attrs) {
-
+        
         setHorizontalScrollBarEnabled(false);
-
+        
         setFillViewport(true);
         setWillNotDraw(false);
-
+        
         //init attrs
         if (attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ZzPagerIndicator);
             isNeedScaleInPx = a.getBoolean(R.styleable.ZzPagerIndicator_zz_is_need_scale_in_px, false);
-
+            
             shouldExpand = a.getBoolean(R.styleable.ZzPagerIndicator_zz_should_tab_expand, false);
             int indicatorInt = a.getInt(R.styleable.ZzPagerIndicator_zz_indicator_type, 0);
             int tabOriInt = a.getInt(R.styleable.ZzPagerIndicator_zz_tab_orientation, 0);
             colorSelectPoint = a.getColor(R.styleable.ZzPagerIndicator_zz_select_point_color, 0xff438cff);
             colorUnSelectPoint = a.getColor(R.styleable.ZzPagerIndicator_zz_unselect_point_color, 0xff000000);
-            selectPointSize = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_select_point_size, 100);
-            unSelectPointSize = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_unselect_point_size, 90);
+            selectPointSize = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_select_point_size, 30);
+            unSelectPointSize = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_unselect_point_size, 30);
             spacing = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_point_spacing, 8);
             tabBgNormalId = a.getResourceId(R.styleable.ZzPagerIndicator_zz_normal_tab_bg, -1);
             tabBgSelectId = a.getResourceId(R.styleable.ZzPagerIndicator_zz_select_tab_bg, -1);
-
+            
             tabTextColorSelect = a.getColor(R.styleable.ZzPagerIndicator_zz_select_tab_text_color, 0xff438cff);
             tabTextColorUnSelect = a.getColor(R.styleable.ZzPagerIndicator_zz_unselect_tab_text_color, 0xff000000);
             tabTextSizeSelect = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_select_tab_text_size, 40);
@@ -130,7 +129,7 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
             zz_tab_icon_size = a.getDimensionPixelSize(R.styleable.ZzPagerIndicator_zz_tab_icon_size, 80);
             underlineColor = a.getColor(R.styleable.ZzPagerIndicator_zz_underline_color, 0xff438cff);
             horizontalHideIconMode = a.getBoolean(R.styleable.ZzPagerIndicator_zz_tab_is_horizontal_hide_icon, false);
-
+            
             if (isNeedScaleInPx) {
                 selectPointSize = AutoUtils.getPercentWidthSize(selectPointSize);
                 unSelectPointSize = AutoUtils.getPercentWidthSize(unSelectPointSize);
@@ -143,7 +142,7 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
                 tabPadding = AutoUtils.getPercentWidthSize(tabPadding);
                 zz_tab_icon_size = AutoUtils.getPercentWidthSize(zz_tab_icon_size);
             }
-
+            
             switch (indicatorInt) {
                 case 0:
                     indicatorType = IndicatorType.RoundPoint;
@@ -177,9 +176,9 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
         initContainer(context);
         //initial child layout params
         initParams();
-
+        
     }
-
+    
     private void initPaints() {
         unSelectPaint = new Paint();
         unSelectPaint.setAntiAlias(true);
@@ -193,7 +192,7 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
         underlinePaint.setStyle(Paint.Style.FILL);
         underlinePaint.setAntiAlias(true);
     }
-
+    
     private void initContainer(Context context) {
         mIndicatorContainer = new LinearLayout(context);
         mIndicatorContainer.setOrientation(LinearLayout.HORIZONTAL);
@@ -201,17 +200,12 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
         mIndicatorContainer.setGravity(Gravity.CENTER_VERTICAL);
         addView(mIndicatorContainer);
     }
-
+    
     private void initParams() {
-        if (indicatorType == IndicatorType.TabWithIcon) {
-            defaultTabLayoutParams = new LinearLayout.LayoutParams(zz_tab_icon_size, zz_tab_icon_size);
-            expandedTabLayoutParams = new LinearLayout.LayoutParams(0, zz_tab_icon_size, 1.0f);
-        } else {
-            defaultTabLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            expandedTabLayoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f);
-        }
+        defaultTabLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        expandedTabLayoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f);
     }
-
+    
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -227,21 +221,21 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
                 break;
         }
     }
-
+    
     private void drawUnderline(Canvas canvas) {
         if (mViewPager != null) {
             View currentTab = getItem(currentPosition);
             if (currentTab != null) {
                 float lineLeft = currentTab.getLeft() + underlinePadding;
                 float lineRight = currentTab.getRight() - underlinePadding;
-
+                
                 // if there is an offset, start interpolating left and right coordinates between current and next tab
                 if (currentPositionOffset > 0f && currentPosition < tabCount - 1) {
-
+                    
                     View nextTab = getItem(currentPosition + 1);
                     final float nextTabLeft = nextTab.getLeft() + underlinePadding;
                     final float nextTabRight = nextTab.getRight() - underlinePadding;
-
+                    
                     lineLeft = (currentPositionOffset * nextTabLeft + (1f - currentPositionOffset) * lineLeft);
                     lineRight = (currentPositionOffset * nextTabRight + (1f - currentPositionOffset) * lineRight);
                 }
@@ -249,7 +243,7 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
             }
         }
     }
-
+    
     private void drawPoints(Canvas canvas) {
         if (mViewPager != null && mViewPager.getAdapter() != null) {
             int count = mViewPager.getAdapter().getCount();
@@ -266,14 +260,14 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
             canvas.drawCircle(uX, y, sR, selectPaint);
         }
     }
-
+    
     @Override
     public void setCurrentItem(int position, boolean animate) {
         if (mViewPager != null) {
             mViewPager.setCurrentItem(position, animate);
         }
     }
-
+    
     /**
      * bind indicator to your viewpager.
      *
@@ -305,8 +299,8 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
                 break;
         }
     }
-
-
+    
+    
     private void setUpIconsAndText() {
         mIndicatorContainer.removeAllViews();
         LinearLayout.LayoutParams ivParams = new LinearLayout.LayoutParams(zz_tab_icon_size, zz_tab_icon_size);
@@ -320,28 +314,26 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
             tvParams.topMargin = 0;
             tvParams.leftMargin = tabIconTextMargin;
         }
-
+        
         if (mViewPager == null) {
             return;
         }
         if (mViewPager.getAdapter() != null) {
+            if (!(mViewPager.getAdapter() instanceof IIndicatorResProvider)) {
+                throw new UnsupportedOperationException("Please implements IIndicatorResProvider<T> for your adapter");
+            }
             for (int i = 0; i < mViewPager.getAdapter().getCount(); i++) {
                 ImageView iv = new ImageView(getContext());
-                if (mViewPager.getAdapter() instanceof ZzFragmentPagerAdapter) {
-                    int icon = ((ZzFragmentPagerAdapter) mViewPager.getAdapter()).getUnselectedIcon(i);
-                    iv.setImageResource(icon);
-                } else if (mViewPager.getAdapter() instanceof ZzBasePagerAdapter) {
-                    int icon = ((ZzBasePagerAdapter) mViewPager.getAdapter()).getUnselectedIcon(i);
-                    iv.setImageResource(icon);
-                }
-
+                int icon = ((IIndicatorResProvider) mViewPager.getAdapter()).getUnselectedIcon(i);
+                iv.setImageResource(icon);
+                
                 TextView tv = new TextView(getContext());
                 tv.setGravity(Gravity.CENTER);
                 tv.setSingleLine();
                 tv.setTextColor(tabTextColorUnSelect);
                 tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, tabTextSizeUnSelect);
                 tv.setText(mViewPager.getAdapter().getPageTitle(i));
-
+                
                 LinearLayout ll = new LinearLayout(getContext());
                 ll.setGravity(Gravity.CENTER);
                 if (tabTextIconOrientation == TabOrientation.VERTICAL) {
@@ -363,33 +355,40 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
             }
         }
     }
-
+    
     private void setUpIcons() {
         mIndicatorContainer.removeAllViews();
         if (mViewPager == null) {
             return;
         }
         if (mViewPager.getAdapter() != null) {
+            if (!(mViewPager.getAdapter() instanceof IIndicatorResProvider)) {
+                throw new UnsupportedOperationException("Please implements IIndicatorResProvider<T> for your adapter");
+            }
+            LinearLayout.LayoutParams ivParams = new LinearLayout.LayoutParams(zz_tab_icon_size, zz_tab_icon_size);
             for (int i = 0; i < mViewPager.getAdapter().getCount(); i++) {
-                int icon = ((ZzBasePagerAdapter) mViewPager.getAdapter()).getUnselectedIcon(i);
+                
                 ImageView iv = new ImageView(getContext());
-                iv.setFocusable(true);
-                iv.setClickable(true);
+                int icon = ((IIndicatorResProvider) mViewPager.getAdapter()).getUnselectedIcon(i);
                 iv.setImageResource(icon);
+                
+                LinearLayout ll = new LinearLayout(getContext());
+                ll.setGravity(Gravity.CENTER);
+                ll.addView(iv, 0, ivParams);
+                ll.setPadding(tabPadding, 0, tabPadding, 0);
                 final int finalI = i;
-                iv.setOnClickListener(new OnClickListener() {
+                ll.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         setCurrentItem(finalI, true);
                     }
                 });
-                iv.setPadding(tabPadding, 0, tabPadding, 0);
-                mIndicatorContainer.addView(iv, i, shouldExpand ? expandedTabLayoutParams : defaultTabLayoutParams);
+                mIndicatorContainer.addView(ll, i, shouldExpand ? expandedTabLayoutParams : defaultTabLayoutParams);
             }
         }
-
+        
     }
-
+    
     private void setUpText() {
         mIndicatorContainer.removeAllViews();
         if (mViewPager == null) {
@@ -411,30 +410,30 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
                     }
                 });
                 tv.setPadding(tabPadding, 0, tabPadding, 0);
-
+                
                 mIndicatorContainer.addView(tv, i, shouldExpand ? expandedTabLayoutParams : defaultTabLayoutParams);
             }
         }
     }
-
+    
     private void addPageChangeListener() {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 currentPosition = position;
                 currentPositionOffset = positionOffset;
-
+                
                 switch (indicatorType) {
                     case TabWithIcon:
                     case TabWithText:
                     case TabWithIconAndText:
-                        scrollToChild(position, (int) (positionOffset * mIndicatorContainer.getChildAt(position).getWidth()));
+                        scrollToChild(currentPosition, positionOffset);
                         break;
                 }
-
+                
                 invalidate();
             }
-
+            
             @Override
             public void onPageSelected(int position) {
                 switch (indicatorType) {
@@ -449,7 +448,7 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
                         break;
                 }
             }
-
+            
             @Override
             public void onPageScrollStateChanged(int state) {
                 switch (indicatorType) {
@@ -457,14 +456,14 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
                     case TabWithText:
                     case TabWithIconAndText:
                         if (state == ViewPager.SCROLL_STATE_IDLE) {
-                            scrollToChild(mViewPager.getCurrentItem(), 0);
+                            //                            scrollToChild(mViewPager.getCurrentItem(), 0);
                         }
                         break;
                 }
             }
         });
     }
-
+    
     @Override
     protected Parcelable onSaveInstanceState() {
         Parcelable superState = super.onSaveInstanceState();
@@ -472,7 +471,7 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
         saveState.position = currentPosition;
         return saveState;
     }
-
+    
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
         SaveState savedState = (SaveState) state;
@@ -490,79 +489,92 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
                 break;
         }
     }
-
+    
     static class SaveState extends BaseSavedState {
         int position;
-
+        
         @Override
         public int describeContents() {
             return 0;
         }
-
+        
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             super.writeToParcel(dest, flags);
             dest.writeInt(this.position);
         }
-
+        
         public SaveState(Parcelable superState) {
             super(superState);
         }
-
+        
         protected SaveState(Parcel in) {
             super(in);
             this.position = in.readInt();
         }
-
+        
         public static final Creator<SaveState> CREATOR = new Creator<SaveState>() {
             @Override
             public SaveState createFromParcel(Parcel source) {
                 return new SaveState(source);
             }
-
+            
             @Override
             public SaveState[] newArray(int size) {
                 return new SaveState[size];
             }
         };
     }
-
-    private void scrollToChild(int position, int offset) {
-
+    
+    private void scrollToChild(int position, float offset) {
+        
         if (tabCount == 0) {
             return;
         }
-
-        if (getItem(position) != null) {
-            int newScrollX = getItem(position).getLeft() + offset;
-
+        
+        View selectedChild = getItem(position);
+        if (selectedChild != null) {
+            int selectedWidth = selectedChild.getWidth();
+            View nextChild = position + 1 < mIndicatorContainer.getChildCount() ? mIndicatorContainer.getChildAt(position + 1) : null;
+            int nextWidth = nextChild != null ? nextChild.getWidth() : 0;
+            int scrollOffset = (int) ((float) (selectedWidth + nextWidth) * 0.5F * offset);
+            int newScrollX = selectedChild.getLeft() + selectedWidth / 2 - this.getWidth() / 2 + scrollOffset;
+            
             if (newScrollX != lastScrollX) {
                 lastScrollX = newScrollX;
                 scrollTo(newScrollX, 0);
             }
         }
-
+        
     }
-
+    
+    
     private void selectIcon(int position) {
         if (mViewPager == null) {
             return;
         }
         if (mViewPager.getAdapter() != null) {
             for (int i = 0; i < mViewPager.getAdapter().getCount(); i++) {
-                ImageView iv = (ImageView) getItem(i);
+                LinearLayout ll = (LinearLayout) getItem(i);
+                ImageView iv = (ImageView) ll.getChildAt(0);
                 if (i == position) {
-                    int icon = ((ZzBasePagerAdapter) mViewPager.getAdapter()).getSelectedIcon(i);
+                    if (tabBgSelectId != -1) {
+                        ll.setBackgroundResource(tabBgSelectId);
+                    }
+                    int icon = ((IIndicatorResProvider) mViewPager.getAdapter()).getSelectedIcon(i);
                     iv.setImageResource(icon);
                 } else {
-                    int icon = ((ZzBasePagerAdapter) mViewPager.getAdapter()).getUnselectedIcon(i);
+                    if (tabBgNormalId != -1) {
+                        ll.setBackgroundResource(tabBgNormalId);
+                    }
+                    int icon = ((IIndicatorResProvider) mViewPager.getAdapter()).getUnselectedIcon(i);
                     iv.setImageResource(icon);
                 }
             }
         }
     }
-
-
+    
+    
     private void selectText(int position) {
         if (mViewPager == null) {
             return;
@@ -586,8 +598,11 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
             }
         }
     }
-
+    
     public void setTabTextIconOrientation(TabOrientation orientation) {
+        if (indicatorType != IndicatorType.TabWithIconAndText) {
+            return;
+        }
         this.tabTextIconOrientation = orientation;
         switch (orientation) {
             case VERTICAL:
@@ -626,14 +641,14 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
                     }
                 }
                 break;
-
+            
         }
     }
-
+    
     public TabOrientation getTabTextIconOrientation() {
         return tabTextIconOrientation;
     }
-
+    
     private void selectIconAndText(int position) {
         if (mViewPager == null) {
             return;
@@ -650,13 +665,8 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
                     if (tabBgSelectId != -1) {
                         ll.setBackgroundResource(tabBgSelectId);
                     }
-                    if (mViewPager.getAdapter() instanceof ZzBasePagerAdapter) {
-                        int icon = ((ZzBasePagerAdapter) mViewPager.getAdapter()).getSelectedIcon(i);
-                        iv.setImageResource(icon);
-                    } else {
-                        int icon = ((ZzFragmentPagerAdapter) mViewPager.getAdapter()).getSelectedIcon(i);
-                        iv.setImageResource(icon);
-                    }
+                    int icon = ((IIndicatorResProvider) mViewPager.getAdapter()).getSelectedIcon(i);
+                    iv.setImageResource(icon);
                 } else {
                     if (horizontalHideIconMode && tabTextIconOrientation == TabOrientation.HORIZONTAL) {
                         iv.setVisibility(GONE);
@@ -668,18 +678,13 @@ public class ZzPagerIndicator extends HorizontalScrollView implements IPagerIndi
                     if (tabBgNormalId != -1) {
                         ll.setBackgroundResource(tabBgNormalId);
                     }
-                    if (mViewPager.getAdapter() instanceof ZzBasePagerAdapter) {
-                        int icon = ((ZzBasePagerAdapter) mViewPager.getAdapter()).getUnselectedIcon(i);
-                        iv.setImageResource(icon);
-                    } else {
-                        int icon = ((ZzFragmentPagerAdapter) mViewPager.getAdapter()).getUnselectedIcon(i);
-                        iv.setImageResource(icon);
-                    }
+                    int icon = ((IIndicatorResProvider) mViewPager.getAdapter()).getUnselectedIcon(i);
+                    iv.setImageResource(icon);
                 }
             }
         }
     }
-
+    
     private View getItem(int position) {
         return mIndicatorContainer.getChildAt(position);
     }

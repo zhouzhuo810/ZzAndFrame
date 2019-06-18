@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:zz="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              xmlns:zz="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <zhouzhuo810.me.zzandframe.ui.widget.TitleBar
         android:id="@+id/title_bar"
@@ -12,38 +12,46 @@
         android:background="@color/colorPrimary"
         zz:ttb_leftImg="@drawable/iv_back"
         zz:ttb_leftText="返回"
+        zz:ttb_rightText="水平"
+        zz:ttb_showRightImg="false"
         zz:ttb_showRightLayout="true"
+        zz:ttb_showRightText="true"
         zz:ttb_textColorAll="#fff"
         zz:ttb_textSizeTitle="50px"
         zz:ttb_textSizeTwoSide="40px"
-        zz:ttb_rightText="水平"
-        zz:ttb_showRightText="true"
-        zz:ttb_showRightImg="false"
-        zz:ttb_titleText="ViewPager指示器" />
+        zz:ttb_titleText="ViewPager指示器"/>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        zz:tabMode="scrollable"
+        />
 
     <zhouzhuo810.me.zzandframe.ui.widget.zzpagerindicator.ZzPagerIndicator
         android:id="@+id/indicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        zz:zz_indicator_type="tab_with_icon_and_text"
-        android:paddingTop="20px"
         android:paddingBottom="20px"
-        zz:zz_show_underline="true"
-        zz:zz_underline_height="10px"
+        android:paddingTop="20px"
+        zz:zz_indicator_type="tab_with_icon_and_text"
         zz:zz_is_need_scale_in_px="true"
-        zz:zz_tab_padding="20px"
-        zz:zz_tab_is_horizontal_hide_icon="true"
-        zz:zz_tab_icon_text_margin="30px"
-        zz:zz_tab_orientation="horizontal"
-        zz:zz_select_tab_text_size="52px"
-        zz:zz_unselect_tab_text_size="43px"
-        zz:zz_tab_icon_size="50px"
         zz:zz_normal_tab_bg="@drawable/ll_bg_selector"
         zz:zz_select_tab_bg="@drawable/ll_bg_selector"
+        zz:zz_select_tab_text_size="40px"
+        zz:zz_should_tab_expand="false"
+        zz:zz_show_underline="true"
+        zz:zz_tab_icon_size="50px"
+        zz:zz_tab_icon_text_margin="30px"
+        zz:zz_tab_is_horizontal_hide_icon="false"
+        zz:zz_tab_orientation="horizontal"
+        zz:zz_tab_padding="30px"
+        zz:zz_underline_height="6px"
+        zz:zz_unselect_tab_text_size="30px"
         />
 
     <zhouzhuo810.me.zzandframe.ui.widget.ZzViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 </LinearLayout>

@@ -6,10 +6,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.List;
 
+import zhouzhuo810.me.zzandframe.ui.widget.zzpagerindicator.intef.IIndicatorResProvider;
+
 /**
  * Created by zz on 2016/8/22.
  */
-public class ZzFragmentPagerAdapter extends FragmentPagerAdapter {
+public class ZzFragmentPagerAdapter extends FragmentPagerAdapter implements IIndicatorResProvider<String> {
 
     protected List<Fragment> fragments;
     protected String[] titles;
@@ -45,16 +47,23 @@ public class ZzFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return titles[position];
+        return getTabText(titles[position], position);
     }
-
+    
+    @Override
+    public String getTabText(String s, int position) {
+        return s;
+    }
+    
+    @Override
     public int getSelectedIcon(int position) {
         if (selectedIcons != null && selectedIcons.length > position) {
             return selectedIcons[position];
         }
         return -1;
     }
-
+    
+    @Override
     public int getUnselectedIcon(int position) {
         if (unSelectedIcons != null && unSelectedIcons.length > position) {
             return unSelectedIcons[position];

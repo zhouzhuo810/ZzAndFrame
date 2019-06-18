@@ -22,7 +22,7 @@ allprojects {
 app/build.gradle添加
 
 ```
-    implementation 'com.github.zhouzhuo810:ZzAndFrame:1.3.3'
+    implementation 'com.github.zhouzhuo810:ZzAndFrame:1.3.4'
 ```
 
 添加上面依赖即同时依赖下面内容：
@@ -163,6 +163,11 @@ app/build.gradle添加
 
 
 ### 版本日志
+
+
+> v1.3.4
+
+- 修复ZzPagerIndicator控件的滚动逻辑和若干bug；
 
 > v1.3.2
 
