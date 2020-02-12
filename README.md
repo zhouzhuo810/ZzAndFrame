@@ -22,7 +22,7 @@ allprojects {
 app/build.gradle添加
 
 ```
-    implementation 'com.github.zhouzhuo810:ZzAndFrame:1.3.4'
+    implementation 'com.github.zhouzhuo810:ZzAndFrame:1.3.5'
 ```
 
 添加上面依赖即同时依赖下面内容：
@@ -164,6 +164,9 @@ app/build.gradle添加
 
 ### 版本日志
 
+> v1.3.5
+
+- 修改RvBaseAdapter的数组越界bug；
 
 > v1.3.4
 
